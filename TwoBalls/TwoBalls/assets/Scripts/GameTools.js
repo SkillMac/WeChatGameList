@@ -1,5 +1,6 @@
 let GameTools = {
     msgType: {
+        clear: 0,
         updateRank: 1,
         submitScore: 2,
         updateSelfRank: 3,

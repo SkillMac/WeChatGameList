@@ -90,10 +90,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 77
+        "__id__": 78
       },
       {
-        "__id__": 78
+        "__id__": 79
       }
     ],
     "_prefab": null,
@@ -1849,23 +1849,23 @@
         "__id__": 60
       },
       {
-        "__id__": 65
+        "__id__": 66
       },
       {
-        "__id__": 67
+        "__id__": 68
       },
       {
-        "__id__": 70
+        "__id__": 71
       },
       {
-        "__id__": 73
+        "__id__": 74
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 76
+        "__id__": 77
       }
     ],
     "_prefab": null,
@@ -2608,6 +2608,9 @@
     "_components": [
       {
         "__id__": 64
+      },
+      {
+        "__id__": 65
       }
     ],
     "_prefab": null,
@@ -2670,6 +2673,58 @@
     "_N$overflow": 0
   },
   {
+    "__type__": "cc.Button",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 63
+    },
+    "_enabled": true,
+    "transition": 3,
+    "pressedColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
+    },
+    "hoverColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "duration": 0.1,
+    "zoomScale": 1.1,
+    "clickEvents": [],
+    "_N$interactable": true,
+    "_N$enableAutoGrayEffect": false,
+    "_N$normalColor": {
+      "__type__": "cc.Color",
+      "r": 214,
+      "g": 214,
+      "b": 214,
+      "a": 255
+    },
+    "_N$disabledColor": {
+      "__type__": "cc.Color",
+      "r": 124,
+      "g": 124,
+      "b": 124,
+      "a": 255
+    },
+    "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
+    "_N$disabledSprite": null,
+    "_N$target": {
+      "__id__": 63
+    }
+  },
+  {
     "__type__": "cc.Node",
     "_name": "score",
     "_objFlags": 0,
@@ -2681,7 +2736,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 66
+        "__id__": 67
       }
     ],
     "_prefab": null,
@@ -2726,7 +2781,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 65
+      "__id__": 66
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -2757,10 +2812,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 68
+        "__id__": 69
       },
       {
-        "__id__": 69
+        "__id__": 70
       }
     ],
     "_prefab": null,
@@ -2805,7 +2860,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 67
+      "__id__": 68
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -2833,7 +2888,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 67
+      "__id__": 68
     },
     "_enabled": true,
     "transition": 3,
@@ -2877,7 +2932,7 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 67
+      "__id__": 68
     }
   },
   {
@@ -2892,10 +2947,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 71
+        "__id__": 72
       },
       {
-        "__id__": 72
+        "__id__": 73
       }
     ],
     "_prefab": null,
@@ -2940,7 +2995,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 70
+      "__id__": 71
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -2968,7 +3023,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 70
+      "__id__": 71
     },
     "_enabled": true,
     "transition": 3,
@@ -3012,7 +3067,7 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 70
+      "__id__": 71
     }
   },
   {
@@ -3027,10 +3082,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 74
+        "__id__": 75
       },
       {
-        "__id__": 75
+        "__id__": 76
       }
     ],
     "_prefab": null,
@@ -3075,7 +3130,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 73
+      "__id__": 74
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -3103,7 +3158,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 73
+      "__id__": 74
     },
     "_enabled": true,
     "transition": 3,
@@ -3147,7 +3202,7 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 73
+      "__id__": 74
     }
   },
   {
@@ -3159,10 +3214,16 @@
     },
     "_enabled": true,
     "score": {
-      "__id__": 66
+      "__id__": 67
     },
     "rankView": {
       "__id__": 59
+    },
+    "rankBtn": {
+      "__id__": 63
+    },
+    "dareBtn": {
+      "__id__": 68
     }
   },
   {

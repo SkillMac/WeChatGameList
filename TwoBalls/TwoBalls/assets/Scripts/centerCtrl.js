@@ -89,7 +89,7 @@ cc.Class({
             if(this.checkHitCenter()) {
                 this.hitCounts += 1;
             }else {
-                this.hitCounts = 0;
+                this.hitCounts = 0.5;
             }
             this.hitBallFlag = true;
             return true;
@@ -179,6 +179,9 @@ cc.Class({
         this.globalGame.score += curAddScore;
         this.updateScore();
         this.onCheckPointChange();
+        if(this.hitCounts ==0.5) {
+            this.hitCounts = 0;
+        }
     },
 
     checkIsOver() {
@@ -189,6 +192,8 @@ cc.Class({
                 if(this.endDialog.getComponent('endUICtrl').checkIsOver()) {
                     // this.enemy.stopAllActions();
                     this.enemyCom.stopMoveAction();
+                    // 清除 连击次数
+                    this.hitCounts = 0;
                 }
             }
             return true;

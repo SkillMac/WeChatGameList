@@ -131,10 +131,21 @@ cc.Class({
     },
 
     // 群分享
-    groupShare() {
-        wx.shareAppMessage({
-            title: '来与我一战',
-        });
+    groupShare(type) {
+        if(CC_WECHATGAME) {
+            if(type === 'share') {
+                // 分享 app
+                wx.shareAppMessage({
+                    title: '跟我一起玩',
+                });
+            } else if (type === 'dare') {
+                // 发起挑战
+                wx.shareAppMessage({
+                    title: '来与我一战',
+                });
+            }
+            
+        }
     },
 
     openShareTicketSetting() {

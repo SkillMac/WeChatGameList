@@ -10,6 +10,8 @@ cc.Class({
             tooltip: "分数",
         },
         rankView: cc.Sprite,
+        rankBtn: cc.Node,
+        dareBtn: cc.Node,
     },
 
     onLoad () {
@@ -29,7 +31,7 @@ cc.Class({
 
     // 刷新子域的纹理
     _updateSubDomainCanvas() {
-        if (CC_WECHATGAME) {
+        if (CC_WECHATGAME && this.updateRankViewFlag) {
             if (window.sharedCanvas != undefined) {
                 this.tex.initWithElement(window.sharedCanvas);
                 this.tex.handleLoadedTexture();
@@ -41,11 +43,14 @@ cc.Class({
     initData() {
         this.globalGame = cc.TB.GAME;
         this.overDialogFlag = false;
+        this.updateRankViewFlag = true;
     },
 
     initClickEvent() {
         this.addClickEvent('home_btn',this.homeBtnVent);
         this.addClickEvent('restart_btn',this.reStart);
+        this.dareBtn.on('click', this.groupShareBtnEvent,this);
+        this.rankBtn.on(cc.Node.EventType.TOUCH_END, this.rankBtnEvent,this);
     },
 
     addClickEvent(nodeName, func) {
@@ -60,12 +65,14 @@ cc.Class({
     },
 
     reStart(event) {
+
         this.hide();
         this.sendRestartEvent();
         this.globalGame.isPlaying = true;
     },
 
     show() {
+        this.updateRankViewFlag = true;
         this.node.active = true;
     },
 
@@ -76,6 +83,10 @@ cc.Class({
         this.node.active = false;
         this.updateScore();
         this.globalGame.gameOver = false;
+        // 清除孩子
+        GameTools.sendMessage({
+            type: GameTools.msgType.clear,
+        });
     },
 
     checkIsOver() {
@@ -108,5 +119,18 @@ cc.Class({
 
     sendRestartEvent() {
         this.node.parent.getComponent('centerCtrl').reset('restart');
+    },
+
+    groupShareBtnEvent(event) {
+        cc.TB.wco.groupShare('dare');
+    },
+
+    rankBtnEvent(event) {
+        let self = this;
+        this.updateRankViewFlag = false;
+        cc.loader.loadRes("prefab/rank", cc.Prefab, function(err, prefab){
+            let node = cc.instantiate(prefab);
+            self.node.parent.addChild(node);
+        });
     },
 });

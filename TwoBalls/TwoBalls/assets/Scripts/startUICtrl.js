@@ -36,8 +36,8 @@ cc.Class({
         });
     },
 
-    groupShare() {
-        cc.TB.wco.groupShare();
+    groupShare(event) {
+        cc.TB.wco.groupShare('share');
     },
 
     show() {

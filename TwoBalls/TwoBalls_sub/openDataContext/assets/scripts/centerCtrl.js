@@ -1,4 +1,5 @@
 let msgType = {
+    clear:0, // 清除
     updateRank: 1, // 跟新排行榜
     submitScore: 2, // 提交分数
     updateSelfRank: 3 // 跟新提交页面的排行
@@ -31,6 +32,9 @@ cc.Class({
                 else if(data.type == msgType.updateSelfRank) {
                     this.updateRank(data.keyList,true);
                 }
+                else if(data.type == msgType.clear) {
+                    this.destroyChild();
+                }
             });
         }
     },
@@ -41,6 +45,7 @@ cc.Class({
         this.prefabList.forEach(element => {
             element.destroy();
         });
+        this.prefabList = [];
     },
     updateRank(keyList_, isGameOverRank) {
         // if(!isGameOverRank) {
