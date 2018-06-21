@@ -131,17 +131,37 @@ cc.Class({
     },
 
     // 群分享
-    groupShare(type) {
+    groupShare(type, prefab_) {
         if(CC_WECHATGAME) {
+            let address = 'https://vdgames.vdongchina.com/TB/1.0/share/'
             if(type === 'share') {
+                // let canvas = wx.createCanvas();
+                // let context = canvas.getContext('2d');
+                // let image = wx.createImage();
+                // image.onload = function () {
+                //     console.log(image.width, image.height);
+                //     context.drawImage(image, 0, 0);
+                // }
+                // image.src = address + 'share.jpg';
+
                 // 分享 app
                 wx.shareAppMessage({
                     title: '跟我一起玩',
+                    query: cc.TB.GAME.weChatData.keyList[0],
+                    imageUrl: address + 'share.jpg',
+                    success: (res) => {
+                        console.log('分享 成功 ', res);
+                        if (res.shareTickets != undefined && res.shareTickets.length > 0) {
+                            cc.TB.GAME.weChatData.shareTicket = res.shareTickets[0];
+                            //this.onGroupShareFunc();
+                        }
+                    }
                 });
             } else if (type === 'dare') {
                 // 发起挑战
                 wx.shareAppMessage({
                     title: '来与我一战',
+                    imageUrl: address + 'share2.jpg',
                 });
             }
             
@@ -170,12 +190,10 @@ cc.Class({
             console.log('游戏启动',res);
             if(res.shareTicket){
                 cc.TB.GAME.weChatData.shareTicket = res.shareTicket;
+                // 显示群排行
+                this.onGroupShareFunc();
             }
         });
-
-        if(cc.TB.GAME.weChatData.shareTicket) {
-            // 显示群排行榜 // todo
-        }
     },
 
     openShareSetting() {
@@ -194,4 +212,27 @@ cc.Class({
     showAD() {
         // 插屏广告接入
     },
+
+    adjustBgScaleY(node) {
+        if(CC_WECHATGAME){
+            wx.getSystemInfo({
+                success: (res) => {
+                    let desginSize = cc.TB.GAME.getDesignSize();
+                    let ratio = res.screenWidth / desginSize.width;
+                    let curRatio = res.screenHeight / node.height * ratio * node.scaleY;
+                    node.scaleY *= curRatio;
+                },
+            });
+        }
+    },
+
+    registerOnGroupShareFunc(func) {
+        this._onGroupShareFunc = func;
+    },
+
+    onGroupShareFunc() {
+        if(this._onGroupShareFunc) {
+            this._onGroupShareFunc(cc.TB.GAME.weChatData.shareTicket);
+        }
+    }
 });

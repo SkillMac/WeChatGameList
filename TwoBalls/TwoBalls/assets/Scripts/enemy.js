@@ -42,8 +42,12 @@ cc.Class({
         //this.node.runAction(cc.sequence(cc.delayTime(delayTime), cc.callFunc(this.hMoveAction, this)));
 
         // test
+        this.node.opacity = 255;
+        this.node.active = true;
         this._speed = this.moveSpeedX;
         this.curMoveDir = 1;
+        this.center.stopAllActions();
+        this.center.opacity = 255;
         this.center.active = true;
         let show_hide_time = this.gameStatus.enemyCenterShowTime;
         this.center.runAction(cc.sequence(cc.fadeIn(show_hide_time),cc.fadeOut(show_hide_time),cc.callFunc(()=>{
@@ -95,9 +99,11 @@ cc.Class({
         this.show(type);
     },
     show(type) {
+        if(type == 'normal' || type == 'restart') {
+            this.node.active = true;
+        }
         this.node.opacity = 0;
         this.node.setScale(this.curScale* this.gameStatus.enemyStartScaleMul);
-        this.node.active = true;
         let scaleTime = this.gameStatus.enemyShowScaleTime;
         let fadeTime = this.gameStatus.enemyFadeTime;
         this.node.runAction(cc.spawn(cc.scaleTo(scaleTime,this.curScale),cc.fadeIn(fadeTime)));

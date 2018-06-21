@@ -4,6 +4,7 @@ let GameTools = {
         updateRank: 1,
         submitScore: 2,
         updateSelfRank: 3,
+        groupShare: 4,
     },
     _spriteCache: {
         _cahce:{},

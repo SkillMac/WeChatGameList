@@ -57,6 +57,7 @@ cc.Class({
         this.endDialog.active = false;
         this.score.node.active = false;
         this.showScore.node.active = false;
+        this.enemy.active = false;
     },
 
     update (dt) {
@@ -118,7 +119,14 @@ cc.Class({
         let callfunc = function() {
             //console.log(cc.TB.GAME.weChatData);
         }
-        wco.checkIsLogin(callfunc);      
+        wco.checkIsLogin(callfunc);     
+        // 适配高度
+        wco.adjustBgScaleY(this.bg.node);
+        wco.adjustBgScaleY(this.bgNext.node);
+
+        wco.registerOnGroupShareFunc((ticket) => {
+            this.onGroupShare(ticket);
+        });
     },
 
     initData() {
@@ -179,22 +187,20 @@ cc.Class({
         this.globalGame.score += curAddScore;
         this.updateScore();
         this.onCheckPointChange();
-        if(this.hitCounts ==0.5) {
+        if(this.hitCounts == 0.5) {
             this.hitCounts = 0;
         }
     },
 
     checkIsOver() {
-        if(this.globalGame.isPlaying && this.playerCom.checkIsGameOver()) {
-            if(!this.globalGame.gameOver){
-                this.updateOverGameStatus();
-                // 通知 UI 显示 结束面板
-                if(this.endDialog.getComponent('endUICtrl').checkIsOver()) {
-                    // this.enemy.stopAllActions();
-                    this.enemyCom.stopMoveAction();
-                    // 清除 连击次数
-                    this.hitCounts = 0;
-                }
+        if(this.globalGame.isPlaying && this.playerCom.checkIsGameOver() && !this.globalGame.gameOver) {
+            this.updateOverGameStatus();
+            // 通知 UI 显示 结束面板
+            if(this.endDialog.getComponent('endUICtrl').checkIsOver()) {
+                // this.enemy.stopAllActions();
+                this.enemyCom.stopMoveAction();
+                // 清除 连击次数
+                this.hitCounts = 0;
             }
             return true;
         }
@@ -259,7 +265,22 @@ cc.Class({
 
     onEntryMainMenu() {
         this.score.node.active = false;
+        this.enemy.active = false;
         this.startDialog.getComponent('startUICtrl').show();
         this.reset('home');
     },
+
+    onGroupShare(shareTicket) {
+        let self = this;
+        cc.loader.loadRes("prefab/rank", cc.Prefab, function(err, prefab){
+            let prefabNode = cc.instantiate(prefab);
+            prefabNode.getComponent('rankCtrl').showGroupPic();
+            self.node.addChild(prefabNode);
+            GameTools.sendMessage({
+                type: GameTools.msgType.groupShare,
+                ticket: shareTicket,
+                key: cc.TB.GAME.weChatData.keyList[0],
+            });
+        });
+    }
 });

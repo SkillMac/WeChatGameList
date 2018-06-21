@@ -358,6 +358,19 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../../../../../../share/泡珠/最强泡珠/mohu.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>45,46,90,92</rect>
+                <key>scale9Paddings</key>
+                <rect>45,46,90,92</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
         </map>
         <key>fileList</key>
         <array>
@@ -376,6 +389,7 @@
             <filename>res/lanmu.png</filename>
             <filename>res/pifurukou.png</filename>
             <filename>res/zhunxing.png</filename>
+            <filename>../../../../../../share/泡珠/最强泡珠/mohu.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

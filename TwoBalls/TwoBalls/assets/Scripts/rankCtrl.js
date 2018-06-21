@@ -7,6 +7,7 @@ cc.Class({
         groupBtn: cc.Node,
         friendPic: cc.Sprite,
         rankView: cc.Sprite,
+        groupPic: cc.Sprite,
     },
     onLoad() {
         this.initData();
@@ -18,10 +19,12 @@ cc.Class({
         }
     },
     start () {
-        GameTools.sendMessage({
-            type: GameTools.msgType.updateRank,
-            keyList:cc.TB.GAME.weChatData.keyList,
-        });
+        if(!this.groupPic.node.active) {
+            GameTools.sendMessage({
+                type: GameTools.msgType.updateRank,
+                keyList:cc.TB.GAME.weChatData.keyList,
+            });
+        }
     },
     update() {
         this._updateSubDomainCanvas();
@@ -69,5 +72,10 @@ cc.Class({
             self.nextPicName = "friend";
             // 显示世界排行
         }
+    },
+
+    showGroupPic() {
+        this.groupPic.node.active = true;
+        this.friendPic.node.active = false;
     },
 });

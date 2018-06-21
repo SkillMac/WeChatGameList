@@ -2,7 +2,8 @@ let msgType = {
     clear:0, // 清除
     updateRank: 1, // 跟新排行榜
     submitScore: 2, // 提交分数
-    updateSelfRank: 3 // 跟新提交页面的排行
+    updateSelfRank: 3, // 跟新提交页面的排行
+    groupShare: 4, // 群排行
 }
 cc.Class({
     extends: cc.Component,
@@ -34,6 +35,9 @@ cc.Class({
                 }
                 else if(data.type == msgType.clear) {
                     this.destroyChild();
+                }
+                else if(data.type == msgType.groupShare) {
+                    this.fetchGroupFriendData(data.key, data.ticket);
                 }
             });
         }
@@ -77,8 +81,12 @@ cc.Class({
                                 if (b.KVDataList.length == 0) {
                                     return -1;
                                 }
-                                a.KVDataList[0].value = JSON.parse(a.KVDataList[0].value);
-                                b.KVDataList[0].value = JSON.parse(b.KVDataList[0].value);
+                                if(typeof(a.KVDataList[0].value) === 'string') {
+                                    a.KVDataList[0].value = JSON.parse(a.KVDataList[0].value);
+                                }
+                                if(typeof(b.KVDataList[0].value) === 'string') {
+                                    b.KVDataList[0].value = JSON.parse(b.KVDataList[0].value);
+                                }
                                 return b.KVDataList[0].value.wxgame.score - a.KVDataList[0].value.wxgame.score;
                             });
 
@@ -198,4 +206,68 @@ cc.Class({
         });
         }
     },
+
+    fetchGroupFriendData(keyList_, ticket) {
+        this.destroyChild();
+        if (CC_WECHATGAME) {
+            wx.getUserInfo({
+                openIdList: ['selfOpenId'],
+                success: (userRes) => {
+                    let userData = userRes.data[0];
+                    wx.getGroupCloudStorage({
+                        keyList: [keyList_],
+                        shareTicket: ticket,
+                        success: res => {
+                            let data = res.data;
+                            console.log("获取群排行数据 success", res, 'ticket', ticket);
+                            data.sort((a, b) => {
+                                if (a.KVDataList.length == 0 && b.KVDataList.length == 0) {
+                                    return 0;
+                                }
+                                if (a.KVDataList.length == 0) {
+                                    return 1;
+                                }
+                                if (b.KVDataList.length == 0) {
+                                    return -1;
+                                }
+                                if(typeof(a.KVDataList[0].value) === 'string') {
+                                    a.KVDataList[0].value = JSON.parse(a.KVDataList[0].value);
+                                }
+                                if(typeof(b.KVDataList[0].value) === 'string') {
+                                    b.KVDataList[0].value = JSON.parse(b.KVDataList[0].value);
+                                }
+                                return b.KVDataList[0].value.wxgame.score - a.KVDataList[0].value.wxgame.score;
+                            });
+
+                            // content
+                            for (let i = 0; i < data.length; i++) {
+                                let playerInfo = data[i];
+                                if(playerInfo.KVDataList.length !=0){
+                                    // 更新排行榜
+                                    let node = cc.instantiate(this.itemPrefab);
+                                    this.prefabList.push(node);
+                                    node.getComponent('itemCtrl').init(i,playerInfo);
+                                    this.content.addChild(node);
+                                    //-241
+                                    if (data[i].avatarUrl == userData.avatarUrl) {
+                                        let node = cc.instantiate(this.itemPrefab);
+                                        this.prefabList.push(node);
+                                        node.getComponent('itemCtrl').init(i,playerInfo);
+                                        this.node.addChild(node);
+                                        node.y = -241;
+                                    }
+                                }
+                            }
+                        },
+                        fail: res => {
+                            console.log("wx.getGroupCloudStorage fail", res);
+                        },
+                    });
+                },
+                fail: (res) => {
+                    console.log('获取群信息失败',res);
+                },
+            });
+        }
+    }
 });

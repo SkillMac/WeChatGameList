@@ -3,6 +3,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        shareImg: cc.Prefab,
     },
 
     onLoad () {
@@ -37,7 +38,7 @@ cc.Class({
     },
 
     groupShare(event) {
-        cc.TB.wco.groupShare('share');
+        cc.TB.wco.groupShare('share',this.shareImg);
     },
 
     show() {
