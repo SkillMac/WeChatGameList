@@ -54,7 +54,7 @@ cc.Class({
         this.initEffectFire();
     },
     start () {
-        this.endDialog.active = false;
+        this.endDialog.x = 10000;//active = false;
         this.score.node.active = false;
         this.showScore.node.active = false;
         this.enemy.active = false;
@@ -169,6 +169,7 @@ cc.Class({
         }
         let enemyPosY = this.enemy.y;
         this.showScore.node.y = enemyPosY;
+        this.showScore.node.stopAllActions();
         this.showScore.string = '+' + this.globalGame.getShowScoreVal(this.hitCounts);
         this.showScore.node.active = true;
         this.showScore.node.opacity = 255;
@@ -249,9 +250,12 @@ cc.Class({
     },
     startBtnEvent() {
         // 敌人开始运动
-        this.enemyCom.playMoveAction();
         this.updateScore();
         this.score.node.active = true;
+        let delayTime = this.playerCom.playTaskEffect();
+        this.node.runAction(cc.sequence(cc.delayTime(delayTime),cc.callFunc(() => {
+            this.enemyCom.playMoveAction();
+        })));
     },
     // 事件监听
     onStartGameEvent() {

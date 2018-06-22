@@ -131,7 +131,7 @@ cc.Class({
     },
 
     // 群分享
-    groupShare(type, prefab_) {
+    groupShare(type, callback_) {
         if(CC_WECHATGAME) {
             let address = 'https://vdgames.vdongchina.com/TB/1.0/share/'
             if(type === 'share') {
@@ -154,6 +154,9 @@ cc.Class({
                         if (res.shareTickets != undefined && res.shareTickets.length > 0) {
                             cc.TB.GAME.weChatData.shareTicket = res.shareTickets[0];
                             //this.onGroupShareFunc();
+                            if (callback_) {
+                                callback_();
+                            }
                         }
                     }
                 });
@@ -162,6 +165,11 @@ cc.Class({
                 wx.shareAppMessage({
                     title: '来与我一战',
                     imageUrl: address + 'share2.jpg',
+                    success: (res) => {
+                        if (callback_) {
+                            callback_();
+                        }
+                    },
                 });
             }
             
@@ -179,9 +187,11 @@ cc.Class({
 
     bandingOnShowFunc() {
         // 启动
+        cc.log('启动');
         let option = wx.getLaunchOptionsSync();
-        if(option.shareTicket) {
+        if(option.shareTicket != undefined) {
             cc.TB.GAME.weChatData.shareTicket = res.shareTicket;
+            this.onGroupShareFunc();
         }
         console.log('小游戏启动设置',option);
         // 显示
@@ -202,8 +212,10 @@ cc.Class({
         });
         wx.onShareAppMessage(
             () => {
+                let address = 'https://vdgames.vdongchina.com/TB/1.0/share/'
                 return {
-                    title: '来与我一战',
+                    title: '一起玩',
+                    imageUrl: address + 'share.jpg',
                 }
             }
         );

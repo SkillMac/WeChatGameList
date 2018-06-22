@@ -73,14 +73,14 @@ cc.Class({
 
     show() {
         this.updateRankViewFlag = true;
-        this.node.active = true;
+        this.node.x = 0; //active = true;
     },
 
     hide() {
         this.globalGame.score = 0;
         this.globalGame.checkPoint = 0;
         this.overDialogFlag = false;
-        this.node.active = false;
+        this.node.x = 10000;//active = false;
         this.updateScore();
         this.globalGame.gameOver = false;
         // 清除孩子

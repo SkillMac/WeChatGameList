@@ -57,6 +57,7 @@ cc.Class({
     },
     groupBtnEvent(event) {
         // 查看群排行
+        cc.TB.wco.groupShare('share');
     },
     friendPicEvent(event) {
         event.stopPropagation();

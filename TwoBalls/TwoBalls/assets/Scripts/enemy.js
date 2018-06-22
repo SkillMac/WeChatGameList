@@ -21,7 +21,7 @@ cc.Class({
         this.center.active = false;
     },
 
-    update(dt) {
+    lateUpdate(dt) {
         this.move(dt);
     },
 
@@ -29,11 +29,12 @@ cc.Class({
         if(this.curMoveDir === 1 && this.node.x >= (this.moveDistance / 2)) {
             this.curMoveDir = -1;
         }
-        if(this.curMoveDir === -1 && this.node.x <= (- this.moveDistance / 2)) {
+        else if(this.curMoveDir === -1 && this.node.x <= (- this.moveDistance / 2)) {
             this.curMoveDir = 1;
         }
         let curMoveDis = this.curMoveDir * this._speed * dt;
         // cc.log(curMoveDis);
+        // console.log(curMoveDis,dt);
         this.node.x += curMoveDis;
     },
 

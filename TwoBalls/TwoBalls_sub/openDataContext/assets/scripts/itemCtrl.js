@@ -12,6 +12,7 @@ cc.Class({
         image: cc.Sprite,
         nickName: cc.Label,
         score: cc.Label,
+        bg: cc.Node,
     },
 
     start () {
@@ -20,12 +21,11 @@ cc.Class({
 
     init(index, data) {
         let avatarUrl = data.avatarUrl;
-        let nickName = data.nickname;
+        let nickName = data.nickname.length <= 6 ? data.nickname : data.nickname.substr(0, 6) + "...";
         let scoreData = data.KVDataList[0].value;
         if(typeof(scoreData) ==='string'){
             scoreData = this.str2json(data.KVDataList[0].value);
         }
-        console.log(scoreData);
 
         if(colorCfg[index]){
             this.index.node.color = colorCfg[index];
