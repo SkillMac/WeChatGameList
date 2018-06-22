@@ -1,0 +1,20 @@
+info face="C:\Users\zhouguaner\Desktop\2018622\z-export" size=32 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1
+common lineHeight=80 base=26 scaleW=512 scaleH=256 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
+page id=0 file="C:\Users\zhouguaner\Desktop\2018622\z-export.png"
+chars count=14
+char id=49 x=375 y=97 width=37 height=95 xoffset=0 yoffset=-16 xadvance=38 page=0 chnl=0 letter="1"
+char id=50 x=312 y=95 width=62 height=96 xoffset=0 yoffset=-17 xadvance=63 page=0 chnl=0 letter="2"
+char id=51 x=375 y=0 width=61 height=96 xoffset=0 yoffset=-16 xadvance=62 page=0 chnl=0 letter="3"
+char id=52 x=112 y=125 width=69 height=95 xoffset=0 yoffset=-16 xadvance=70 page=0 chnl=0 letter="4"
+char id=53 x=182 y=97 width=65 height=95 xoffset=0 yoffset=-15 xadvance=66 page=0 chnl=0 letter="5"
+char id=54 x=126 y=0 width=66 height=96 xoffset=0 yoffset=-16 xadvance=67 page=0 chnl=0 letter="6"
+char id=55 x=257 y=0 width=63 height=94 xoffset=0 yoffset=-15 xadvance=64 page=0 chnl=0 letter="7"
+char id=56 x=193 y=0 width=63 height=96 xoffset=0 yoffset=-16 xadvance=64 page=0 chnl=0 letter="8"
+char id=57 x=248 y=97 width=63 height=97 xoffset=0 yoffset=-17 xadvance=64 page=0 chnl=0 letter="9"
+char id=76 x=0 y=0 width=125 height=124 xoffset=0 yoffset=-29 xadvance=126 page=0 chnl=0 letter="L"
+char id=68 x=0 y=125 width=111 height=56 xoffset=0 yoffset=36 xadvance=112 page=0 chnl=0 letter="D"
+char id=83 x=0 y=182 width=111 height=57 xoffset=0 yoffset=36 xadvance=112 page=0 chnl=0 letter="S"
+char id=32 x=0 y=0 width=0 height=0 xoffset=0 yoffset=0 xadvance=20 page=0 chnl=0 letter=" "
+char id=9 x=0 y=0 width=0 height=0 xoffset=0 yoffset=0 xadvance=160 page=0 chnl=0 letter="	"
+
+kernings count=0
