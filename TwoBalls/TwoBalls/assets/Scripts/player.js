@@ -8,10 +8,6 @@ cc.Class({
             default: 250,
             tooltip: "小球每秒的移动速度",
         },
-        audioShoot: {
-            default: null,
-            url: cc.AudioClip,
-        },
         aniam: cc.Animation,
     },
 
@@ -68,8 +64,7 @@ cc.Class({
             return;
         }
         if(speedY_ != 0) {
-            cc.audioEngine.play(this.audioShoot,false,1);
-            // this.audio.play();
+            cc.audioEngine.play(cc.url.raw('resources/audio/shoot1.mp3'))
         }
         this.speedY = speedY_;
     },
@@ -112,7 +107,7 @@ cc.Class({
                 this.isMove = true;
             })));
             this.moveSpeedY += (cc.TB.GAME.playerAddSpeed*speed_val);
-            console.log('延时',delay_time, " | addSize", addSize, "| 当前速度", this.moveSpeedY);
+            //console.log('延时',delay_time, " | addSize", addSize, "| 当前速度", this.moveSpeedY);
             delay_time += scaleTime;
 
             let showText = "";

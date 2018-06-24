@@ -7,10 +7,6 @@ cc.Class({
             default: 0.5,
             tooltip: "动画的时间",
         },
-        // audioBroke: {
-        //     default: null,
-        //     url: cc.AudioClip,
-        // },
     },
 
     onLoad() {
@@ -18,7 +14,7 @@ cc.Class({
         this.initEffectFire();
     },
     initData() {
-        this.audio = this.node.getComponent(cc.AudioSource);
+        // this.audio = this.node.getComponent(cc.AudioSource);
     },
     initEffectFire() {
         let effectNode = this.node;
@@ -35,8 +31,7 @@ cc.Class({
         scaleVal *=0.7;
         let showAction = cc.spawn(cc.scaleTo(this.time,scaleVal,scaleVal),cc.fadeIn(this.time));
         effectNode.runAction(showAction);
-        // cc.audioEngine.play(this.audioBroke,false,1);
-        this.audio.play();
+        cc.audioEngine.play(cc.url.raw('resources/audio/broke1.mp3'))
         effectNode.runAction(cc.sequence(cc.delayTime(this.time),cc.callFunc(()=>{
             self.reset();
             if (callFunc) {

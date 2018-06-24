@@ -25,16 +25,6 @@ cc.Class({
             type: cc.Label,
             tooltip: "玩家分数label",
         },
-        startDialog: {
-            default: null,
-            type: cc.Node,
-            tooltip: "开始弹窗",
-        },
-        endDialog: {
-            default: null,
-            type: cc.Node,
-            tooltip: "结束弹窗",
-        },
         bg: {
             default: null,
             displayName: "游戏背景",
@@ -48,14 +38,14 @@ cc.Class({
         showScore: cc.Label,
     },
     onLoad() {
+        cc.log('游戏场景onLoad');
         this.init();
         this.initData();
         this.onStartGameEvent();
         this.initEffectFire();
     },
     start () {
-        this.endDialog.x = 10000;//active = false;
-        this.score.node.active = false;
+        cc.log('游戏场景start');
         this.showScore.node.active = false;
         this.enemy.active = false;
     },
@@ -108,25 +98,7 @@ cc.Class({
     },
 
     init() {
-        cc.TB = {};
-        cc.TB.GAME = require('gameStatus');
-        let WCO = require('weChat');
-        cc.TB.wco = new WCO();
-        let wco = cc.TB.wco; 
-        let self = this;
-
-        // 微信登录
-        let callfunc = function() {
-            //console.log(cc.TB.GAME.weChatData);
-        }
-        wco.checkIsLogin(callfunc);     
-        // 适配高度
-        wco.adjustBgScaleY(this.bg.node);
-        wco.adjustBgScaleY(this.bgNext.node);
-
-        wco.registerOnGroupShareFunc((ticket) => {
-            this.onGroupShare(ticket);
-        });
+        // todo
     },
 
     initData() {
@@ -196,13 +168,14 @@ cc.Class({
     checkIsOver() {
         if(this.globalGame.isPlaying && this.playerCom.checkIsGameOver() && !this.globalGame.gameOver) {
             this.updateOverGameStatus();
-            // 通知 UI 显示 结束面板
-            if(this.endDialog.getComponent('endUICtrl').checkIsOver()) {
-                // this.enemy.stopAllActions();
-                this.enemyCom.stopMoveAction();
-                // 清除 连击次数
-                this.hitCounts = 0;
-            }
+            // 停止现象 清楚数据
+            this.enemyCom.stopMoveAction();
+            // 清除 连击次数
+            this.hitCounts = 0;
+            // 停掉 背景调度
+            this.bg.unscheduleAllCallbacks();
+            // 切换结束场景
+            this.toGameOverScene()
             return true;
         }
         else {
@@ -213,6 +186,10 @@ cc.Class({
     updateOverGameStatus() {
         this.globalGame.gameOver = true;
         this.globalGame.isPlaying = false;
+    },
+
+    toGameOverScene() {
+        cc.director.loadScene('OverScene');
     },
 
     onCheckPointChange() {
@@ -252,26 +229,15 @@ cc.Class({
         // 敌人开始运动
         this.updateScore();
         this.score.node.active = true;
-        let delayTime = this.playerCom.playTaskEffect();
+        let delayTime = 0;//this.playerCom.playTaskEffect();
         this.node.runAction(cc.sequence(cc.delayTime(delayTime),cc.callFunc(() => {
             this.enemyCom.playMoveAction();
         })));
     },
     // 事件监听
     onStartGameEvent() {
-        let self = this;
-        this.node.on('start_game_btn',function(event){
-            event.stopPropagation();
-            self.startUpBgUpdate();
-            self.startBtnEvent();
-        });
-    },
-
-    onEntryMainMenu() {
-        this.score.node.active = false;
-        this.enemy.active = false;
-        this.startDialog.getComponent('startUICtrl').show();
-        this.reset('home');
+        this.startUpBgUpdate();
+        this.startBtnEvent();
     },
 
     onGroupShare(shareTicket) {

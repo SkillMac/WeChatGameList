@@ -1,6 +1,6 @@
 
 let GameTools = require('GameTools');
-cc.Class({
+let T = cc.Class({
 
     ctor() {
         if(CC_WECHATGAME){
@@ -12,6 +12,15 @@ cc.Class({
             this.openShareSetting();
         }
         
+    },
+
+    statics: {
+        registerOnGroupShareFunc(func) {
+            if(CC_WECHATGAME) {
+                T._onGroupShareFunc = func;
+            }
+            
+        },
     },
 
     checkIsLogin(func) {
@@ -131,7 +140,7 @@ cc.Class({
     },
 
     // 群分享
-    groupShare(type, callback_) {
+    groupShare(type, callback_, params) {
         if(CC_WECHATGAME) {
             let address = 'https://vdgames.vdongchina.com/TB/1.0/share/'
             if(type === 'share') {
@@ -147,7 +156,7 @@ cc.Class({
                 // 分享 app
                 wx.shareAppMessage({
                     title: '跟我一起玩',
-                    query: cc.TB.GAME.weChatData.keyList[0],
+                    query: 'invite=1&wc=2',
                     imageUrl: address + 'share.jpg',
                     success: (res) => {
                         console.log('分享 成功 ', res);
@@ -165,6 +174,7 @@ cc.Class({
                 wx.shareAppMessage({
                     title: '来与我一战',
                     imageUrl: address + 'share2.jpg',
+                    query: 'invite=2',
                     success: (res) => {
                         if (callback_) {
                             callback_();
@@ -177,27 +187,22 @@ cc.Class({
     },
 
     openShareTicketSetting() {
-        wx.updateShareMenu({
-            withShareTicket: true,
-            success: (res)=>{
-                //console.log('分享券设置成成功', res);
-            },
-        });
+        wx.updateShareMenu({withShareTicket: true});
     },
 
     bandingOnShowFunc() {
         // 启动
-        cc.log('启动');
         let option = wx.getLaunchOptionsSync();
+        console.log('小游戏启动',option);
         if(option.shareTicket != undefined) {
-            cc.TB.GAME.weChatData.shareTicket = res.shareTicket;
+            cc.TB.GAME.weChatData.shareTicket = option.shareTicket;
             this.onGroupShareFunc();
         }
-        console.log('小游戏启动设置',option);
+        
         // 显示
         wx.onShow((res)=>{
             // shareTicket
-            console.log('游戏启动',res);
+            console.log('切换到前台',res);
             if(res.shareTicket){
                 cc.TB.GAME.weChatData.shareTicket = res.shareTicket;
                 // 显示群排行
@@ -232,19 +237,17 @@ cc.Class({
                     let desginSize = cc.TB.GAME.getDesignSize();
                     let ratio = res.screenWidth / desginSize.width;
                     let curRatio = res.screenHeight / node.height * ratio * node.scaleY;
+                    //console.log('屏幕适配',ratio,curRatio);
                     node.scaleY *= curRatio;
                 },
             });
         }
     },
 
-    registerOnGroupShareFunc(func) {
-        this._onGroupShareFunc = func;
-    },
-
     onGroupShareFunc() {
-        if(this._onGroupShareFunc) {
-            this._onGroupShareFunc(cc.TB.GAME.weChatData.shareTicket);
+        console.log('唤醒群分享功能',T._onGroupShareFunc);
+        if(T._onGroupShareFunc) {
+            T._onGroupShareFunc(cc.TB.GAME.weChatData.shareTicket);
         }
     }
 });

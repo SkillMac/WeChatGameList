@@ -15,18 +15,19 @@ cc.Class({
     },
 
     onLoad () {
-        this.initData();
-        this.initClickEvent();
+        this.initData()
+        this.initClickEvent()
+        this.checkIsOver()
 
         if (CC_WECHATGAME) {
-            this.tex = new cc.Texture2D();
-            window.sharedCanvas.width = 720;
-            window.sharedCanvas.height = 1280;
+            this.tex = new cc.Texture2D()
+            window.sharedCanvas.width = 720
+            window.sharedCanvas.height = 1280
         }
     },
 
     update() {
-        this._updateSubDomainCanvas();
+        this._updateSubDomainCanvas()
     },
 
     // 刷新子域的纹理
@@ -42,7 +43,6 @@ cc.Class({
 
     initData() {
         this.globalGame = cc.TB.GAME;
-        this.overDialogFlag = false;
         this.updateRankViewFlag = true;
     },
 
@@ -59,40 +59,36 @@ cc.Class({
     },
 
     homeBtnVent(event) {
-        // 初始化状态
-        this.node.parent.getComponent('centerCtrl').onEntryMainMenu();
-        this.hide();
+        this.hide(()=>{
+            cc.director.loadScene('StartScene')
+        });
     },
 
     reStart(event) {
-
-        this.hide();
-        this.sendRestartEvent();
-        this.globalGame.isPlaying = true;
+        this.hide(()=>{
+            cc.director.loadScene('MainGame')
+        });
     },
 
     show() {
         this.updateRankViewFlag = true;
-        this.node.x = 0; //active = true;
+        this.node.x = 0;
     },
 
-    hide() {
+    hide(func_) {
         this.globalGame.score = 0;
         this.globalGame.checkPoint = 0;
-        this.overDialogFlag = false;
-        this.node.x = 10000;//active = false;
-        this.updateScore();
         this.globalGame.gameOver = false;
-        // 清除孩子
-        GameTools.sendMessage({
-            type: GameTools.msgType.clear,
-        });
+        this.globalGame.isPlaying = true;
+        this.node.runAction(cc.sequence(cc.fadeOut(0.35),cc.callFunc(()=>{
+            if (func_) {
+                func_()
+            }
+        })));
     },
 
     checkIsOver() {
-        if(this.globalGame.gameOver && !this.overDialogFlag) {
-            // 更新状态
-            this.overDialogFlag = true;
+        if(this.globalGame.gameOver) {
             // 跟新分数
             this.updateScore();
             // 分数上传
@@ -115,10 +111,6 @@ cc.Class({
 
     setScore(val) {
         this.score.string = val;
-    },
-
-    sendRestartEvent() {
-        this.node.parent.getComponent('centerCtrl').reset('restart');
     },
 
     groupShareBtnEvent(event) {

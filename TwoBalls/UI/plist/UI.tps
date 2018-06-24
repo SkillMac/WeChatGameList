@@ -344,6 +344,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">res/pifurukou.png</key>
+            <key type="filename">res/tq_0006_fenxiang.png</key>
+            <key type="filename">res/tq_0007_phb.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>35,37,71,73</rect>
+                <key>scale9Paddings</key>
+                <rect>35,37,71,73</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">res/qipao.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -380,19 +395,6 @@
                 <rect>68,37,135,75</rect>
                 <key>scale9Paddings</key>
                 <rect>68,37,135,75</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/shengji.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>49,51,99,103</rect>
-                <key>scale9Paddings</key>
-                <rect>49,51,99,103</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -448,20 +450,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/tq_0006_fenxiang.png</key>
-            <key type="filename">res/tq_0007_phb.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>35,37,71,73</rect>
-                <key>scale9Paddings</key>
-                <rect>35,37,71,73</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">res/tq_0008_start.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -488,16 +476,16 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/zhunxing.png</key>
+            <key type="filename">res/zx.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>5,5,10,10</rect>
+                <rect>7,7,13,13</rect>
                 <key>scale9Paddings</key>
-                <rect>5,5,10,10</rect>
+                <rect>7,7,13,13</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -517,9 +505,7 @@
             <filename>res/bt.png</filename>
             <filename>res/tc.png</filename>
             <filename>res/lanmu.png</filename>
-            <filename>res/zhunxing.png</filename>
             <filename>res/mohu.png</filename>
-            <filename>res/shengji.png</filename>
             <filename>res/hb.png</filename>
             <filename>res/jt.png</filename>
             <filename>res/kanguanggao.png</filename>
@@ -530,6 +516,8 @@
             <filename>res/qzhy.png</filename>
             <filename>res/gb.png</filename>
             <filename>res/kgg.png</filename>
+            <filename>res/pifurukou.png</filename>
+            <filename>res/zx.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

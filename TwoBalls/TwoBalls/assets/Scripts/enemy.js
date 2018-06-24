@@ -16,92 +16,95 @@ cc.Class({
     },
 
     onLoad() {
-        this.initData();
-        this.loadEnemySkin();
-        this.center.active = false;
+        this.initData()
+        this.loadEnemySkin()
+        this.center.active = false
+        // this.schedule(()=>{
+        //     this._Update();
+        // },0.01,cc.macro.REPEAT_FOREVER,0);
     },
 
-    lateUpdate(dt) {
-        this.move(dt);
+    _Update() {
+        this.move(0.02)
     },
 
     move(dt) {
         if(this.curMoveDir === 1 && this.node.x >= (this.moveDistance / 2)) {
-            this.curMoveDir = -1;
+            this.curMoveDir = -1
         }
         else if(this.curMoveDir === -1 && this.node.x <= (- this.moveDistance / 2)) {
-            this.curMoveDir = 1;
+            this.curMoveDir = 1
         }
-        let curMoveDis = this.curMoveDir * this._speed * dt;
+        let curMoveDis = this.curMoveDir * this._speed * dt
         // cc.log(curMoveDis);
         // console.log(curMoveDis,dt);
-        this.node.x += curMoveDis;
+        this.node.x += Math.round(curMoveDis)
     },
 
     playMoveAction() {
-        //let delayTime = this.halfMoveAction();
-        //this.node.runAction(cc.sequence(cc.delayTime(delayTime), cc.callFunc(this.hMoveAction, this)));
-
+        this.node.opacity = 255
+        this.node.active = true
+        let delayTime = this.halfMoveAction()
+        this.node.runAction(cc.sequence(cc.delayTime(delayTime), cc.callFunc(this.hMoveAction, this)))
         // test
-        this.node.opacity = 255;
-        this.node.active = true;
-        this._speed = this.moveSpeedX;
-        this.curMoveDir = 1;
-        this.center.stopAllActions();
-        this.center.opacity = 255;
-        this.center.active = true;
-        let show_hide_time = this.gameStatus.enemyCenterShowTime;
+        this._speed = this.moveSpeedX
+        this.curMoveDir = 1
+        this.center.stopAllActions()
+        this.center.opacity = 255
+        this.center.active = true
+        let show_hide_time = this.gameStatus.enemyCenterShowTime
         this.center.runAction(cc.sequence(cc.fadeIn(show_hide_time),cc.fadeOut(show_hide_time),cc.callFunc(()=>{
-            this.center.active = false;
+            this.center.active = false
         })));
     },
 
     stopMoveAction() {
-        this._speed = 0;
-        this.curMoveDir = 0;
+        this._speed = 0
+        this.curMoveDir = 0
+        this.node.stopAllActions()
     },
 
     halfMoveAction: function() {
-        let moveData = this.getHMoveActionParams();
-        let delayTime = moveData.moveTime/2;
-        this.node.runAction(cc.moveTo(delayTime,moveData.rightPos));
-        return delayTime;
+        let moveData = this.getHMoveActionParams()
+        let delayTime = moveData.moveTime / 2
+        this.node.runAction(cc.moveTo(delayTime,moveData.rightPos))
+        return delayTime
     },
 
     hMoveAction: function() {
-        let moveData = this.getHMoveActionParams();
-        let move2RightAction = cc.moveTo(moveData.moveTime, moveData.rightPos);
-        let move2LeftAction = cc.moveTo(moveData.moveTime, moveData.leftPos);
-        let repeatAction = cc.repeatForever(cc.sequence(move2LeftAction, move2RightAction));
-        this.node.runAction(repeatAction);
+        let moveData = this.getHMoveActionParams()
+        let move2RightAction = cc.moveTo(moveData.moveTime, moveData.rightPos)
+        let move2LeftAction = cc.moveTo(moveData.moveTime, moveData.leftPos)
+        let repeatAction = cc.repeatForever(cc.sequence(move2LeftAction, move2RightAction))
+        this.node.runAction(repeatAction)
     },
 
     getHMoveActionParams: function() {
-        let moveTime = this.moveDistance / this.moveSpeedX;
-        let leftPos  = cc.p(-this.moveDistance / 2, this.node.y);
-        let rightPos = cc.p(this.moveDistance / 2, this.node.y);
-        return {moveTime, leftPos, rightPos};
+        let moveTime = this.moveDistance / this.moveSpeedX
+        let leftPos  = cc.p(-this.moveDistance / 2, this.node.y)
+        let rightPos = cc.p(this.moveDistance / 2, this.node.y)
+        return {moveTime, leftPos, rightPos}
     },
 
     initData() {
-        this.gameStatus = cc.TB.GAME;
-        this.sprite = this.node.getComponent(cc.Sprite);
-        this._atlasCahce = null;
-        this._speed = 0;
-        this.curMoveDir = 1;
-        this.curScale = 1;
+        this.gameStatus = cc.TB.GAME
+        this.sprite = this.node.getComponent(cc.Sprite)
+        this._atlasCahce = null
+        this._speed = 0
+        this.curMoveDir = 1
+        this.curScale = 1
     },
 
     reset(type) {
         // this.node.stopAllActions();
-        this.stopMoveAction();
-        this.setRandomData();
+        this.stopMoveAction()
+        this.setRandomData()
         // this.node.active = true;
-        this.show(type);
+        this.show(type)
     },
     show(type) {
         if(type == 'normal' || type == 'restart') {
-            this.node.active = true;
+            this.node.active = true
         }
         this.node.opacity = 0;
         this.node.setScale(this.curScale* this.gameStatus.enemyStartScaleMul);
@@ -162,16 +165,12 @@ cc.Class({
         let self = this;
         let GameStatus_ = this.gameStatus;
         let enemyPic = GameStatus_.getRandom(GameStatus_.enemyProbabilityPic) + 1;
-        // let filePath = cc.js.formatStr('balls/enemy/%d',enemyPic);
-        // GameTools.setSpriteFrame(this.node.getComponent(cc.Sprite),filePath);
         let curSpriteFrame = this._atlasCahce.getSpriteFrame(""+enemyPic);
         this.sprite.spriteFrame = curSpriteFrame;
     },
 
     loadEnemySkin() {
-        cc.loader.loadRes('plist/enemy', cc.SpriteAtlas ,(err, atlas)=>{
-            this._atlasCahce = atlas;
-            this.setRandomData();
-        });
+        this._atlasCahce = cc.resCache.getEnemyCache()
+        this.setRandomData()
     },
 });

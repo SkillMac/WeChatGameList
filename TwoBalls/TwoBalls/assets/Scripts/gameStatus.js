@@ -14,12 +14,12 @@ cc.Class({
         checkPoint: 0,
         // 变大等级
         bigLevel: 1,
+        // 变快等级
+        speedLevel: 1,
         // 玩家每级增加的尺寸
         playerAddSize: 10,
         // 玩家每级增加的速度
         playerAddSpeed: 200,
-        // 变快等级
-        speedLevel: 1,
         //存储任务数据的key
         taskKey: 'taskClickData',
         // 敌人 大小尺寸
