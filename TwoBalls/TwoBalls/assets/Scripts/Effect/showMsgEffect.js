@@ -5,7 +5,7 @@ cc.Class({
     properties: {
         
     },
-    start () {
+    show () {
         this.endPos = cc.p(0,100);
         this.moveTime = 0.75;
         this.fadeTime = 0.75;

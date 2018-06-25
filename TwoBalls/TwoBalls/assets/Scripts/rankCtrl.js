@@ -1,4 +1,4 @@
-
+// 禁掉世界排行榜
 let GameTools = require('GameTools');
 cc.Class({
     extends: cc.Component,
@@ -40,6 +40,11 @@ cc.Class({
             }
         }
     },
+    // init
+    init(call_back) {
+        this.call_back = call_back
+    },
+
     // init data
     initData(){
         this.nextPicName = 'world'
@@ -48,17 +53,22 @@ cc.Class({
     registerEvent(){
         this.backBtn.on('click',this.backBtnEvent,this)
         this.groupBtn.on('click',this.groupBtnEvent,this)
-        this.friendPic.node.on('touchstart',this.friendPicEvent,this)
+        //this.friendPic.node.on('touchstart',this.friendPicEvent,this)
     },
 
     // btn event
     backBtnEvent(event) {
         //this.node.active = false;
+        // console.log(this.call_back)
+        if(this.call_back) {
+            this.call_back()
+        }
         this.node.destroy()
     },
     groupBtnEvent(event) {
         // 查看群排行
-        cc.TB.wco.groupShare('share')
+        // this.backBtnEvent()
+        cc.TB.wco.groupShare('groupShare')
     },
     friendPicEvent(event) {
         event.stopPropagation()

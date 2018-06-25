@@ -15,9 +15,10 @@ cc.Class({
         center: cc.Node,
     },
 
-    onLoad() {
+    init() {
         this.initData()
         this.loadEnemySkin()
+        this.node.active = false
         this.center.active = false
         // this.schedule(()=>{
         //     this._Update();
@@ -53,7 +54,10 @@ cc.Class({
         this.center.opacity = 255
         this.center.active = true
         let show_hide_time = this.gameStatus.enemyCenterShowTime
-        this.center.runAction(cc.sequence(cc.fadeIn(show_hide_time),cc.fadeOut(show_hide_time),cc.callFunc(()=>{
+        let repeatCounts = 3
+        
+        this.center.runAction(cc.repeat(cc.sequence(cc.fadeIn(show_hide_time),cc.fadeOut(show_hide_time)),repeatCounts));
+        this.center.runAction(cc.sequence(cc.delayTime(repeatCounts*show_hide_time*2),cc.callFunc(()=>{
             this.center.active = false
         })));
     },
@@ -156,6 +160,7 @@ cc.Class({
         let data = this.randomData();
         this.curScale = data.size;
         this.node.setScale(data.size);
+        this.center.setScale(2/data.size)
         this.node.y = data.posY;
         this.node.x = 0;
         this.moveSpeedX = data.speedX;

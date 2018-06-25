@@ -1,5 +1,14 @@
 
 let GameTools = require('GameTools');
+let shareParams = {
+    type: {
+        share: 0, // 单纯的分享
+        groupShare: 1, // 查看群排行
+        dare: 2,    // 发起挑战
+        needRelife: 3, // 寻求好友复活
+        gift: 4, //赠送
+    }
+}
 let T = cc.Class({
 
     ctor() {
@@ -21,6 +30,21 @@ let T = cc.Class({
             }
             
         },
+
+        openWeChatShare(title_, query_, imageUrl_, successFunc) {
+            if(CC_WECHATGAME) {
+                wx.shareAppMessage({
+                    title: title_,
+                    query: query_,
+                    imageUrl: imageUrl_,
+                    success: (res) => {
+                        if(successFunc) {
+                            successFunc(res)
+                        }
+                    }
+                })
+            }
+        }
     },
 
     checkIsLogin(func) {
@@ -140,46 +164,40 @@ let T = cc.Class({
     },
 
     // 群分享
-    groupShare(type, callback_, params) {
+    groupShare(type, callback_) {
         if(CC_WECHATGAME) {
             let address = 'https://vdgames.vdongchina.com/TB/1.0/share/'
-            if(type === 'share') {
-                // let canvas = wx.createCanvas();
-                // let context = canvas.getContext('2d');
-                // let image = wx.createImage();
-                // image.onload = function () {
-                //     console.log(image.width, image.height);
-                //     context.drawImage(image, 0, 0);
-                // }
-                // image.src = address + 'share.jpg';
 
-                // 分享 app
-                wx.shareAppMessage({
-                    title: '跟我一起玩',
-                    query: 'invite=1&wc=2',
-                    imageUrl: address + 'share.jpg',
-                    success: (res) => {
-                        console.log('分享 成功 ', res);
-                        if (res.shareTickets != undefined && res.shareTickets.length > 0) {
-                            cc.TB.GAME.weChatData.shareTicket = res.shareTickets[0];
-                            //this.onGroupShareFunc();
-                            if (callback_) {
-                                callback_();
-                            }
-                        }
+            if(type === 'share'){
+                T.openWeChatShare('发射吧,我的小泡珠!', 'type=' + shareParams.type.share, address + 'share.jpg', (res)=>{
+                    if(callback_) {
+                        callback_()
+                    }
+                });
+
+            } else if(type === 'groupShare') {
+                T.openWeChatShare('看一看,我的群排行', 'type=' + shareParams.type.groupShare, address + 'share4.jpg', (res)=>{
+                    if(callback_) {
+                        callback_()
                     }
                 });
             } else if (type === 'dare') {
-                // 发起挑战
-                wx.shareAppMessage({
-                    title: '来与我一战',
-                    imageUrl: address + 'share2.jpg',
-                    query: 'invite=2',
-                    success: (res) => {
-                        if (callback_) {
-                            callback_();
-                        }
-                    },
+                T.openWeChatShare('你能超越我吗?', 'type=' + shareParams.type.dare + '&score=' + cc.TB.GAME.score, address + 'share2.jpg', (res)=>{
+                    if(callback_) {
+                        callback_()
+                    }
+                });
+            } else if (type === 'gift') {
+                T.openWeChatShare('收下我的礼物!', 'type=' + shareParams.type.gift , address + 'share3.jpg', (res)=>{
+                    if(callback_) {
+                        callback_()
+                    }
+                });
+            } else if (type === 'relife') {
+                T.openWeChatShare('帮帮我,我要复活!', 'type=' + shareParams.type.needRelife , address + 'share5.jpg', (res)=>{
+                    if(callback_) {
+                        callback_()
+                    }
                 });
             }
             
@@ -194,7 +212,8 @@ let T = cc.Class({
         // 启动
         let option = wx.getLaunchOptionsSync();
         console.log('小游戏启动',option);
-        if(option.shareTicket != undefined) {
+        if(option.query.type == shareParams.type.groupShare && option.shareTicket != undefined) {
+            // 群排行
             cc.TB.GAME.weChatData.shareTicket = option.shareTicket;
             this.onGroupShareFunc();
         }
@@ -203,7 +222,8 @@ let T = cc.Class({
         wx.onShow((res)=>{
             // shareTicket
             console.log('切换到前台',res);
-            if(res.shareTicket){
+            if(res.query.type == shareParams.type.groupShare && res.shareTicket){
+                // 群排行
                 cc.TB.GAME.weChatData.shareTicket = res.shareTicket;
                 // 显示群排行
                 this.onGroupShareFunc();
@@ -245,9 +265,8 @@ let T = cc.Class({
     },
 
     onGroupShareFunc() {
-        console.log('唤醒群分享功能',T._onGroupShareFunc);
         if(T._onGroupShareFunc) {
             T._onGroupShareFunc(cc.TB.GAME.weChatData.shareTicket);
         }
-    }
+    },
 });

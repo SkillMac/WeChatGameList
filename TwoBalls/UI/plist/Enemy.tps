@@ -187,17 +187,17 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">res/balls/1.png</key>
-            <key type="filename">res/balls/10.png</key>
-            <key type="filename">res/balls/11.png</key>
-            <key type="filename">res/balls/2.png</key>
-            <key type="filename">res/balls/3.png</key>
-            <key type="filename">res/balls/4.png</key>
-            <key type="filename">res/balls/5.png</key>
-            <key type="filename">res/balls/6.png</key>
-            <key type="filename">res/balls/7.png</key>
-            <key type="filename">res/balls/8.png</key>
-            <key type="filename">res/balls/9.png</key>
+            <key type="filename">res/balls/625-1/1.png</key>
+            <key type="filename">res/balls/625-1/10.png</key>
+            <key type="filename">res/balls/625-1/11.png</key>
+            <key type="filename">res/balls/625-1/2.png</key>
+            <key type="filename">res/balls/625-1/3.png</key>
+            <key type="filename">res/balls/625-1/4.png</key>
+            <key type="filename">res/balls/625-1/5.png</key>
+            <key type="filename">res/balls/625-1/6.png</key>
+            <key type="filename">res/balls/625-1/7.png</key>
+            <key type="filename">res/balls/625-1/8.png</key>
+            <key type="filename">res/balls/625-1/9.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -213,17 +213,17 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>res/balls/4.png</filename>
-            <filename>res/balls/5.png</filename>
-            <filename>res/balls/6.png</filename>
-            <filename>res/balls/7.png</filename>
-            <filename>res/balls/8.png</filename>
-            <filename>res/balls/9.png</filename>
-            <filename>res/balls/10.png</filename>
-            <filename>res/balls/11.png</filename>
-            <filename>res/balls/1.png</filename>
-            <filename>res/balls/2.png</filename>
-            <filename>res/balls/3.png</filename>
+            <filename>res/balls/625-1/2.png</filename>
+            <filename>res/balls/625-1/3.png</filename>
+            <filename>res/balls/625-1/4.png</filename>
+            <filename>res/balls/625-1/5.png</filename>
+            <filename>res/balls/625-1/6.png</filename>
+            <filename>res/balls/625-1/7.png</filename>
+            <filename>res/balls/625-1/8.png</filename>
+            <filename>res/balls/625-1/9.png</filename>
+            <filename>res/balls/625-1/10.png</filename>
+            <filename>res/balls/625-1/11.png</filename>
+            <filename>res/balls/625-1/1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

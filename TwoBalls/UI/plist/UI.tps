@@ -239,6 +239,19 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">res/gq.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>55,55,109,109</rect>
+                <key>scale9Paddings</key>
+                <rect>55,55,109,109</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">res/hb.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -385,6 +398,19 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">res/qzhyfh.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>44,26,88,51</rect>
+                <key>scale9Paddings</key>
+                <rect>44,26,88,51</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">res/restart.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -421,6 +447,19 @@
                 <rect>38,36,77,71</rect>
                 <key>scale9Paddings</key>
                 <rect>38,36,77,71</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/tishi.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>49,48,98,95</rect>
+                <key>scale9Paddings</key>
+                <rect>49,48,98,95</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -483,9 +522,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>7,7,13,13</rect>
+                <rect>5,5,10,10</rect>
                 <key>scale9Paddings</key>
-                <rect>7,7,13,13</rect>
+                <rect>5,5,10,10</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -518,6 +557,9 @@
             <filename>res/kgg.png</filename>
             <filename>res/pifurukou.png</filename>
             <filename>res/zx.png</filename>
+            <filename>res/gq.png</filename>
+            <filename>res/qzhyfh.png</filename>
+            <filename>res/tishi.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

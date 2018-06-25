@@ -1,5 +1,12 @@
 // reset type
 // restart ,,, home ,,, normal
+// score color
+let scoreColor = [
+    new cc.Color(254,161,0),
+    new cc.Color(179,216,207),
+    new cc.Color(255,246,0),
+    new cc.Color(255,82,82),
+]
 let GameTools = require('GameTools');
 cc.Class({
     extends: cc.Component,
@@ -36,18 +43,22 @@ cc.Class({
             type: cc.Sprite,
         },
         showScore: cc.Label,
+        panel_bg: cc.Sprite,
+        relifePrefab: cc.Prefab,
+        // circlePic: cc.Sprite,
     },
     onLoad() {
-        cc.log('游戏场景onLoad');
-        this.init();
-        this.initData();
-        this.onStartGameEvent();
-        this.initEffectFire();
+        // cc.log('游戏场景onLoad');
+        this.init()
+        this.initData()
+        this.enemyCom.init()
+        this.playerCom.init()
+        this.onStartGameEvent()
+        this.initEffectFire()
     },
     start () {
-        cc.log('游戏场景start');
+        // cc.log('游戏场景start');
         this.showScore.node.active = false;
-        this.enemy.active = false;
     },
 
     update (dt) {
@@ -99,6 +110,8 @@ cc.Class({
 
     init() {
         // todo
+        this.relifeFlag = false
+        this.checkIsOverFlag = false
     },
 
     initData() {
@@ -109,6 +122,8 @@ cc.Class({
         this.globalGame = cc.TB.GAME;
         this.startUpBgFlag = false;
         this.hitCounts = 0;
+        this.showScore.level = 0;
+        this.panel_bg.node.active = false
     },
 
     initEffectFire() {
@@ -128,6 +143,7 @@ cc.Class({
 
     reset(type) {
         // 初始化状态
+        this.checkIsOverFlag = false
         this.hitBallFlag = false;
         this.updateScore();
         // 调用敌人/玩家的重置方法
@@ -136,19 +152,34 @@ cc.Class({
     },
 
     playSocreEffect() {
+        // scoreColor
         if(this.hitCounts === 0){
             return;
         }
-        let enemyPosY = this.enemy.y;
-        this.showScore.node.y = enemyPosY;
-        this.showScore.node.stopAllActions();
-        this.showScore.string = '+' + this.globalGame.getShowScoreVal(this.hitCounts);
-        this.showScore.node.active = true;
-        this.showScore.node.opacity = 255;
-        let moveY = this.enemy.width * this.enemy.scaleX / 2;
+        if(this.showScore.level >3) {
+            this.showScore.level = 3
+        }
+        if(this.hitCounts === 0.5) {
+            this.showScore.level = 0
+        }
+        let enemyPosY = this.enemy.y
+        this.showScore.node.y = enemyPosY
+        this.showScore.node.stopAllActions()
+        this.showScore.string = '+' + this.globalGame.getShowScoreVal(this.hitCounts)
+        // console.log('连击次数,,,,颜色等级',this.hitCounts,this.showScore.level);
+        this.showScore.node.color = scoreColor[this.showScore.level]
+        this.showScore.level ++;
+        this.showScore.node.active = true
+        this.showScore.node.opacity = 255
+        let moveY = this.enemy.width * this.enemy.scaleX / 2
         this.showScore.node.runAction(cc.sequence(cc.moveBy(1,cc.p(0,moveY)),cc.fadeOut(0.3),cc.callFunc(()=>{
-            this.showScore.node.active = false;
+            this.showScore.node.active = false
         })));
+        // cc.audioEngine.play(cc.url.raw(cc.js.formatStr('resources/audio/broke%d.mp3',this.showScore.level)))
+    },
+
+    playeCircleEffect(level) {
+        // 播放 击中效果
     },
 
     addScore() {
@@ -166,21 +197,33 @@ cc.Class({
     },
 
     checkIsOver() {
-        if(this.globalGame.isPlaying && this.playerCom.checkIsGameOver() && !this.globalGame.gameOver) {
-            this.updateOverGameStatus();
-            // 停止现象 清楚数据
+        if(this.globalGame.isPlaying && this.playerCom.checkIsGameOver() && !this.globalGame.gameOver && !this.checkIsOverFlag) {
+            this.checkIsOverFlag = true
+            // 停止现象
             this.enemyCom.stopMoveAction();
             // 清除 连击次数
             this.hitCounts = 0;
-            // 停掉 背景调度
-            this.bg.unscheduleAllCallbacks();
-            // 切换结束场景
-            this.toGameOverScene()
-            return true;
+            // 检查是否可以复活
+            if(this.checkIsRelife()){
+                return false
+            } else {
+                this.gameOver()
+            }
         }
         else {
             return false;
         }
+    },
+
+    gameOver() {
+        // dead
+        // 更新游戏状态
+        this.updateOverGameStatus();
+        // 停掉 背景调度
+        this.bg.unscheduleAllCallbacks();
+        // 切换结束场景
+        this.toGameOverScene()
+        return true;
     },
 
     updateOverGameStatus() {
@@ -189,6 +232,7 @@ cc.Class({
     },
 
     toGameOverScene() {
+        //OverScene
         cc.director.loadScene('OverScene');
     },
 
@@ -230,9 +274,10 @@ cc.Class({
         this.updateScore();
         this.score.node.active = true;
         let delayTime = 0;//this.playerCom.playTaskEffect();
-        this.node.runAction(cc.sequence(cc.delayTime(delayTime),cc.callFunc(() => {
-            this.enemyCom.playMoveAction();
-        })));
+        // this.node.runAction(cc.sequence(cc.delayTime(delayTime),cc.callFunc(() => {
+        //     this.enemyCom.playMoveAction();
+        // })));
+        this.enemyCom.playMoveAction()
     },
     // 事件监听
     onStartGameEvent() {
@@ -240,17 +285,31 @@ cc.Class({
         this.startBtnEvent();
     },
 
-    onGroupShare(shareTicket) {
-        let self = this;
-        cc.loader.loadRes("prefab/rank", cc.Prefab, function(err, prefab){
-            let prefabNode = cc.instantiate(prefab);
-            prefabNode.getComponent('rankCtrl').showGroupPic();
-            self.node.addChild(prefabNode);
-            GameTools.sendMessage({
-                type: GameTools.msgType.groupShare,
-                ticket: shareTicket,
-                key: cc.TB.GAME.weChatData.keyList[0],
+    relife() {
+        // 清除连击
+        this.hitCounts = 0
+        this.reset('normal')
+    },
+
+    checkIsRelife() {
+        if(!this.relifeFlag) {
+            this.relifeFlag = true
+            this.panel_bg.node.active = true
+            let node = cc.instantiate(this.relifePrefab)
+            node.getComponent('RelifePanelCtrl').init({
+                hide_panel_func: ()=>{
+                    this.panel_bg.node.active = false
+                },
+                need_friend_relife_func: ()=>{
+                    this.relife()
+                },
+                faile_need_friend_relife_func: ()=> {
+                    this.gameOver()
+                },
             });
-        });
-    }
+            this.node.addChild(node)
+            return true
+        }
+        return false
+    },
 });

@@ -12,6 +12,7 @@ cc.Class({
         rankView: cc.Sprite,
         rankBtn: cc.Node,
         dareBtn: cc.Node,
+        panelBg: cc.Node
     },
 
     onLoad () {
@@ -119,10 +120,22 @@ cc.Class({
 
     rankBtnEvent(event) {
         let self = this;
+        this.panelShow()
         this.updateRankViewFlag = false;
         cc.loader.loadRes("prefab/rank", cc.Prefab, function(err, prefab){
             let node = cc.instantiate(prefab);
+            node.getComponent('rankCtrl').init(()=>{
+                self.panelHide()
+            });
             self.node.parent.addChild(node);
         });
+    },
+
+    panelShow() {
+        this.panelBg.active = true
+    },
+
+    panelHide() {
+        this.panelBg.active = false
     },
 });

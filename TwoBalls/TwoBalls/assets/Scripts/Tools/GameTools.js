@@ -33,11 +33,12 @@ let GameTools = {
         cc.loader.loadRes("prefab/labelEffect", cc.Prefab, (err, prefab)=>{
             let node = cc.instantiate(prefab);
             let sp = node.getComponent('showMsgEffect');
-            parent.addChild(node)
+            parent.addChild(node);
             node.setPosition(startPos);
             node.getComponent(cc.Label).string = text;
+            sp.show();
         });
     }
 };
 
-module.exports = GameTools;
+export default GameTools;

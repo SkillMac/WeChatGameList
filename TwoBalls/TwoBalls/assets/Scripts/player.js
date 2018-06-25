@@ -9,10 +9,22 @@ cc.Class({
             tooltip: "小球每秒的移动速度",
         },
         aniam: cc.Animation,
+        teachCirclePic: cc.Sprite,
     },
 
-    onLoad: function() {
+    init: function() {
+        // 检查是否展示玩家引导
         this.initData();
+        let val = GameTools.getLocalData('firstEnterGame')
+        if(val === null || val === undefined) {
+            GameTools.setLocalData('firstEnterGame','1')
+            this.teachCirclePic.node.setScale(0.7)
+            this.teachCirclePic.node.active = true
+            this.teachCirclePic.node.runAction(cc.repeatForever(cc.sequence(cc.scaleTo(0.5,1),cc.fadeOut(0.5),cc.callFunc(()=>{
+                this.teachCirclePic.node.opacity = 255
+                this.teachCirclePic.node.setScale(0.7)
+            }))));
+        }
     },
 
     start: function () {
@@ -32,6 +44,10 @@ cc.Class({
         this.bigLevel = 1;
         this.speedLevel = 1;
         this.factSizeWidth = this.node.width;
+
+        // 引导教学处理
+        this.teachCirclePic.node.active = false
+        this.teachCirclePic.node.setScale(0)
     },
 
     moveUp: function(dt) {
@@ -63,16 +79,21 @@ cc.Class({
         if(this.isMove && speedY_ === this.speedY){
             return;
         }
-        if(speedY_ != 0) {
-            cc.audioEngine.play(cc.url.raw('resources/audio/shoot1.mp3'))
-        }
+        // if(speedY_ != 0) {
+        //     cc.audioEngine.play(cc.url.raw('resources/audio/shoot1.mp3'))
+        // }
         this.speedY = speedY_;
+        if(this.teachCirclePic) {
+            this.teachCirclePic.node.removeFromParent()
+            this.teachCirclePic = null
+        }
     },
 
     checkIsGameOver() {
         let posY = this.node.y;
         let height = cc.TB.GAME.getDesignSize().height;
         if(posY > height){
+            this.setSpeedY(0)
             return true;
         }
         else {

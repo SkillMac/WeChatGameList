@@ -148,7 +148,7 @@ cc.Class({
         // 敌人每张图片触发的概率
         enemyProbabilityPic:[0.04,0.05,0.06,0.07,0.08,0.09,0.1,0.11,0.12,0.13,0.15],
         // 敌人中心点显示的时间
-        enemyCenterShowTime: 0.5,
+        enemyCenterShowTime: 0.3,
         // 敌人出现的缩放时间
         enemyShowScaleTime: 0.3,
         // 敌人透明的时间
