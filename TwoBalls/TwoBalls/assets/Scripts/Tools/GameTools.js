@@ -5,6 +5,7 @@ let GameTools = {
         submitScore: 2,
         updateSelfRank: 3,
         groupShare: 4,
+        slideRank: 5,
     },
 
     sendMessage(data) {

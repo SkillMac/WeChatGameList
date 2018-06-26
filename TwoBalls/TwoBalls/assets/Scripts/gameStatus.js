@@ -2,6 +2,8 @@
 cc.Class({
     name: "gameStatus",
     statics: {
+        // 第一次进入游戏
+        firstEnterGameFlag: true,
         // 游戏是否结束
         gameOver: false,
         // 是否处于玩游戏的过程
@@ -16,6 +18,8 @@ cc.Class({
         bigLevel: 1,
         // 变快等级
         speedLevel: 1,
+        // 连击图片
+        hitPicCounts: 27,
         // 玩家每级增加的尺寸
         playerAddSize: 10,
         // 玩家每级增加的速度

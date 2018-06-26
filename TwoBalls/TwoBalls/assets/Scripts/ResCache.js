@@ -1,9 +1,17 @@
 let _res_cache = {
     _enemy_cache : null,
+    _urge_cahe: null,
 
     preload : function(callfunc) {
-        cc.loader.loadRes('plist/enemy', cc.SpriteAtlas ,(err, atlas)=>{
-            _res_cache._enemy_cache = atlas
+        cc.loader.loadResDir('plist', cc.SpriteAtlas, (err, assets)=>{
+            // _res_cache._enemy_cache = atlas
+            assets.forEach(element => {
+                if(element.name == 'enemy.plist') {
+                    _res_cache._enemy_cache = element
+                } else if (element.name == 'urge.plist') {
+                    _res_cache._urge_cahe = element
+                }
+            });
             if(callfunc) {
                 callfunc()
             };
@@ -12,6 +20,10 @@ let _res_cache = {
 
     getEnemyCache () {
         return _res_cache._enemy_cache
+    },
+
+    getUrgeCache () {
+        return _res_cache._urge_cahe
     },
 
     /// sprite cache ///

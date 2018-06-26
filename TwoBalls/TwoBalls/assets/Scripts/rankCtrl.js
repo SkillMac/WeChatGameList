@@ -9,6 +9,7 @@ cc.Class({
         friendPic: cc.Sprite,
         rankView: cc.Sprite,
         groupPic: cc.Sprite,
+        rank_bg: cc.Sprite, // 排行榜的背景
     },
     onLoad() {
         this.initData()
@@ -26,6 +27,7 @@ cc.Class({
                 keyList:cc.TB.GAME.weChatData.keyList,
             });
         }
+        this.onSlideRankEvent()
     },
     update() {
         this._updateSubDomainCanvas()
@@ -90,4 +92,13 @@ cc.Class({
         this.groupPic.node.active = true
         this.friendPic.node.active = false
     },
+
+    onSlideRankEvent() {
+        this.rank_bg.node.on('touchmove',(event)=>{
+            GameTools.sendMessage({
+                type: GameTools.msgType.slideRank,
+                y: event.getDelta().y
+            })
+        })
+    }
 });

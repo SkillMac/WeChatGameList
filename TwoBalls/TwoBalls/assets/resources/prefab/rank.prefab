@@ -34,20 +34,17 @@
       },
       {
         "__id__": 25
-      },
-      {
-        "__id__": 28
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 31
+        "__id__": 28
       }
     ],
     "_prefab": {
-      "__id__": 32
+      "__id__": 29
     },
     "_id": "",
     "_opacity": 255,
@@ -948,93 +945,6 @@
     "sync": false
   },
   {
-    "__type__": "cc.Node",
-    "_name": "New Label",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 1
-    },
-    "_children": [],
-    "_tag": -1,
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 29
-      }
-    ],
-    "_prefab": {
-      "__id__": 30
-    },
-    "_id": "",
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 175,
-      "height": 25
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": -0.8,
-      "y": -317.7
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "cc.Label",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 28
-    },
-    "_enabled": true,
-    "_useOriginalSize": false,
-    "_actualFontSize": 25,
-    "_fontSize": 25,
-    "_lineHeight": 25,
-    "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_N$string": "每周一凌晨刷新",
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "Arial",
-    "_N$overflow": 0
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__uuid__": "9db18d20-a781-4a04-afb2-25d2830197c6"
-    },
-    "fileId": "a5Kn0wc9dPjY0XwXLbumaf",
-    "sync": false
-  },
-  {
     "__type__": "14ef3qCts9KxKd0A1JPVdrQ",
     "_name": "",
     "_objFlags": 0,
@@ -1056,6 +966,9 @@
     },
     "groupPic": {
       "__id__": 15
+    },
+    "rank_bg": {
+      "__id__": 3
     }
   },
   {

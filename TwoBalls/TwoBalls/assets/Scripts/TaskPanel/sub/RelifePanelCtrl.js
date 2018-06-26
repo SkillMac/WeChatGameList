@@ -13,7 +13,6 @@ cc.Class({
         this.faile_need_friend_relife_func = params.faile_need_friend_relife_func
         this.time.node.runAction(cc.repeatForever(cc.sequence(cc.delayTime(1),cc.callFunc(()=>{
             if(leftTime < 0) {
-                this.time.node.stopAllActions()
                 this.offBtnEvent();
                 if (params.faile_need_friend_relife_func) {
                     params.faile_need_friend_relife_func()
@@ -25,15 +24,18 @@ cc.Class({
     },
 
     offBtnEvent(event, params) {
-        this._super(event, params)
-        if(params == '1' && this.faile_need_friend_relife_func) {
+        // 在外面面板也有调用
+        this._super(event, params, 0.35)
+        this.node.runAction(cc.sequence(cc.scaleTo(0.35,0),cc.callFunc(()=>{
             this.time.node.stopAllActions()
-            this.faile_need_friend_relife_func()
-        }
+            if(params == '1' && this.faile_need_friend_relife_func) {
+                this.faile_need_friend_relife_func()
+            }
+        })))
     },
 
     needFriendRelife(event, params) {
         this._super(event, params)
         this.time.node.stopAllActions()
-    }
+    },
 });

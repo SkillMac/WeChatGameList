@@ -46,6 +46,7 @@ cc.Class({
         panel_bg: cc.Sprite,
         relifePrefab: cc.Prefab,
         // circlePic: cc.Sprite,
+        urgePrefab: cc.Prefab,
     },
     onLoad() {
         // cc.log('游戏场景onLoad');
@@ -175,7 +176,18 @@ cc.Class({
         this.showScore.node.runAction(cc.sequence(cc.moveBy(1,cc.p(0,moveY)),cc.fadeOut(0.3),cc.callFunc(()=>{
             this.showScore.node.active = false
         })));
+        this.playUrgeEffect(this.hitCounts)
         // cc.audioEngine.play(cc.url.raw(cc.js.formatStr('resources/audio/broke%d.mp3',this.showScore.level)))
+    },
+
+    playUrgeEffect(level) {
+        if(level >= 1) {
+            let node = cc.instantiate(this.urgePrefab)
+            let curLocalZorder = this.showScore.node.getLocalZOrder()
+            node.getComponent('urgeEffect').init(level)
+            node.setPosition(cc.pAdd(this.enemy.getPosition(),cc.p(100,100)))
+            this.node.addChild(node)
+        }
     },
 
     playeCircleEffect(level) {
@@ -257,9 +269,11 @@ cc.Class({
             cc.loader.loadRes(filePath, cc.SpriteFrame, function(err, spriteFrame){
                 let fadeTime = self.globalGame.bgCfgData.bgFadeTime;
                 self.bgNext.spriteFrame = spriteFrame;
+                self.bgNext.getComponent(cc.Widget).updateAlignment()
                 self.bgNext.node.active = true;
                 self.bgNext.node.runAction(cc.sequence(cc.fadeIn(fadeTime),cc.callFunc(function(){
                     self.bg.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+                    self.bg.getComponent(cc.Widget).updateAlignment()
                     self.bgNext.node.opacity = 0;
                     self.bgNext.node.active = false;
                 })));
@@ -300,12 +314,17 @@ cc.Class({
                 hide_panel_func: ()=>{
                     this.panel_bg.node.active = false
                 },
-                need_friend_relife_func: ()=>{
+                need_friend_relife_func: ()=> {
                     this.relife()
                 },
                 faile_need_friend_relife_func: ()=> {
+                    // 点击关闭按钮
                     this.gameOver()
                 },
+                need_friend_relife_fail_func: ()=> {
+                    // 取消分享回调
+                    this.gameOver()
+                }
             });
             this.node.addChild(node)
             return true

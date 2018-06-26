@@ -7,6 +7,7 @@ cc.Class({
     properties: {
         tipsLable: cc.Label,
         panelBg: cc.Sprite,
+        bar: cc.Node
     },
 
     onLoad () {
@@ -17,6 +18,7 @@ cc.Class({
 
     initData () {
         this._preLoadResFlag = true;
+        this._btnList = [];
     },
 
     init() {
@@ -26,6 +28,7 @@ cc.Class({
     },
 
     preload () {
+        this.showProgress()
         // 预加载字段 赋值为false
         this._preLoadResFlag = false;
         //加入提示信息
@@ -50,6 +53,7 @@ cc.Class({
                 _loadResSuccessFlag = true
                 // 资源加载完成信息显示
                 // this.setTipsMsg('资源加载完成')
+                this.loadComplete()
                 this.hideTipsMsg()
                 // 资源预加载成功
                 this.node.stopAllActions()
@@ -65,6 +69,7 @@ cc.Class({
         cc.TB = {}
         cc.TB.GAME = require('gameStatus')
         let WCO = require('weChat')
+        cc.TB.GAME.firstEnterGameFlag = false
         // 绑定显示群排行的函数
         WCO.registerOnGroupShareFunc((ticket) => {
             this.onGroupShare(ticket)
@@ -86,15 +91,26 @@ cc.Class({
     initClickEvent() {
         let startBtn = this.node.getChildByName('startBtn')
         startBtn.on('click', this.startBtnVent, this)
+        this._btnList.push(startBtn)
 
         let rankBtn = this.node.getChildByName('kingBtn')
         rankBtn.on('click', this.rankBtnEvent, this)
+        this._btnList.push(rankBtn)
 
         let groupBtn = this.node.getChildByName('shareBtn')
         groupBtn.on('click', this.groupShare, this)
+        this._btnList.push(groupBtn)
 
         let taskBtn = this.node.getChildByName('taskBtn')
         taskBtn.on('click', this.taskBtnEvent, this)
+        this._btnList.push(taskBtn)
+
+        if(!cc.TB || !cc.TB.GAME || cc.TB.GAME.firstEnterGameFlag) {
+            this.hideAllBtn()
+        }
+        else {
+            this.bar.parent.active = false
+        }
     },
 
     startBtnVent(event) {
@@ -146,7 +162,9 @@ cc.Class({
     },
 
     hideTipsMsg() {
-        this.tipsLable.node.runAction(cc.sequence(cc.fadeOut(0.35),cc.hide()))
+        this.tipsLable.node.runAction(cc.sequence(cc.fadeOut(0.35),cc.callFunc(()=>{
+            this.tipsLable.node.y = 0
+        }),cc.hide()))
     },
 
     showTipsMsg() {
@@ -186,5 +204,32 @@ cc.Class({
 
     onOffPanelEvet() {
         this.panelHide()
+    },
+
+    hideAllBtn() {
+        this._btnList.forEach(element => {
+            element.active = false
+            element.opacity = 0
+        });
+    },
+
+    showAllBtn() {
+        this._btnList.forEach(element => {
+            element.active = true
+            element.runAction(cc.fadeIn(0.35))
+        });
+    },
+
+    showProgress() {
+        this.bar.runAction(cc.moveTo(2,cc.p(-153.75,0)));
+    },
+
+    loadComplete() {
+        this.bar.stopAllActions()
+        this.bar.runAction(cc.sequence(cc.moveTo(0.3,cc.p(0,0)),cc.callFunc(()=>{
+            this.bar.parent.runAction(cc.sequence(cc.fadeOut(0.3),cc.callFunc(()=>{
+                this.showAllBtn()
+            }),cc.hide()))
+        })))
     }
 });

@@ -4,6 +4,7 @@ let msgType = {
     submitScore: 2, // 提交分数
     updateSelfRank: 3, // 跟新提交页面的排行
     groupShare: 4, // 群排行
+    slideRank: 5,
 }
 cc.Class({
     extends: cc.Component,
@@ -14,10 +15,12 @@ cc.Class({
         selfView: cc.Node,
         selfPrefav: cc.Prefab,
         title: cc.Label,
+        scrollView : cc.ScrollView,
     },
     onLoad() {
         this.title.node.active = false;
         this.prefabList = [];
+        this.originPosY = this.scrollView.getScrollOffset().y
     },
     start () {
         if(CC_WECHATGAME) {
@@ -38,6 +41,9 @@ cc.Class({
                 }
                 else if(data.type == msgType.groupShare) {
                     this.fetchGroupFriendData(data.key, data.ticket);
+                }
+                else if(data.type == msgType.slideRank) {
+                    this.slideRank(data.y)
                 }
             });
         }
@@ -132,6 +138,7 @@ cc.Class({
                                         this.prefabList.push(node);
                                         node.getComponent('itemCtrl').init(i,playerInfo);
                                         this.content.addChild(node);
+
                                         //-241
                                         if (data[i].avatarUrl == userData.avatarUrl) {
                                             let node = cc.instantiate(this.itemPrefab);
@@ -141,9 +148,10 @@ cc.Class({
                                             node.y = -241;
                                         }
                                     }
-                                    
                                 }
                             }
+                            this.scrollView.scrollToTop(0.01)
+                            this.originPosY = this.scrollView.getScrollOffset().y
                         },
                         fail: res => {
                             console.log("wx.getFriendCloudStorage fail", res);
@@ -167,7 +175,12 @@ cc.Class({
                 
                 let score = scoreData.score;
                 if (res.KVDataList.length != 0) {
-                    let jsobj = JSON.parse(res.KVDataList[0].value);
+                    let jsobj = null
+                    if(typeof(res.KVDataList[0].value) == 'string') {
+                        jsobj = JSON.parse(res.KVDataList[0].value);
+                    }else {
+                        jsobj = res.KVDataList[0].value
+                    }
                     if(jsobj.wxgame.score > score) {
                         return;
                     }
@@ -258,6 +271,8 @@ cc.Class({
                                     }
                                 }
                             }
+                            this.scrollView.scrollToTop(0.01)
+                            this.originPosY = this.scrollView.getScrollOffset().y
                         },
                         fail: res => {
                             console.log("wx.getGroupCloudStorage fail", res);
@@ -268,6 +283,15 @@ cc.Class({
                     console.log('获取群信息失败',res);
                 },
             });
+        }
+    },
+
+    slideRank(y) {
+        
+        let nextOffsetY = this.scrollView.getScrollOffset().y + y
+        if(nextOffsetY > this.originPosY) {
+            this.scrollView.stopAutoScroll()
+            this.scrollView.scrollToOffset(cc.p(0,nextOffsetY),0.1)
         }
     }
 });

@@ -31,7 +31,7 @@ let T = cc.Class({
             
         },
 
-        openWeChatShare(title_, query_, imageUrl_, successFunc) {
+        openWeChatShare(title_, query_, imageUrl_, successFunc, failFunc) {
             if(CC_WECHATGAME) {
                 wx.shareAppMessage({
                     title: title_,
@@ -40,6 +40,11 @@ let T = cc.Class({
                     success: (res) => {
                         if(successFunc) {
                             successFunc(res)
+                        }
+                    },
+                    fail: res => {
+                        if(failFunc) {
+                            failFunc(res)
                         }
                     }
                 })
@@ -164,43 +169,47 @@ let T = cc.Class({
     },
 
     // 群分享
-    groupShare(type, callback_) {
+    groupShare(type, callback_, callback2_) {
         if(CC_WECHATGAME) {
             let address = 'https://vdgames.vdongchina.com/TB/1.0/share/'
-
+            let title = ''
+            let params = ''
+            let url = ''
             if(type === 'share'){
-                T.openWeChatShare('发射吧,我的小泡珠!', 'type=' + shareParams.type.share, address + 'share.jpg', (res)=>{
-                    if(callback_) {
-                        callback_()
-                    }
-                });
 
+                title = '发射吧,我的小泡珠!'
+                params = 'type=' + shareParams.type.share
+                url = address + 'share.jpg'
             } else if(type === 'groupShare') {
-                T.openWeChatShare('看一看,我的群排行', 'type=' + shareParams.type.groupShare, address + 'share4.jpg', (res)=>{
-                    if(callback_) {
-                        callback_()
-                    }
-                });
+
+                title = '看一看,我的群排行'
+                params = 'type=' + shareParams.type.groupShare
+                url = address + 'share4.jpg'
             } else if (type === 'dare') {
-                T.openWeChatShare('你能超越我吗?', 'type=' + shareParams.type.dare + '&score=' + cc.TB.GAME.score, address + 'share2.jpg', (res)=>{
-                    if(callback_) {
-                        callback_()
-                    }
-                });
+
+                title = '你能超越我吗?'
+                params = 'type=' + shareParams.type.dare + '&score=' + cc.TB.GAME.score
+                url = address + 'share2.jpg'
             } else if (type === 'gift') {
-                T.openWeChatShare('收下我的礼物!', 'type=' + shareParams.type.gift , address + 'share3.jpg', (res)=>{
-                    if(callback_) {
-                        callback_()
-                    }
-                });
+
+                title = '收下我的礼物!'
+                params = 'type=' + shareParams.type.gift
+                url = address + 'share3.jpg'
             } else if (type === 'relife') {
-                T.openWeChatShare('帮帮我,我要复活!', 'type=' + shareParams.type.needRelife , address + 'share5.jpg', (res)=>{
-                    if(callback_) {
-                        callback_()
-                    }
-                });
+                
+                title = '帮帮我,我要复活!'
+                params = 'type=' + shareParams.type.needRelife
+                url = address + 'share5.jpg'
             }
-            
+            T.openWeChatShare(title,params,url, res=>{
+                if(callback_) {
+                    callback_()
+                }
+            }, res=>{
+                if(callback2_) {
+                    callback2_()
+                }
+            })
         }
     },
 
