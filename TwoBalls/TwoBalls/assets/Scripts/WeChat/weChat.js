@@ -49,7 +49,7 @@ let T = cc.Class({
                     }
                 })
             }
-        }
+        },
     },
 
     checkIsLogin(func) {
@@ -169,7 +169,7 @@ let T = cc.Class({
     },
 
     // 群分享
-    groupShare(type, callback_, callback2_) {
+    groupShare(type, callback_, callback2_, cfg) {
         if(CC_WECHATGAME) {
             let address = 'https://vdgames.vdongchina.com/TB/1.0/share/'
             let title = ''
@@ -193,7 +193,7 @@ let T = cc.Class({
             } else if (type === 'gift') {
 
                 title = '收下我的礼物!'
-                params = 'type=' + shareParams.type.gift
+                params = 'type=' + shareParams.type.gift + "&index=" + cfg.index + "&ticket=" + cfg.time
                 url = address + 'share3.jpg'
             } else if (type === 'relife') {
                 
@@ -203,11 +203,11 @@ let T = cc.Class({
             }
             T.openWeChatShare(title,params,url, res=>{
                 if(callback_) {
-                    callback_()
+                    callback_(res)
                 }
             }, res=>{
                 if(callback2_) {
-                    callback2_()
+                    callback2_(res)
                 }
             })
         }
@@ -220,22 +220,30 @@ let T = cc.Class({
     bandingOnShowFunc() {
         // 启动
         let option = wx.getLaunchOptionsSync();
-        console.log('小游戏启动',option);
         if(option.query.type == shareParams.type.groupShare && option.shareTicket != undefined) {
             // 群排行
             cc.TB.GAME.weChatData.shareTicket = option.shareTicket;
             this.onGroupShareFunc();
+        } 
+        else if(option.query.type == shareParams.type.gift && option.shareTicket) {
+            if(!cc.TB.GAME.checkIsOldShareTicket(option.query.time)) {
+                cc.TB.GAME.giftSkinIndex = option.query.index
+            }
         }
         
         // 显示
         wx.onShow((res)=>{
             // shareTicket
-            console.log('切换到前台',res);
             if(res.query.type == shareParams.type.groupShare && res.shareTicket){
                 // 群排行
                 cc.TB.GAME.weChatData.shareTicket = res.shareTicket;
                 // 显示群排行
                 this.onGroupShareFunc();
+            }
+            else if (res.query.type == shareParams.type.gift && res.shareTicket) {
+                if(!cc.TB.GAME.checkIsOldShareTicket(res.query.time)) {
+                    cc.TB.GAME.giftSkinIndex = res.query.index
+                }
             }
         });
     },

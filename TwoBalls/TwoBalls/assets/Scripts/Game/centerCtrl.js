@@ -3,9 +3,9 @@
 // score color
 let scoreColor = [
     new cc.Color(254,161,0),
-    new cc.Color(179,216,207),
+    new cc.Color(19,231,226),
     new cc.Color(255,246,0),
-    new cc.Color(255,82,82),
+    new cc.Color(255,0,0),
 ]
 let GameTools = require('GameTools');
 cc.Class({
@@ -47,6 +47,7 @@ cc.Class({
         relifePrefab: cc.Prefab,
         // circlePic: cc.Sprite,
         urgePrefab: cc.Prefab,
+        urgeDesc: cc.Label,
     },
     onLoad() {
         // cc.log('游戏场景onLoad');
@@ -60,6 +61,7 @@ cc.Class({
     start () {
         // cc.log('游戏场景start');
         this.showScore.node.active = false;
+        this.maxHitCounts = 0
     },
 
     update (dt) {
@@ -162,6 +164,10 @@ cc.Class({
         }
         if(this.hitCounts === 0.5) {
             this.showScore.level = 0
+        }
+        if (this.hitCounts >=1 && this.hitCounts > this.maxHitCounts) {
+            this.maxHitCounts = this.hitCounts
+            this.urgeDesc.string = cc.TB.GAME.hitTextCfg[this.maxHitCounts]
         }
         let enemyPosY = this.enemy.y
         this.showScore.node.y = enemyPosY
@@ -283,6 +289,7 @@ cc.Class({
         }
         this.bg.schedule(callfunc,this.globalGame.bgCfgData.bgChangeTime,cc.macro.REPEAT_FOREVER,this.globalGame.bgCfgData.bgChangeTime);
     },
+
     startBtnEvent() {
         // 敌人开始运动
         this.updateScore();

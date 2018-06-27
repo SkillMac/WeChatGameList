@@ -680,6 +680,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "giftIndex": -1,
     "time": {
       "__id__": 6
     }

@@ -3,7 +3,6 @@ let T = cc.Class({
     extends: cc.Component,
 
     properties: {
-        
     },
 
     init( params ){
@@ -39,12 +38,40 @@ let T = cc.Class({
 
     // 赠送礼物
     giftBtnEvent(event, params) {
-        this.offBtnEvent()
+        // this.offBtnEvent()
+        cc.TB.wco.groupShare('gift',(res)=>{
+            if(!res.shareTickets) {
+                this.showFailTipsMsg()
+            } else {
+                cc.TB.GAME.giftSkinIndex = ''+params
+                // 清理开始时候的数据
+                cc.TB.GAME.initStartData()
+                cc.TB.GAME.isPlaying = true
+                // 直接跳转游戏
+                cc.director.loadScene('MainGame')
+            }
+        }, (res) => {
+            this.showFailTipsMsg()
+        },{
+            index: params,
+            time: new Date().getTime()
+        })
     },
 
     // 观看广告
     adBtnEvent(event, params) {
 
+    },
+
+    showFailTipsMsg(msg) {
+        cc.loader.loadRes('prefab/Tips1', cc.Prefab, (err, prefab)=>{
+            let node = cc.instantiate(prefab)
+            node.getComponent('showMsgEffect').show2()
+            if(msg) {
+                node.getChildByName('tips').getComponent(cc.Label).string = msg
+            }
+            this.node.addChild(node)
+        })
     }
 });
 

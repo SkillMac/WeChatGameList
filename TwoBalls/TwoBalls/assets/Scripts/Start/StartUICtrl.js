@@ -7,7 +7,6 @@ cc.Class({
     properties: {
         tipsLable: cc.Label,
         panelBg: cc.Sprite,
-        bar: cc.Node
     },
 
     onLoad () {
@@ -28,7 +27,7 @@ cc.Class({
     },
 
     preload () {
-        this.showProgress()
+        //this.showProgress()
         // 预加载字段 赋值为false
         this._preLoadResFlag = false;
         //加入提示信息
@@ -109,13 +108,12 @@ cc.Class({
             this.hideAllBtn()
         }
         else {
-            this.bar.parent.active = false
+            //this.bar.parent.active = false
         }
     },
 
     startBtnVent(event) {
-        cc.TB.GAME.score = 0
-        cc.TB.GAME.checkPoint = 0
+        cc.TB.GAME.initStartData()
         // this.node.dispatchEvent(new cc.Event.EventCustom("start_game_btn",true));
         this.node.runAction(cc.sequence(cc.fadeOut(0.35),cc.callFunc(()=>{
             // 跳转游戏场景
@@ -220,16 +218,7 @@ cc.Class({
         });
     },
 
-    showProgress() {
-        this.bar.runAction(cc.moveTo(2,cc.p(-153.75,0)));
-    },
-
     loadComplete() {
-        this.bar.stopAllActions()
-        this.bar.runAction(cc.sequence(cc.moveTo(0.3,cc.p(0,0)),cc.callFunc(()=>{
-            this.bar.parent.runAction(cc.sequence(cc.fadeOut(0.3),cc.callFunc(()=>{
-                this.showAllBtn()
-            }),cc.hide()))
-        })))
+        this.showAllBtn()
     }
 });

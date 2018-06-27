@@ -1,7 +1,15 @@
 
-cc.Class({
+let T = cc.Class({
     name: "gameStatus",
     statics: {
+        // 赠送皮肤编号
+        giftSkinIndex:'-1',
+        giftSkinCfg: {
+            '0': ['u1',2300],
+        },
+        // 记录礼物的分享券 ,,, 阻止重复 刷去道具
+        giftShareTicketsList: [],
+        defaultPlayerSpeed: 1800,
         // 第一次进入游戏
         firstEnterGameFlag: true,
         // 游戏是否结束
@@ -20,6 +28,11 @@ cc.Class({
         speedLevel: 1,
         // 连击图片
         hitPicCounts: 27,
+        // 连击文字配置
+        hitTextCfg: [
+            '','好准哦','太棒了','太准了','正中靶心','666','狠准','太6了','么么哒','我喜欢','会心一击','一箭中的','百步穿杨','百发百中','百里守约','百里解约','百闻不如一见',
+            '百见不如一闻','一代宗师','甘拜下风','武林盟主','神功盖世','天下无敌','孤独求败','东方不败','杨过','小龙女','我是小迷妹','我是小迷弟','你是小姐姐','你是小哥哥'
+        ],
         // 玩家每级增加的尺寸
         playerAddSize: 10,
         // 玩家每级增加的速度
@@ -170,7 +183,7 @@ cc.Class({
         },
         weChatData: {
             isLogin: false,
-            appSecret: "4512c39c66615628c91cc49b896d4612",
+            //appSecret: "4512c39c66615628c91cc49b896d4612",
             appId: "wxdfc7eb71a7ad9df6",
             code: "",
             keyList: ["wxdata"],
@@ -211,5 +224,18 @@ cc.Class({
         getShowScoreVal(counts) {
             return counts * 2;
         },
+
+        initStartData() {
+            T.score = 0
+            T.checkPoint = 0
+        },
+
+        checkIsOldShareTicket(ticket) {
+            if(T.giftShareTicketsList.indexOf(ticket) > -1) {
+                return true
+            }
+            T.giftShareTicketsList.push(ticket)
+            return false
+        }
     },
 });

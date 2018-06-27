@@ -45,6 +45,7 @@ cc.Class({
     initData() {
         this.globalGame = cc.TB.GAME;
         this.updateRankViewFlag = true;
+        cc.TB.GAME.giftSkinIndex = '-1'
     },
 
     initClickEvent() {

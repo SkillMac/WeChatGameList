@@ -70,7 +70,15 @@ cc.Class({
     groupBtnEvent(event) {
         // 查看群排行
         // this.backBtnEvent()
-        cc.TB.wco.groupShare('groupShare')
+        cc.TB.wco.groupShare('groupShare',res => {
+            if(!res.shareTickets) {
+                cc.loader.loadRes('prefab/Tips1', cc.Prefab, (err, prefab)=>{
+                    let node = cc.instantiate(prefab)
+                    node.getComponent('showMsgEffect').show2()
+                    this.node.addChild(node)
+                })
+            }
+        })
     },
     friendPicEvent(event) {
         event.stopPropagation()

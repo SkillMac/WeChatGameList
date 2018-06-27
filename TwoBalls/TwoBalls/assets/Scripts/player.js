@@ -4,17 +4,14 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        moveSpeedY: {
-            default: 250,
-            tooltip: "小球每秒的移动速度",
-        },
-        aniam: cc.Animation,
         teachCirclePic: cc.Sprite,
     },
 
     init: function() {
         // 检查是否展示玩家引导
         this.initData();
+        this.checkChangeSkin()
+        this.show()
         let val = GameTools.getLocalData('firstEnterGame')
         if(val === null || val === undefined) {
             GameTools.setLocalData('firstEnterGame','1')
@@ -31,7 +28,7 @@ cc.Class({
 
     },
 
-    lateUpdate: function(dt) {
+    update: function(dt) {
         this.moveUp(dt);
     },
 
@@ -101,51 +98,66 @@ cc.Class({
         }
     },
 
+    checkChangeSkin() {
+        if(cc.TB.GAME.giftSkinIndex != '-1') {
+            let skinName = cc.TB.GAME.giftSkinCfg[cc.TB.GAME.giftSkinIndex][0]
+            if (skinName != '') {
+                cc.loader.loadRes('balls/player/'+ skinName,cc.SpriteFrame, (err, spriteFrame)=>{
+                    this.node.getComponent(cc.Sprite).spriteFrame = spriteFrame
+                });
+                cc.loader.loadRes('balls/player/tail/'+skinName+'_s', cc.SpriteFrame, (err, spriteFrame)=>{
+                    this.tailParticleCom.setDisplayFrame(spriteFrame)
+                });
+            }
+        }
+    },
+
     // 播放任务效果
     playTaskEffect() {
-        let flag = false;
-        let big_val = 0;
-        let speed_val = 0;
-        let delay_time = 0;
-        let scaleTime = 0.5;
-        if(this.bigLevel < cc.TB.GAME.bigLevel) {
-            big_val = cc.TB.GAME.bigLevel - this.bigLevel;
-            this.bigLevel  = cc.TB.GAME.bigLevel;
-            flag = true;
-        }
-        if(this.speedLevel < cc.TB.GAME.speedLevel) {
-            speed_val = cc.TB.GAME.speedLevel - this.speedLevel;
-            this.speedLevel = cc.TB.GAME.speedLevel;
-            flag = true;
-        }
-        if (flag) {
-            this.aniam.node.setScale(this.node.scaleX * 1.5);
-            let animState = this.aniam.play();
-            delay_time = animState.duration/animState.speed;
-            this.isMove = false;
-            let addSize = big_val * cc.TB.GAME.playerAddSize/this.factSizeWidth;
-            this.node.runAction(cc.sequence(cc.delayTime(delay_time),cc.scaleTo(scaleTime,this.node.scaleX+addSize),cc.callFunc(() => {
-                this.isMove = true;
-            })));
-            this.moveSpeedY += (cc.TB.GAME.playerAddSpeed*speed_val);
-            //console.log('延时',delay_time, " | addSize", addSize, "| 当前速度", this.moveSpeedY);
-            delay_time += scaleTime;
+        // let flag = false;
+        // let big_val = 0;
+        // let speed_val = 0;
+        // let delay_time = 0;
+        // let scaleTime = 0.5;
+        // if(this.bigLevel < cc.TB.GAME.bigLevel) {
+        //     big_val = cc.TB.GAME.bigLevel - this.bigLevel;
+        //     this.bigLevel  = cc.TB.GAME.bigLevel;
+        //     flag = true;
+        // }
+        // if(this.speedLevel < cc.TB.GAME.speedLevel) {
+        //     speed_val = cc.TB.GAME.speedLevel - this.speedLevel;
+        //     this.speedLevel = cc.TB.GAME.speedLevel;
+        //     flag = true;
+        // }
+        // if (flag) {
+        //     this.aniam.node.setScale(this.node.scaleX * 1.5);
+        //     let animState = this.aniam.play();
+        //     delay_time = animState.duration/animState.speed;
+        //     this.isMove = false;
+        //     let addSize = big_val * cc.TB.GAME.playerAddSize/this.factSizeWidth;
+        //     this.node.runAction(cc.sequence(cc.delayTime(delay_time),cc.scaleTo(scaleTime,this.node.scaleX+addSize),cc.callFunc(() => {
+        //         this.isMove = true;
+        //     })));
+        //     this.moveSpeedY += (cc.TB.GAME.playerAddSpeed*speed_val);
+        //     //console.log('延时',delay_time, " | addSize", addSize, "| 当前速度", this.moveSpeedY);
+        //     delay_time += scaleTime;
 
-            let showText = "";
+        //     let showText = "";
             
-            if(big_val > 0 && speed_val > 0){
-                showText += '大小+' + big_val + '级 速度+' + speed_val + '级';
-            }
-            else if(big_val > 0) {
-                showText += '大小+'+ big_val+'级';
-            }else if (speed_val > 0) {
-                showText += '速度+'+speed_val+'级';
-            }
-            if(showText !== '') {
-                // 文字显示
-                GameTools.showLabelEffect(this.node.parent,this.node.getPosition(), showText, cc.p(0,100), 0.75, 0.75, 0);
-            }
-        }
-        return delay_time;
+        //     if(big_val > 0 && speed_val > 0){
+        //         showText += '大小+' + big_val + '级 速度+' + speed_val + '级';
+        //     }
+        //     else if(big_val > 0) {
+        //         showText += '大小+'+ big_val+'级';
+        //     }else if (speed_val > 0) {
+        //         showText += '速度+'+speed_val+'级';
+        //     }
+        //     if(showText !== '') {
+        //         // 文字显示
+        //         GameTools.showLabelEffect(this.node.parent,this.node.getPosition(), showText, cc.p(0,100), 0.75, 0.75, 0);
+        //     }
+        // }
+        // return delay_time;
+        return 0
     }
 });

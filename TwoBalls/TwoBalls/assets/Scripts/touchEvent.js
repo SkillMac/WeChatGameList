@@ -23,6 +23,12 @@ cc.Class({
 
     initData() {
        this.playerCom = this.player.getComponent('player');
+       this.speed = 0
+       if(cc.TB.GAME.giftSkinIndex != '-1') {
+            this.speed = cc.TB.GAME.giftSkinCfg[cc.TB.GAME.giftSkinIndex][1]
+       } else {
+            this.speed = cc.TB.GAME.defaultPlayerSpeed
+       } 
     },
 
     registerClickEvent() {
@@ -31,7 +37,7 @@ cc.Class({
 
     changeSpeed(event) {
         if(cc.TB.GAME.isPlaying){
-            this.playerCom.setSpeedY(this.playerCom.moveSpeedY);
+            this.playerCom.setSpeedY(this.speed);
         }
     },
 });

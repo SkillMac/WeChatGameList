@@ -17,4 +17,11 @@ cc.Class({
             this.node.destroy();
         })));
     },
+
+    show2() {
+        this.node.opacity = 0
+        this.node.runAction(cc.sequence(cc.fadeIn(0.3),cc.delayTime(1),cc.fadeOut(0.3),cc.callFunc(()=>{
+            this.node.destroy()
+        })))
+    }
 });

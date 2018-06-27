@@ -187,6 +187,19 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">res/anniu.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>57,14,114,27</rect>
+                <key>scale9Paddings</key>
+                <rect>57,14,114,27</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">res/baixian.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -288,20 +301,6 @@
                 <rect>37,37,73,73</rect>
                 <key>scale9Paddings</key>
                 <rect>37,37,73,73</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/jdt1.png</key>
-            <key type="filename">res/jdt2.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>154,12,308,23</rect>
-                <key>scale9Paddings</key>
-                <rect>154,12,308,23</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -588,8 +587,7 @@
             <filename>res/qzhyfh.png</filename>
             <filename>res/tishi.png</filename>
             <filename>res/fxdqfh.png</filename>
-            <filename>res/jdt1.png</filename>
-            <filename>res/jdt2.png</filename>
+            <filename>res/anniu.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
