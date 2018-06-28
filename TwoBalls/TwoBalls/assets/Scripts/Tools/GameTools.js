@@ -6,6 +6,7 @@ let GameTools = {
         updateSelfRank: 3,
         groupShare: 4,
         slideRank: 5,
+        hitCenterRank: 6,
     },
 
     sendMessage(data) {
@@ -39,7 +40,7 @@ let GameTools = {
             node.getComponent(cc.Label).string = text;
             sp.show();
         });
-    }
+    },
 };
 
 export default GameTools;

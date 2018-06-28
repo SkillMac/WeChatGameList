@@ -98,7 +98,7 @@ cc.Class({
             // 显示好友排行榜
             GameTools.sendMessage({
                 type: GameTools.msgType.updateSelfRank,
-                keyList:cc.TB.GAME.weChatData.keyList,
+                keyList:[cc.TB.GAME.weChatData.keyList[0]],
             });
             // 显示结束面板
             this.show();

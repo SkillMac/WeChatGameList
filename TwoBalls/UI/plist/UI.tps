@@ -239,6 +239,19 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">res/fx.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>16,7,31,14</rect>
+                <key>scale9Paddings</key>
+                <rect>16,7,31,14</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">res/fxdqfh.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -278,19 +291,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/hb.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>26,33,51,65</rect>
-                <key>scale9Paddings</key>
-                <rect>26,33,51,65</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">res/home1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -301,19 +301,6 @@
                 <rect>37,37,73,73</rect>
                 <key>scale9Paddings</key>
                 <rect>37,37,73,73</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/jt.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>12,12,23,25</rect>
-                <key>scale9Paddings</key>
-                <rect>12,12,23,25</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -571,8 +558,6 @@
             <filename>res/tc.png</filename>
             <filename>res/lanmu.png</filename>
             <filename>res/mohu.png</filename>
-            <filename>res/hb.png</filename>
-            <filename>res/jt.png</filename>
             <filename>res/kanguanggao.png</filename>
             <filename>res/lsan.png</filename>
             <filename>res/qipao.png</filename>
@@ -588,6 +573,7 @@
             <filename>res/tishi.png</filename>
             <filename>res/fxdqfh.png</filename>
             <filename>res/anniu.png</filename>
+            <filename>res/fx.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -485,7 +485,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 160,
+      "width": 144,
       "height": 40
     },
     "_rotationX": 0,
@@ -513,8 +513,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 40,
-    "_fontSize": 40,
+    "_actualFontSize": 36,
+    "_fontSize": 36,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
@@ -1315,7 +1315,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 147,
+      "width": 143,
       "height": 147
     },
     "_rotationX": 0,
@@ -1462,7 +1462,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 271,
-      "height": 149
+      "height": 154
     },
     "_rotationX": 0,
     "_rotationY": 0,

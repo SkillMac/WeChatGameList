@@ -11,6 +11,9 @@ cc.Class({
         this._super(params)
         this.leftTime = 8
         this.startUpTimer()
+        cc.TB.GAME.panelBgDestroyFunc = ()=>{
+            this.offBtnEvent()
+        }
     },
 
     offBtnEvent(event, params) {

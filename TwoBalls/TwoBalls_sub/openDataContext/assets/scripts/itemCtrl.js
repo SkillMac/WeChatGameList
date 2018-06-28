@@ -11,15 +11,15 @@ cc.Class({
         index: cc.Label,
         image: cc.Sprite,
         nickName: cc.Label,
-        score: cc.Label,
-        bg: cc.Node,
+        score: cc.Label, // 如果是连击话 score 代表 连击数
+        hitImage: cc.Sprite,
     },
 
     start () {
         
     },
 
-    init(index, data) {
+    init(index, data, isHitCenterRank) {
         let avatarUrl = data.avatarUrl;
         let nickName = data.nickname.length <= 6 ? data.nickname : data.nickname.substr(0, 6) + "...";
         let scoreData = data.KVDataList[0].value;
@@ -33,7 +33,17 @@ cc.Class({
         this.index.string = (index+1).toString();
         this.createImage(avatarUrl);
         this.nickName.string = nickName;
-        this.score.string = "" + scoreData.wxgame.score;
+        if(isHitCenterRank) {
+            this.score.string = "" + scoreData.hitCounts.counts
+            this.createHitImage(scoreData.hitCounts.counts)
+            if(this.hitImage.node.width >200) {
+                this.hitImage.node.setScale(200/this.hitImage.width)
+            }else if (this.hitImage.node.height > 100) {
+                this.hitImage.node.setScale(100/this.hitImage.height)
+            }
+        } else {
+            this.score.string = "" + scoreData.wxgame.score;
+        }
     },
 
     createImage(avatarUrl) {
@@ -62,6 +72,17 @@ cc.Class({
             }, (err, texture) => {
                 this.image.spriteFrame = new cc.SpriteFrame(texture);
             });
+        }
+    },
+
+    createHitImage(hitCounts) {
+        if (CC_WECHATGAME) {
+            if(hitCounts >108) {
+                hitCounts = 108
+            }
+            cc.loader.loadRes('urge',cc.SpriteAtlas, (err, asset)=>{
+                this.hitImage.spriteFrame = asset.getSpriteFrame(''+hitCounts)
+            })
         }
     },
 

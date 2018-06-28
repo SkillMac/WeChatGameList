@@ -12,15 +12,20 @@ let shareParams = {
 let T = cc.Class({
 
     ctor() {
-        if(CC_WECHATGAME){
+        if(CC_WECHATGAME) {
             // 开启shareTicket
             this.openShareTicketSetting();
             // 绑定启动监听函数
             this.bandingOnShowFunc();
             // 打开被动转发 并监听
             this.openShareSetting();
+
+            wx.getSystemInfo({
+                success: res =>{
+                    cc.TB.GAME.model = res.model
+                }
+            })
         }
-        
     },
 
     statics: {
@@ -28,7 +33,6 @@ let T = cc.Class({
             if(CC_WECHATGAME) {
                 T._onGroupShareFunc = func;
             }
-            
         },
 
         openWeChatShare(title_, query_, imageUrl_, successFunc, failFunc) {
@@ -152,6 +156,9 @@ let T = cc.Class({
             scoreData: {
                 key: cc.TB.GAME.weChatData.keyList[0],
                 score: score_,
+                //cc.TB.GAME.maxHitCounts
+                hitKey: cc.TB.GAME.weChatData.keyList[1],
+                hitCounts: cc.TB.GAME.maxHitCounts,
             },
         });
         // wx.setUserCloudStorage({
@@ -200,6 +207,11 @@ let T = cc.Class({
                 title = '帮帮我,我要复活!'
                 params = 'type=' + shareParams.type.needRelife
                 url = address + 'share5.jpg'
+            } else if (type === 'hit') {
+
+                title = '我已连中靶心'+ cfg.hitCounts + '次,你行吗?',
+                params = 'type='+ shareParams.type.share,
+                url = 'https://vdgames.vdongchina.com/TB/hitPic/'+ cfg.hitCounts + '.jpg'
             }
             T.openWeChatShare(title,params,url, res=>{
                 if(callback_) {
@@ -227,7 +239,10 @@ let T = cc.Class({
         } 
         else if(option.query.type == shareParams.type.gift && option.shareTicket) {
             if(!cc.TB.GAME.checkIsOldShareTicket(option.query.time)) {
+                this.showGiftTips('已领取礼物快来,开始游戏吧!')
                 cc.TB.GAME.giftSkinIndex = option.query.index
+            } else {
+                this.showGiftTips('礼物已使用')
             }
         }
         
@@ -238,11 +253,16 @@ let T = cc.Class({
                 // 群排行
                 cc.TB.GAME.weChatData.shareTicket = res.shareTicket;
                 // 显示群排行
-                this.onGroupShareFunc();
+                cc.director.loadScene('StartScene',()=>{
+                    cc.director.getScene().getChildByName('Canvas').getChildByName('menuStart').getComponent('StartUICtrl').onGroupShare(res.shareTicket)
+                })
             }
             else if (res.query.type == shareParams.type.gift && res.shareTicket) {
                 if(!cc.TB.GAME.checkIsOldShareTicket(res.query.time)) {
                     cc.TB.GAME.giftSkinIndex = res.query.index
+                    this.showGiftTips('已领取礼物快来,开始游戏吧!')
+                } else {
+                    this.showGiftTips('礼物已使用')
                 }
             }
         });
@@ -286,4 +306,13 @@ let T = cc.Class({
             T._onGroupShareFunc(cc.TB.GAME.weChatData.shareTicket);
         }
     },
+
+    showGiftTips(str_) {
+        cc.loader.loadRes('prefab/Tips1', cc.Prefab, (err, prefab)=>{
+            let node = cc.instantiate(prefab)
+            node.getComponent('showMsgEffect').show2()
+            node.getChildByName('tips').getComponent(cc.Label).string = str_
+            cc.director.getScene().getChildByName('Canvas').addChild(node)
+        })
+    }
 });

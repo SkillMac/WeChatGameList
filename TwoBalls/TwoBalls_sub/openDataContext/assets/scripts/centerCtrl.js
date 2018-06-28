@@ -4,7 +4,8 @@ let msgType = {
     submitScore: 2, // 提交分数
     updateSelfRank: 3, // 跟新提交页面的排行
     groupShare: 4, // 群排行
-    slideRank: 5,
+    slideRank: 5,   
+    hitCenterRank: 6, //连击排行榜
 }
 cc.Class({
     extends: cc.Component,
@@ -14,11 +15,10 @@ cc.Class({
         itemPrefab: cc.Prefab,
         selfView: cc.Node,
         selfPrefav: cc.Prefab,
-        title: cc.Label,
         scrollView : cc.ScrollView,
+        hitPrefab: cc.Prefab,
     },
     onLoad() {
-        this.title.node.active = false;
         this.prefabList = [];
         this.originPosY = this.scrollView.getScrollOffset().y
     },
@@ -45,6 +45,9 @@ cc.Class({
                 else if(data.type == msgType.slideRank) {
                     this.slideRank(data.y)
                 }
+                else if(data.type == msgType.hitCenterRank) {
+                    this.updateHitRank(data.keyList)
+                }
             });
         }
     },
@@ -70,13 +73,13 @@ cc.Class({
             wx.getUserInfo({
                 openIdList: ['selfOpenId'],
                 success: (userRes) => {
-                    console.log('获取排行数据 结束排行 ', isGameOverRank ,userRes.data);
+                    // console.log('获取排行数据 结束排行 ', isGameOverRank ,userRes.data);
                     let userData = userRes.data[0];
                     wx.getFriendCloudStorage({
                         keyList: keyList_,
                         success: res => {
                             let data = res.data;
-                            console.log("获取排行数据 success", res);
+                            // console.log("获取排行数据 success", res);
                             data.sort((a, b) => {
                                 if (a.KVDataList.length == 0 && b.KVDataList.length == 0) {
                                     return 0;
@@ -136,14 +139,14 @@ cc.Class({
                                         // 更新排行榜
                                         let node = cc.instantiate(this.itemPrefab);
                                         this.prefabList.push(node);
-                                        node.getComponent('itemCtrl').init(i,playerInfo);
+                                        node.getComponent('itemCtrl').init(i,playerInfo,false);
                                         this.content.addChild(node);
 
                                         //-241
                                         if (data[i].avatarUrl == userData.avatarUrl) {
                                             let node = cc.instantiate(this.itemPrefab);
                                             this.prefabList.push(node);
-                                            node.getComponent('itemCtrl').init(i,playerInfo);
+                                            node.getComponent('itemCtrl').init(i,playerInfo,false);
                                             this.node.addChild(node);
                                             node.y = -241;
                                         }
@@ -151,18 +154,78 @@ cc.Class({
                                 }
                             }
                             this.scrollView.scrollToTop(0.01)
-                            this.originPosY = this.scrollView.getScrollOffset().y
+                            this.node.runAction(cc.sequence(cc.delayTime(0.02),cc.callFunc(()=>{
+                                this.originPosY = this.scrollView.getScrollOffset().y
+                            })))
                         },
                         fail: res => {
-                            console.log("wx.getFriendCloudStorage fail", res);
+                            // console.log("wx.getFriendCloudStorage fail", res);
                         },
                     });
                 },
                 fail: (res) => {
-                    console.log('获取用户信息失败',res);
+                    // console.log('获取用户信息失败',res);
                 },
             });
         }
+    },
+
+    updateHitRank(keyList_) {
+        this.destroyChild();
+        if (CC_WECHATGAME) {
+            wx.getUserInfo({
+                openIdList: ['selfOpenId'],
+                success: (userRes) => {
+                    let userData = userRes.data[0];
+                    wx.getFriendCloudStorage({
+                        keyList: keyList_,
+                        success: res => {
+                            let data = res.data;
+                            console.log('连击排行榜的数据',data)
+                            data.sort((a, b) => {
+                                if (a.KVDataList.length == 0 && b.KVDataList.length == 0) {
+                                    return 0;
+                                }
+                                if (a.KVDataList.length == 0) {
+                                    return 1;
+                                }
+                                if (b.KVDataList.length == 0) {
+                                    return -1;
+                                }
+                                if(typeof(a.KVDataList[0].value) === 'string') {
+                                    a.KVDataList[0].value = JSON.parse(a.KVDataList[0].value);
+                                }
+                                if(typeof(b.KVDataList[0].value) === 'string') {
+                                    b.KVDataList[0].value = JSON.parse(b.KVDataList[0].value);
+                                }
+                                return b.KVDataList[0].value.hitCounts.counts - a.KVDataList[0].value.hitCounts.counts;
+                            });
+
+                            for (let i = 0; i < data.length; i++) {
+                                let playerInfo = data[i];
+                                if(playerInfo.KVDataList.length !=0){
+                                    // 更新排行榜
+                                    let node = cc.instantiate(this.hitPrefab);
+                                    this.prefabList.push(node);
+                                    node.getComponent('itemCtrl').init(i,playerInfo,true);
+                                    this.content.addChild(node);
+
+                                    //-241
+                                    if (data[i].avatarUrl == userData.avatarUrl) {
+                                        let node = cc.instantiate(this.hitPrefab);
+                                        this.prefabList.push(node);
+                                        node.getComponent('itemCtrl').init(i,playerInfo,true);
+                                        this.node.addChild(node);
+                                        node.y = -241;
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+            })
+        }
+
     },
 
     submitScore(scoreData) {
@@ -174,47 +237,70 @@ cc.Class({
                 console.log('提交分数', 'success', res);
                 
                 let score = scoreData.score;
+                let scoreTime = new Date().getTime()
+                let hitTime = new Date().getTime()
+                let jsobj = null
+
+                let hitCounts = scoreData.hitCounts ? scoreData.hitCounts : 0
                 if (res.KVDataList.length != 0) {
-                    let jsobj = null
                     if(typeof(res.KVDataList[0].value) == 'string') {
                         jsobj = JSON.parse(res.KVDataList[0].value);
                     }else {
                         jsobj = res.KVDataList[0].value
                     }
-                    if(jsobj.wxgame.score > score) {
-                        return;
+                    score = jsobj.wxgame.score > score ? jsobj.wxgame.score : score
+                    scoreTime = jsobj.wxgame.score > score ? jsobj.wxgame.update_time : new Date().getTime()
+                    if(jsobj.hitCounts && jsobj.hitCounts.counts) {
+                        hitCounts = jsobj.hitCounts.counts > hitCounts ? jsobj.hitCounts.counts : hitCounts
+                        hitTime = jsobj.hitCounts.counts > hitCounts ? jsobj.hitCounts.update_time : new Date().getTime()
                     }
                 }
+
                 let data = new Array();
                 let dataFormat = {
                     "wxgame": {
                         "score": score,
-                        "update_time": new Date().getTime()
+                        "update_time": scoreTime
                     },
                 }
-                data.push({
-                    key: scoreData.key,
-                    value: JSON.stringify(dataFormat),
-                });
-                console.log("提交的结果是",data);
-                window.wx.setUserCloudStorage({
-                    KVDataList:data,
-                    success: function (res) {
-                                console.log('设置分数', 'success', res);
-                            },
-                    fail: function (res) {
-                        console.log('设置分数', 'fail');
-                    },
-                    complete: function (res) {
-                        console.log('设置分数', 'ok');
-                    }  
-                });
+
+                let dataHitFormat = {
+                    "hitCounts": {
+                        "counts": hitCounts,
+                        "update_time": hitTime
+                    }
+                }
+
+                if((!jsobj || !jsobj.hitCounts) || jsobj && jsobj.wxgame.score < score || jsobj.hitCounts.counts < hitCounts) {
+                    data.push({
+                        key: scoreData.key,
+                        value: JSON.stringify(dataFormat),
+                    });
+                    
+                    data.push({
+                        key: scoreData.hitKey,
+                        value: JSON.stringify(dataHitFormat),
+                    })
+                    //console.log("提交的结果是",data);
+                    window.wx.setUserCloudStorage({
+                        KVDataList:data,
+                        success: function (res) {
+                      //              console.log('设置分数', 'success', res);
+                                },
+                        fail: function (res) {
+                        //    console.log('设置分数', 'fail');
+                        },
+                        complete: function (res) {
+                          //  console.log('设置分数', 'ok');
+                        }  
+                    });
+                }
             },
             fail: function (res) {
-                console.log('getUserCloudStorage', 'fail');
+                // console.log('getUserCloudStorage', 'fail');
             },
             complete: function (res) {
-                console.log('getUserCloudStorage', 'ok');
+                // console.log('getUserCloudStorage', 'ok');
             }
         });
         }
@@ -232,7 +318,7 @@ cc.Class({
                         shareTicket: ticket,
                         success: res => {
                             let data = res.data;
-                            console.log("获取群排行数据 success", res, 'ticket', ticket);
+                            // console.log("获取群排行数据 success", res, 'ticket', ticket);
                             data.sort((a, b) => {
                                 if (a.KVDataList.length == 0 && b.KVDataList.length == 0) {
                                     return 0;
@@ -272,23 +358,31 @@ cc.Class({
                                 }
                             }
                             this.scrollView.scrollToTop(0.01)
-                            this.originPosY = this.scrollView.getScrollOffset().y
+                            this.node.runAction(cc.sequence(cc.delayTime(0.02),cc.callFunc(()=>{
+                                this.originPosY = this.scrollView.getScrollOffset().y
+                            })))
                         },
                         fail: res => {
-                            console.log("wx.getGroupCloudStorage fail", res);
+                            // console.log("wx.getGroupCloudStorage fail", res);
                         },
                     });
                 },
                 fail: (res) => {
-                    console.log('获取群信息失败',res);
+                    // console.log('获取群信息失败',res);
                 },
             });
         }
     },
 
     slideRank(y) {
-        
+        let maxOffsetY = this.scrollView.getMaxScrollOffset().y
         let nextOffsetY = this.scrollView.getScrollOffset().y + y
+        if(nextOffsetY > maxOffsetY) {
+            return
+        }
+        if(nextOffsetY < this.originPosY) {
+            return
+        }
         if(nextOffsetY > this.originPosY) {
             this.scrollView.stopAutoScroll()
             this.scrollView.scrollToOffset(cc.p(0,nextOffsetY),0.1)

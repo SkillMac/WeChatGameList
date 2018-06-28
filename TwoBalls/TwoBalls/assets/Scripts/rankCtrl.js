@@ -24,7 +24,7 @@ cc.Class({
         if(!this.groupPic.node.active) {
             GameTools.sendMessage({
                 type: GameTools.msgType.updateRank,
-                keyList:cc.TB.GAME.weChatData.keyList,
+                keyList:[cc.TB.GAME.weChatData.keyList[0]],
             });
         }
         this.onSlideRankEvent()
@@ -45,17 +45,20 @@ cc.Class({
     // init
     init(call_back) {
         this.call_back = call_back
+        cc.TB.GAME.panelBgDestroyFunc = ()=>{
+            this.backBtnEvent()
+        }
     },
 
     // init data
     initData(){
-        this.nextPicName = 'world'
+        this.nextPicName = 'hit'
     },
     // register btn event
     registerEvent(){
         this.backBtn.on('click',this.backBtnEvent,this)
         this.groupBtn.on('click',this.groupBtnEvent,this)
-        //this.friendPic.node.on('touchstart',this.friendPicEvent,this)
+        this.friendPic.node.on('touchstart',this.friendPicEvent,this)
     },
 
     // btn event
@@ -88,11 +91,20 @@ cc.Class({
         cc.resCache.setSpriteFrame(this.friendPic,"rankRes/"+this.nextPicName)
 
         if(self.nextPicName === "friend") {
-            self.nextPicName = "world"
-            // 显示好友排行
+            self.nextPicName = "hit"
+            // 连击排行
+            GameTools.sendMessage({
+                type: GameTools.msgType.updateRank,
+                keyList:[cc.TB.GAME.weChatData.keyList[0]],
+            });
         }else {
             self.nextPicName = "friend"
-            // 显示世界排行
+            // 好友排行排行
+            
+            GameTools.sendMessage({
+                type: GameTools.msgType.hitCenterRank,
+                keyList:[cc.TB.GAME.weChatData.keyList[1]],
+            });
         }
     },
 

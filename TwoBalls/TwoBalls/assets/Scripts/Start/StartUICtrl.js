@@ -160,9 +160,7 @@ cc.Class({
     },
 
     hideTipsMsg() {
-        this.tipsLable.node.runAction(cc.sequence(cc.fadeOut(0.35),cc.callFunc(()=>{
-            this.tipsLable.node.y = 0
-        }),cc.hide()))
+        this.tipsLable.node.runAction(cc.sequence(cc.fadeOut(0.35),cc.hide()))
     },
 
     showTipsMsg() {

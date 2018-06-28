@@ -10,6 +10,9 @@ let T = cc.Class({
         this.call_back = params.hide_panel_func
         this.need_friend_relife_func = params.need_friend_relife_func
         this.need_friend_relife_fail_func = params.need_friend_relife_fail_func
+        cc.TB.GAME.panelBgDestroyFunc = ()=>{
+            this.offBtnEvent()
+        }
     },
 
     offBtnEvent(event, params, delayTime) {

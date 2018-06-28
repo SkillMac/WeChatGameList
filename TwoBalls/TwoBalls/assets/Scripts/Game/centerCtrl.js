@@ -48,20 +48,38 @@ cc.Class({
         // circlePic: cc.Sprite,
         urgePrefab: cc.Prefab,
         urgeDesc: cc.Label,
+        hitTips: cc.Sprite,
+        hitLabel: cc.Label,
     },
     onLoad() {
         // cc.log('游戏场景onLoad');
         this.init()
         this.initData()
+        this.adjustPosLabel()
         this.enemyCom.init()
         this.playerCom.init()
         this.onStartGameEvent()
         this.initEffectFire()
+        //cc.TB.GAME.model
+    },
+    adjustPosLabel() {
+        if(cc.TB.GAME.model == 'iPhone X') {
+            this.hitLabel.node.removeComponent(cc.Widget)
+            this.urgeDesc.node.parent.removeComponent(cc.Widget)
+            this.score.node.removeComponent(cc.Widget)
+            this.hitTips.node.removeComponent(cc.Widget)
+
+            this.hitLabel.node.y += 65
+            this.urgeDesc.node.parent.y += 65
+            this.score.node.y += 65
+            this.hitTips.node.y += 65
+        }
     },
     start () {
         // cc.log('游戏场景start');
         this.showScore.node.active = false;
         this.maxHitCounts = 0
+        // this.urgeDesc.node.parent.active = false
     },
 
     update (dt) {
@@ -167,7 +185,9 @@ cc.Class({
         }
         if (this.hitCounts >=1 && this.hitCounts > this.maxHitCounts) {
             this.maxHitCounts = this.hitCounts
-            this.urgeDesc.string = cc.TB.GAME.hitTextCfg[this.maxHitCounts]
+            let index = this.maxHitCounts <= cc.TB.GAME.hitPicCounts ? this.maxHitCounts : cc.TB.GAME.hitPicCounts
+            //this.urgeDesc.string = cc.TB.GAME.hitTextCfg[index]
+            this.hitTips.node.runAction(cc.sequence(cc.fadeIn(0.2),cc.rotateTo(0.3,-30),cc.rotateTo(0.6,30),cc.rotateTo(0.3,0),cc.fadeOut(0.2)))
         }
         let enemyPosY = this.enemy.y
         this.showScore.node.y = enemyPosY
@@ -187,12 +207,21 @@ cc.Class({
     },
 
     playUrgeEffect(level) {
+        this.urgeDesc.node.parent.stopAllActions()
         if(level >= 1) {
+            this.urgeDesc.node.parent.runAction(cc.sequence(cc.show(),cc.fadeIn(0.3)))
+            this.urgeDesc.string = cc.TB.GAME.hitTextCfg[level]
+            this.hitLabel.string = level
+            this.hitLabel.node.runAction(cc.sequence(cc.show(),cc.fadeIn(0.3)))
             let node = cc.instantiate(this.urgePrefab)
             let curLocalZorder = this.showScore.node.getLocalZOrder()
             node.getComponent('urgeEffect').init(level)
             node.setPosition(cc.pAdd(this.enemy.getPosition(),cc.p(100,100)))
             this.node.addChild(node)
+        }
+        else {
+            this.urgeDesc.node.parent.runAction(cc.sequence(cc.fadeOut(0.25),cc.hide()))
+            this.hitLabel.node.runAction(cc.sequence(cc.fadeOut(0.25),cc.hide()))
         }
     },
 
@@ -234,6 +263,7 @@ cc.Class({
     },
 
     gameOver() {
+        cc.TB.GAME.maxHitCounts = this.maxHitCounts
         // dead
         // 更新游戏状态
         this.updateOverGameStatus();
@@ -338,4 +368,12 @@ cc.Class({
         }
         return false
     },
+
+    // 外界按钮事件绑定
+    hitShare(event) {
+        if(this.hitCounts <1){return}
+        cc.TB.wco.groupShare('hit',null,null,{
+            hitCounts: this.hitCounts > cc.TB.GAME.hitPicCounts ? cc.TB.GAME.hitPicCounts : this.hitCounts
+        })
+    }
 });
