@@ -94,7 +94,7 @@ cc.Class({
             // 跟新分数
             this.updateScore();
             // 分数上传
-            cc.TB.wco.uploadScore(this.globalGame.score);
+            cc.TB.wco.uploadScore();
             // 显示好友排行榜
             GameTools.sendMessage({
                 type: GameTools.msgType.updateSelfRank,

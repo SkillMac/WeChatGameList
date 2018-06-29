@@ -15,18 +15,24 @@ cc.Class({
         itemPrefab: cc.Prefab,
         selfView: cc.Node,
         selfPrefav: cc.Prefab,
-        scrollView : cc.ScrollView,
+        scrollView: cc.ScrollView,
         hitPrefab: cc.Prefab,
+        content_hit: cc.Node,
+        scrollViewHit: cc.ScrollView
     },
     onLoad() {
         this.prefabList = [];
         this.originPosY = this.scrollView.getScrollOffset().y
+        this.contentList = []
+        this.contentList.push(this.content)
+        this.contentList.push(this.selfView)
+        this.contentList.push(this.content_hit)
     },
     start () {
         if(CC_WECHATGAME) {
             window.wx.onMessage(data => {
-                console.log("收到消息");
-                console.log(data);
+                // console.log("收到消息");
+                // console.log(data);
                 if (data.type == msgType.updateRank) {
                     this.updateRank(data.keyList,false);
                 }
@@ -43,7 +49,7 @@ cc.Class({
                     this.fetchGroupFriendData(data.key, data.ticket);
                 }
                 else if(data.type == msgType.slideRank) {
-                    this.slideRank(data.y)
+                    this.slideRank(data.y, data.isHitRank)
                 }
                 else if(data.type == msgType.hitCenterRank) {
                     this.updateHitRank(data.keyList)
@@ -66,7 +72,12 @@ cc.Class({
         // }else {
         //     this.selfView.parent.active = true;
         // }
-        
+        this.hideAllContentView()
+        if(!isGameOverRank) {
+            this.content.active = true
+        } else {
+            this.selfView.active = true
+        }
         this.destroyChild();
         // 获取微信数据
         if (CC_WECHATGAME) {
@@ -98,7 +109,7 @@ cc.Class({
                                 }
                                 return b.KVDataList[0].value.wxgame.score - a.KVDataList[0].value.wxgame.score;
                             });
-
+                            this.destroyChild();
                             // content
                             for (let i = 0; i < data.length; i++) {
                                 let playerInfo = data[i];
@@ -171,6 +182,8 @@ cc.Class({
     },
 
     updateHitRank(keyList_) {
+        this.hideAllContentView()
+        this.content_hit.active = true
         this.destroyChild();
         if (CC_WECHATGAME) {
             wx.getUserInfo({
@@ -181,7 +194,7 @@ cc.Class({
                         keyList: keyList_,
                         success: res => {
                             let data = res.data;
-                            console.log('连击排行榜的数据',data)
+                            // console.log('连击排行榜的数据',data)
                             data.sort((a, b) => {
                                 if (a.KVDataList.length == 0 && b.KVDataList.length == 0) {
                                     return 0;
@@ -200,7 +213,7 @@ cc.Class({
                                 }
                                 return b.KVDataList[0].value.hitCounts.counts - a.KVDataList[0].value.hitCounts.counts;
                             });
-
+                            this.destroyChild();
                             for (let i = 0; i < data.length; i++) {
                                 let playerInfo = data[i];
                                 if(playerInfo.KVDataList.length !=0){
@@ -208,7 +221,7 @@ cc.Class({
                                     let node = cc.instantiate(this.hitPrefab);
                                     this.prefabList.push(node);
                                     node.getComponent('itemCtrl').init(i,playerInfo,true);
-                                    this.content.addChild(node);
+                                    this.content_hit.addChild(node);
 
                                     //-241
                                     if (data[i].avatarUrl == userData.avatarUrl) {
@@ -220,6 +233,10 @@ cc.Class({
                                     }
                                 }
                             }
+                            this.scrollViewHit.scrollToTop(0.01)
+                            this.node.runAction(cc.sequence(cc.delayTime(0.02),cc.callFunc(()=>{
+                                this.originPosY = this.scrollViewHit.getScrollOffset().y
+                            })))
                         }
                     })
                 }
@@ -231,29 +248,50 @@ cc.Class({
     submitScore(scoreData) {
        if (CC_WECHATGAME) {
         window.wx.getUserCloudStorage({
-            keyList: [scoreData.key],
+            keyList: [scoreData.key,scoreData.hitKey],
             //score
             success: function (res) {
-                console.log('提交分数', 'success', res);
+                // console.log('提交分数', 'success', res);
                 
                 let score = scoreData.score;
                 let scoreTime = new Date().getTime()
                 let hitTime = new Date().getTime()
                 let jsobj = null
 
+                let isUploadData = false
+
                 let hitCounts = scoreData.hitCounts ? scoreData.hitCounts : 0
                 if (res.KVDataList.length != 0) {
-                    if(typeof(res.KVDataList[0].value) == 'string') {
-                        jsobj = JSON.parse(res.KVDataList[0].value);
-                    }else {
-                        jsobj = res.KVDataList[0].value
+                    let parse = (index)=>{
+                        if(!res.KVDataList[index]) {
+                            return null
+                        }
+                        if(typeof(res.KVDataList[index].value) == 'string') {
+                            return JSON.parse(res.KVDataList[index].value)
+                        } else {
+                            res.KVDataList[index].value
+                        }
                     }
-                    score = jsobj.wxgame.score > score ? jsobj.wxgame.score : score
-                    scoreTime = jsobj.wxgame.score > score ? jsobj.wxgame.update_time : new Date().getTime()
-                    if(jsobj.hitCounts && jsobj.hitCounts.counts) {
-                        hitCounts = jsobj.hitCounts.counts > hitCounts ? jsobj.hitCounts.counts : hitCounts
-                        hitTime = jsobj.hitCounts.counts > hitCounts ? jsobj.hitCounts.update_time : new Date().getTime()
+
+                    jsobj = parse(0)
+                    if (jsobj && jsobj.wxgame.score < score) {
+                        isUploadData = true
+                    } else if (jsobj && jsobj.wxgame.score >= score) {
+                        score = jsobj.wxgame.score
+                        scoreTime = jsobj.wxgame.update_time
                     }
+
+                    jsobj = parse(1)
+                    if(jsobj && hitCounts > jsobj.hitCounts.counts) {
+                        isUploadData = true
+                    } else if (jsobj && hitCounts <= jsobj.hitCounts.counts) {
+                        hitCounts = jsobj.hitCounts.counts
+                        hitTime = jsobj.hitCounts.update_time
+                    } else if (!jsobj) {
+                        isUploadData = true
+                    }
+                } else {
+                    isUploadData = true
                 }
 
                 let data = new Array();
@@ -271,7 +309,7 @@ cc.Class({
                     }
                 }
 
-                if((!jsobj || !jsobj.hitCounts) || jsobj && jsobj.wxgame.score < score || jsobj.hitCounts.counts < hitCounts) {
+                if(isUploadData) {
                     data.push({
                         key: scoreData.key,
                         value: JSON.stringify(dataFormat),
@@ -307,6 +345,8 @@ cc.Class({
     },
 
     fetchGroupFriendData(keyList_, ticket) {
+        this.hideAllContentView()
+        this.content.active = true
         this.destroyChild();
         if (CC_WECHATGAME) {
             wx.getUserInfo({
@@ -374,9 +414,14 @@ cc.Class({
         }
     },
 
-    slideRank(y) {
-        let maxOffsetY = this.scrollView.getMaxScrollOffset().y
-        let nextOffsetY = this.scrollView.getScrollOffset().y + y
+    slideRank(y, isHitRank) {
+        let maxOffsetY = isHitRank ? this.scrollViewHit.getMaxScrollOffset().y :this.scrollView.getMaxScrollOffset().y
+        let nextOffsetY = 0
+        if(isHitRank) {
+            nextOffsetY = this.scrollViewHit.getScrollOffset().y + y
+        } else {
+            nextOffsetY = this.scrollView.getScrollOffset().y + y
+        }
         if(nextOffsetY > maxOffsetY) {
             return
         }
@@ -384,8 +429,21 @@ cc.Class({
             return
         }
         if(nextOffsetY > this.originPosY) {
-            this.scrollView.stopAutoScroll()
-            this.scrollView.scrollToOffset(cc.p(0,nextOffsetY),0.1)
+            if(isHitRank) {
+                this.scrollViewHit.stopAutoScroll()
+                this.scrollViewHit.scrollToOffset(cc.p(0,nextOffsetY),0.1)
+            } else {
+                this.scrollView.stopAutoScroll()
+                this.scrollView.scrollToOffset(cc.p(0,nextOffsetY),0.1)
+            }
         }
+    },
+
+    hideAllContentView(node) {
+        this.contentList.forEach(element => {
+            if(element.active){
+                element.active = false
+            }
+        });
     }
 });

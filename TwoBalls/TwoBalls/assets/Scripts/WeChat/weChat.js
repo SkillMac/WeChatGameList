@@ -137,42 +137,18 @@ let T = cc.Class({
         });
     },
 
-    uploadScore(score_){
-        if(!this.checkIsWeChat()) {return;}
-        // let data = new Array();
-        // let dataFormat = {
-        //     "wxgame": {
-        //         "score": score_,
-        //         "update_time": new Date().getTime()
-        //     },
-        //     //value: score_,
-        // }
-        // data.push({
-        //     key: "xwxdata",
-        //     value: JSON.stringify(dataFormat),
-        // });
+    uploadScore(){
+        if(!this.checkIsWeChat() || !cc.TB.GAME.isUploadDataFlag) {return;}
         GameTools.sendMessage({
             type: GameTools.msgType.submitScore,
             scoreData: {
                 key: cc.TB.GAME.weChatData.keyList[0],
-                score: score_,
+                score: cc.TB.GAME.maxScore,
                 //cc.TB.GAME.maxHitCounts
                 hitKey: cc.TB.GAME.weChatData.keyList[1],
                 hitCounts: cc.TB.GAME.maxHitCounts,
             },
         });
-        // wx.setUserCloudStorage({
-        //     KVDataList: data,
-        //     success: function (res) {
-        //         console.log('setUserCloudStorage', 'success', res)
-        //     },
-        //     fail: function (res) {
-        //         console.log('setUserCloudStorage', 'fail')
-        //     },
-        //     complete: function (res) {
-        //         console.log('setUserCloudStorage', 'ok')
-        //     }
-        // });
     },
 
     // 群分享

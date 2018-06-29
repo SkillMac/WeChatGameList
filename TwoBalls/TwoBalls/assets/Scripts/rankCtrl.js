@@ -53,6 +53,7 @@ cc.Class({
     // init data
     initData(){
         this.nextPicName = 'hit'
+        this.isHitRankFlag = false
     },
     // register btn event
     registerEvent(){
@@ -86,21 +87,20 @@ cc.Class({
     friendPicEvent(event) {
         event.stopPropagation()
         // 图片的更换
-        let self = this;
-
         cc.resCache.setSpriteFrame(this.friendPic,"rankRes/"+this.nextPicName)
 
-        if(self.nextPicName === "friend") {
-            self.nextPicName = "hit"
+        if(this.nextPicName === "friend") {
+            this.isHitRankFlag = false
+            this.nextPicName = "hit"
             // 连击排行
             GameTools.sendMessage({
                 type: GameTools.msgType.updateRank,
                 keyList:[cc.TB.GAME.weChatData.keyList[0]],
             });
         }else {
-            self.nextPicName = "friend"
+            this.nextPicName = "friend"
             // 好友排行排行
-            
+            this.isHitRankFlag = true
             GameTools.sendMessage({
                 type: GameTools.msgType.hitCenterRank,
                 keyList:[cc.TB.GAME.weChatData.keyList[1]],
@@ -117,7 +117,8 @@ cc.Class({
         this.rank_bg.node.on('touchmove',(event)=>{
             GameTools.sendMessage({
                 type: GameTools.msgType.slideRank,
-                y: event.getDelta().y
+                y: event.getDelta().y,
+                isHitRank: this.isHitRankFlag,
             })
         })
     }

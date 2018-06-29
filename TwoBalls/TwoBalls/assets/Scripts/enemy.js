@@ -21,12 +21,12 @@ cc.Class({
         this.node.active = false
         this.center.active = false
         // this.schedule(()=>{
-        //     this._Update();
+        //     this._update();
         // },0.01,cc.macro.REPEAT_FOREVER,0);
     },
 
-    _Update() {
-        this.move(0.02)
+    _update(dt) {
+        this.move(dt)
     },
 
     move(dt) {
@@ -37,8 +37,6 @@ cc.Class({
             this.curMoveDir = 1
         }
         let curMoveDis = this.curMoveDir * this._speed * dt
-        // cc.log(curMoveDis);
-        // console.log(curMoveDis,dt);
         this.node.x += Math.round(curMoveDis)
     },
 
@@ -100,7 +98,7 @@ cc.Class({
     },
 
     reset(type) {
-        // this.node.stopAllActions();
+        this.node.stopAllActions();
         this.stopMoveAction()
         this.setRandomData()
         // this.node.active = true;
@@ -114,6 +112,7 @@ cc.Class({
         this.node.setScale(this.curScale* this.gameStatus.enemyStartScaleMul);
         let scaleTime = this.gameStatus.enemyShowScaleTime;
         let fadeTime = this.gameStatus.enemyFadeTime;
+        // this.node.stopAllActions()
         this.node.runAction(cc.spawn(cc.scaleTo(scaleTime,this.curScale),cc.fadeIn(fadeTime)));
         this.node.runAction(cc.sequence(cc.delayTime(scaleTime),cc.callFunc(()=>{
             if(type == 'normal' || type == 'restart') {
@@ -123,7 +122,6 @@ cc.Class({
     },
     hide() {
         this.node.active = false;
-        // this.node.stopAllActions();
         this.stopMoveAction();
         this.node.x = 0;
     },

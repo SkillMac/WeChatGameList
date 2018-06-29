@@ -297,7 +297,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 228,
       "height": 25
     },
     "_rotationX": 0,
@@ -332,7 +332,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "金球皮肤",
+    "_N$string": "另加送10个给好友抢",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -811,7 +811,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 94,
+      "width": 93,
       "height": 40
     },
     "_rotationX": 0,
@@ -844,11 +844,11 @@
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "c3bd6ca7-1162-4782-8a3d-b659198fe742"
+      "__uuid__": "40a3fe1c-f92f-4a43-88bf-bb250249792e"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "G",
+    "_N$string": "k",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",

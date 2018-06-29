@@ -64,7 +64,7 @@ cc.Class({
         this.node.opacity = 0;
         this.node.active = true;
         this.isMove = false;
-        this.node.runAction(cc.sequence(cc.fadeIn(cc.TB.GAME.enemyFadeTime),cc.callFunc(()=>{
+        this.node.runAction(cc.sequence(cc.fadeIn(cc.TB.GAME.enemyFadeTime+0.1),cc.callFunc(()=>{
             this.isMove = true;
         })));
     },

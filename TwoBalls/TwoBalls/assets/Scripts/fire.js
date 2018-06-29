@@ -31,7 +31,7 @@ cc.Class({
         scaleVal *=0.7;
         let showAction = cc.spawn(cc.scaleTo(this.time,scaleVal,scaleVal),cc.fadeIn(this.time));
         effectNode.runAction(showAction);
-        cc.audioEngine.play(cc.url.raw('resources/audio/broke1.mp3'))
+        cc.audioEngine.play(cc.url.raw('resources/audio/broke9.mp3'))
         effectNode.runAction(cc.sequence(cc.delayTime(this.time),cc.callFunc(()=>{
             self.reset();
             if (callFunc) {

@@ -63,7 +63,7 @@ cc.Class({
         //cc.TB.GAME.model
     },
     adjustPosLabel() {
-        if(cc.TB.GAME.model == 'iPhone X') {
+        if(cc.TB.GAME.model.indexOf('iPhone X') > -1) {
             this.hitLabel.node.removeComponent(cc.Widget)
             this.urgeDesc.node.parent.removeComponent(cc.Widget)
             this.score.node.removeComponent(cc.Widget)
@@ -185,7 +185,7 @@ cc.Class({
         }
         if (this.hitCounts >=1 && this.hitCounts > this.maxHitCounts) {
             this.maxHitCounts = this.hitCounts
-            let index = this.maxHitCounts <= cc.TB.GAME.hitPicCounts ? this.maxHitCounts : cc.TB.GAME.hitPicCounts
+            let index = this.maxHitCounts <= cc.TB.GAME.hitPicCounts ? cc.TB.GAME.hitPicCounts : this.maxHitCounts
             //this.urgeDesc.string = cc.TB.GAME.hitTextCfg[index]
             this.hitTips.node.runAction(cc.sequence(cc.fadeIn(0.2),cc.rotateTo(0.3,-30),cc.rotateTo(0.6,30),cc.rotateTo(0.3,0),cc.fadeOut(0.2)))
         }
@@ -263,7 +263,7 @@ cc.Class({
     },
 
     gameOver() {
-        cc.TB.GAME.maxHitCounts = this.maxHitCounts
+        this.checkIsUploadData()
         // dead
         // 更新游戏状态
         this.updateOverGameStatus();
@@ -272,6 +272,16 @@ cc.Class({
         // 切换结束场景
         this.toGameOverScene()
         return true;
+    },
+
+    checkIsUploadData() {
+        if(this.maxHitCounts > this.globalGame.maxHitCounts || this.globalGame.score > this.globalGame.maxScore) {
+            this.globalGame.isUploadDataFlag = true
+            this.globalGame.maxHitCounts = this.maxHitCounts > this.globalGame.maxHitCounts ? this.maxHitCounts : this.globalGame.maxHitCounts
+            this.globalGame.maxScore = this.globalGame.score > this.globalGame.maxScore ? this.globalGame.score : this.globalGame.maxScore
+        } else {
+            this.globalGame.isUploadDataFlag = false
+        }
     },
 
     updateOverGameStatus() {
