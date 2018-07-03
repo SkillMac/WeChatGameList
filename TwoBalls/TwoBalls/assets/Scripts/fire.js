@@ -3,44 +3,31 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        time: {
-            default: 0.5,
-            tooltip: "动画的时间",
-        },
     },
 
     onLoad() {
         this.initData();
-        this.initEffectFire();
     },
+
     initData() {
-        // this.audio = this.node.getComponent(cc.AudioSource);
-    },
-    initEffectFire() {
-        let effectNode = this.node;
-        effectNode.active = false;
-        effectNode.opacity = 0;
-        effectNode.setScale(0);
+        this.node.opacity = 0
+        this.fadeTime = 0.35
+        this.sprite = this.node.getComponent(cc.Sprite)
+        this.node.rotation = cc.random0To1()*360
     },
 
-    playFireEffect(callFunc,pos,scaleVal) {
-        let self = this;
-        let effectNode = this.node;
-        effectNode.setPosition(pos);
-        effectNode.active = true;
-        scaleVal *=0.7;
-        let showAction = cc.spawn(cc.scaleTo(this.time,scaleVal,scaleVal),cc.fadeIn(this.time));
-        effectNode.runAction(showAction);
-        cc.audioEngine.play(cc.url.raw('resources/audio/broke9.mp3'))
-        effectNode.runAction(cc.sequence(cc.delayTime(this.time),cc.callFunc(()=>{
-            self.reset();
-            if (callFunc) {
-                callFunc();
-            }
+    playFireEffect(scaleVal, skinIndex) {
+        this.changeSkin(skinIndex)
+        scaleVal *=0.5;
+        this.node.setScale(scaleVal)
+        cc.audioEngine.play(cc.url.raw('resources/audio/broke1.mp3'))
+        this.node.runAction(cc.sequence(cc.fadeIn(this.fadeTime),cc.delayTime(2),cc.fadeOut(0.7),cc.callFunc(()=>{
+            this.node.destroy()
         })))
+        return this.fadeTime + 0.35
     },
 
-    reset() {
-        this.initEffectFire();
+    changeSkin(skinIndex) {
+        this.sprite.spriteFrame = cc.resCache.getBombEffectCache().getSpriteFrame(''+skinIndex)
     },
 });

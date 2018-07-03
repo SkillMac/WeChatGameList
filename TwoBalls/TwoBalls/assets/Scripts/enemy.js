@@ -95,6 +95,7 @@ cc.Class({
         this._speed = 0
         this.curMoveDir = 1
         this.curScale = 1
+        this._curEnemyPicIndex = -1
     },
 
     reset(type) {
@@ -168,6 +169,7 @@ cc.Class({
         let self = this;
         let GameStatus_ = this.gameStatus;
         let enemyPic = GameStatus_.getRandom(GameStatus_.enemyProbabilityPic) + 1;
+        this._curEnemyPicIndex = enemyPic
         let curSpriteFrame = this._atlasCahce.getSpriteFrame(""+enemyPic);
         this.sprite.spriteFrame = curSpriteFrame;
     },
@@ -175,5 +177,9 @@ cc.Class({
     loadEnemySkin() {
         this._atlasCahce = cc.resCache.getEnemyCache()
         this.setRandomData()
+    },
+
+    getSkinIndex() {
+        return this._curEnemyPicIndex
     },
 });

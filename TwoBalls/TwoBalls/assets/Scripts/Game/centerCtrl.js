@@ -50,6 +50,8 @@ cc.Class({
         urgeDesc: cc.Label,
         hitTips: cc.Sprite,
         hitLabel: cc.Label,
+        bombEffect: cc.Prefab,
+        bombNode: cc.Node,
     },
     onLoad() {
         // cc.log('游戏场景onLoad');
@@ -59,7 +61,6 @@ cc.Class({
         this.enemyCom.init()
         this.playerCom.init()
         this.onStartGameEvent()
-        this.initEffectFire()
         //cc.TB.GAME.model
     },
     adjustPosLabel() {
@@ -147,15 +148,16 @@ cc.Class({
         this.panel_bg.node.active = false
     },
 
-    initEffectFire() {
-        this.effectNode = this.node.getChildByName('fireEffect');
-    },
-
     playFireEffect() {
-        let fireScript = this.effectNode.getComponent('fire');
-        fireScript.playFireEffect(()=>{
+        let node = cc.instantiate(this.bombEffect)
+        // 节点添加
+        this.bombNode.addChild(node)
+        node.setPosition(this.enemy.getPosition())
+        let delayTime = node.getComponent('fire').playFireEffect(this.enemy.scaleX,this.enemyCom.getSkinIndex());
+
+        this.node.runAction(cc.sequence(cc.delayTime(delayTime),cc.callFunc(()=>{
             this.reset('normal');
-        },this.enemy.getPosition(),this.enemy.scaleX);
+        })))
         // 显示 加分效果
         this.playSocreEffect();
         // 数值加分

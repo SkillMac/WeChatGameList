@@ -10,6 +10,8 @@ let _res_cache = {
                     _res_cache._enemy_cache = element
                 } else if (element.name == 'urge.plist') {
                     _res_cache._urge_cahe = element
+                } else if (element.name = 'bomb.plist') {
+                    _res_cache._bomb_effect_cache = element
                 }
             });
             if(callfunc) {
@@ -24,6 +26,10 @@ let _res_cache = {
 
     getUrgeCache () {
         return _res_cache._urge_cahe
+    },
+
+    getBombEffectCache() {
+        return _res_cache._bomb_effect_cache
     },
 
     /// sprite cache ///
