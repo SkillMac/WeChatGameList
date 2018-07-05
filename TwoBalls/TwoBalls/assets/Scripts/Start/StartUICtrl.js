@@ -60,6 +60,8 @@ cc.Class({
                 this.initOnceData()
             }
         }))));
+
+        cc.loader.loadRes('audio/broke1')
     },
 
     initOnceData () {

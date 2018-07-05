@@ -4,20 +4,20 @@ cc.Class({
     extends: parentPanelCtrl,
 
     properties: {
-        time: cc.Label,
+        //time: cc.Label,
     },
 
     init(params) {
         this._super(params)
-        this.leftTime = 8
-        this.startUpTimer()
+        // this.leftTime = 8
+        // this.startUpTimer()
         cc.TB.GAME.panelBgDestroyFunc = ()=>{
             this.offBtnEvent()
         }
     },
 
     offBtnEvent(event, params) {
-        this.time.node.stopAllActions()
+        // this.time.node.stopAllActions()
         // 在外面面板也有调用
         this.node.runAction(cc.sequence(cc.scaleTo(0.2,0),cc.callFunc(()=>{
             if(params != 'relife' && this.need_friend_relife_fail_func) {
@@ -31,7 +31,7 @@ cc.Class({
     },
 
     needFriendRelife(event, params) {
-        this.time.node.stopAllActions()
+        // this.time.node.stopAllActions()
         cc.TB.wco.groupShare('relife',(res)=>{
             if(res.shareTickets) {
                 if(this.need_friend_relife_func) {
@@ -47,19 +47,19 @@ cc.Class({
         })
     },
 
-    startUpTimer() {
-        this.time.node.runAction(cc.repeatForever(cc.sequence(cc.delayTime(1),cc.callFunc(()=>{
-            if(this.leftTime < 0) {
-                this.offBtnEvent();
-                return
-            }
-            this.time.string = this.leftTime
-            this.leftTime --;
-        }))));
-    },
+    // startUpTimer() {
+    //     this.time.node.runAction(cc.repeatForever(cc.sequence(cc.delayTime(1),cc.callFunc(()=>{
+    //         if(this.leftTime < 0) {
+    //             this.offBtnEvent();
+    //             return
+    //         }
+    //         this.time.string = this.leftTime
+    //         this.leftTime --;
+    //     }))));
+    // },
 
     shareFail() {
-        this.startUpTimer()
+        // this.startUpTimer()
         this.showFailTipsMsg()
     },
 });

@@ -239,29 +239,16 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/fx.png</key>
+            <key type="filename">res/fqtz.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>16,7,31,14</rect>
+                <rect>44,12,88,24</rect>
                 <key>scale9Paddings</key>
-                <rect>16,7,31,14</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/fxdqfh.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>45,26,89,51</rect>
-                <key>scale9Paddings</key>
-                <rect>45,26,89,51</rect>
+                <rect>44,12,88,24</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -437,6 +424,19 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">res/sy.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>25,13,49,27</rect>
+                <key>scale9Paddings</key>
+                <rect>25,13,49,27</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">res/tc.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -460,6 +460,19 @@
                 <rect>38,36,77,71</rect>
                 <key>scale9Paddings</key>
                 <rect>38,36,77,71</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/tg.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>23,12,47,25</rect>
+                <key>scale9Paddings</key>
+                <rect>23,12,47,25</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -528,6 +541,19 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">res/xy.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>15,7,31,13</rect>
+                <key>scale9Paddings</key>
+                <rect>15,7,31,13</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">res/zx.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -571,9 +597,11 @@
             <filename>res/gq.png</filename>
             <filename>res/qzhyfh.png</filename>
             <filename>res/tishi.png</filename>
-            <filename>res/fxdqfh.png</filename>
             <filename>res/anniu.png</filename>
-            <filename>res/fx.png</filename>
+            <filename>res/fqtz.png</filename>
+            <filename>res/sy.png</filename>
+            <filename>res/tg.png</filename>
+            <filename>res/xy.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -67,14 +67,14 @@ let T = cc.Class({
     },
 
     showFailTipsMsg(msg) {
-        cc.loader.loadRes('prefab/Tips1', cc.Prefab, (err, prefab)=>{
-            let node = cc.instantiate(prefab)
-            node.getComponent('showMsgEffect').show2()
-            if(msg) {
-                node.getChildByName('tips').getComponent(cc.Label).string = msg
-            }
-            this.node.addChild(node)
-        })
+        // cc.loader.loadRes('prefab/Tips1', cc.Prefab, (err, prefab)=>{
+        //     let node = cc.instantiate(prefab)
+        //     node.getComponent('showMsgEffect').show2()
+        //     if(msg) {
+        //         node.getChildByName('tips').getComponent(cc.Label).string = msg
+        //     }
+        //     this.node.addChild(node)
+        // })
     }
 });
 

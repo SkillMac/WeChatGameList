@@ -37,8 +37,8 @@ cc.Class({
         else if (this.typeN == 'speed') {
             this.curLevel = this.clickData.speedLevel;
         }
-        cc.log('数据',this.clickData);
-        console.log('当前速度',this.curLevel);
+        // cc.log('数据',this.clickData);
+        // console.log('当前速度',this.curLevel);
         this.checkAddLevel();
         this.showResult();
     },
@@ -57,7 +57,7 @@ cc.Class({
             this.checkAddLevel();
         }
         else {
-            console.log('冷却中!!!!!');
+            // console.log('冷却中!!!!!');
         }
     },
 
@@ -65,17 +65,17 @@ cc.Class({
         cc.TB.wco.groupShare('share',() => {
             this.setLeve(this.addHelpLevel, 'f');
         });
-        console.log('分享');
+        // console.log('分享');
     },
 
     adBtnEvent(event) {
         // todo
-        cc.log('看广告');
+        // cc.log('看广告');
         this.setLeve(this.addAdLevel,'ad');
     },
 
     closeBtnEvent(event) {
-        console.log('关闭');
+        // console.log('关闭');
         this.node.parent.destroy();
     },
 

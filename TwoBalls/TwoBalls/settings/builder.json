@@ -31,7 +31,7 @@
   "webOrientation": "auto",
   "wechatgame": {
     "REMOTE_SERVER_ROOT": "https://vdgames.vdongchina.com/TB/1.0",
-    "appid": "wxad2ae45699726316",
+    "appid": "wx63453205f722ae15",
     "isSubdomain": false,
     "orientation": "portrait",
     "subContext": "openDataContext"

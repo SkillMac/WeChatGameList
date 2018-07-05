@@ -11,7 +11,7 @@ let GameTools = {
 
     sendMessage(data) {
         if(CC_WECHATGAME) {
-            console.log('send sub content data');
+            // console.log('send sub content data');
             let content = window.wx.getOpenDataContext();
             content.postMessage(data);
         }
