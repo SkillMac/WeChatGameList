@@ -45,7 +45,12 @@ cc.Class({
     initData() {
         this.globalGame = cc.TB.GAME;
         this.updateRankViewFlag = true;
-        cc.TB.GAME.giftSkinIndex = '-1'
+        
+        if(cc.TB.GAME.giftCounts > 0) {
+            cc.TB.GAME.giftCounts -- ;
+        } else {
+            cc.TB.GAME.giftSkinIndex = '-1'
+        }
     },
 
     initClickEvent() {

@@ -278,6 +278,19 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">res/hb.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>23,33,45,65</rect>
+                <key>scale9Paddings</key>
+                <rect>23,33,45,65</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">res/home1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -554,6 +567,19 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">res/xzqw.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>47,13,94,25</rect>
+                <key>scale9Paddings</key>
+                <rect>47,13,94,25</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">res/zx.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -602,6 +628,8 @@
             <filename>res/sy.png</filename>
             <filename>res/tg.png</filename>
             <filename>res/xy.png</filename>
+            <filename>res/xzqw.png</filename>
+            <filename>res/hb.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

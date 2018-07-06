@@ -79,6 +79,11 @@ cc.Class({
         let wco = cc.TB.wco
         // 微信登录
         wco.checkIsLogin()
+        GameTools.httpGet('/test.php',{
+            type:1,
+        },res=>{
+            console.log('开始界面',res)
+        })
     },
 
     preLoadGameScene(callFunc) {
@@ -105,6 +110,11 @@ cc.Class({
         let taskBtn = this.node.getChildByName('taskBtn')
         taskBtn.on('click', this.taskBtnEvent, this)
         this._btnList.push(taskBtn)
+
+        let urgeBtn = this.node.getChildByName('urgeBtn')
+        urgeBtn.getComponent('urgeEffect').show1()
+        urgeBtn.on('click', this.urgeBtnEvent, this)
+        this._btnList.push(urgeBtn)
 
         if(!cc.TB || !cc.TB.GAME || cc.TB.GAME.firstEnterGameFlag) {
             this.hideAllBtn()
@@ -152,6 +162,23 @@ cc.Class({
                 hide_panel_func: ()=>{
                     this.onOffPanelEvet()
                 },
+            })
+            this.node.parent.addChild(node)
+        });
+    },
+
+    urgeBtnEvent(event) {
+        this.panelShow()
+        cc.loader.loadRes("prefab/panel2", cc.Prefab, (err, prefab)=>{
+            this.hideTipsMsg()
+            let node = cc.instantiate(prefab)
+            node.getComponent('PanelCtrl').init({
+                hide_panel_func: ()=>{
+                    this.onOffPanelEvet()
+                },
+                urge_func: ()=>{
+                    this.startBtnVent()
+                }
             })
             this.node.parent.addChild(node)
         });
@@ -220,5 +247,5 @@ cc.Class({
 
     loadComplete() {
         this.showAllBtn()
-    }
+    },
 });

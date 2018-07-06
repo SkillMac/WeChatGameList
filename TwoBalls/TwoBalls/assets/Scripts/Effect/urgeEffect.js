@@ -19,4 +19,8 @@ cc.Class({
             this.node.destroy()
         })));
     },
+
+    show1() {
+        this.node.runAction(cc.repeatForever(cc.sequence(cc.rotateTo(0.3,-30),cc.rotateTo(0.6,30),cc.rotateTo(0.3,0),cc.delayTime(2))))
+    }
 });

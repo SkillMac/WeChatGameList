@@ -10,6 +10,8 @@ let T = cc.Class({
         this.call_back = params.hide_panel_func
         this.need_friend_relife_func = params.need_friend_relife_func
         this.need_friend_relife_fail_func = params.need_friend_relife_fail_func
+        // 奖励金钱的回调
+        this.urge_func = params.urge_func
         cc.TB.GAME.panelBgDestroyFunc = ()=>{
             this.offBtnEvent()
         }
@@ -46,12 +48,14 @@ let T = cc.Class({
             if(!res.shareTickets) {
                 this.showFailTipsMsg()
             } else {
+                cc.TB.GAME.giftCounts ++ ;
                 cc.TB.GAME.giftSkinIndex = ''+params
                 // 清理开始时候的数据
                 cc.TB.GAME.initStartData()
                 cc.TB.GAME.isPlaying = true
                 // 直接跳转游戏
                 cc.director.loadScene('MainGame')
+                // console.log(cc.director.getScene().name)
             }
         }, (res) => {
             this.showFailTipsMsg()
@@ -75,6 +79,13 @@ let T = cc.Class({
         //     }
         //     this.node.addChild(node)
         // })
+    },
+
+    urgeBtnEvent(event, params) {
+        if(this.urge_func) {
+            this.urge_func()
+        }
+        this.offBtnEvent()
     }
 });
 

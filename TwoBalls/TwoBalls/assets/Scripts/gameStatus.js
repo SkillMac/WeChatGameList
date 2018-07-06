@@ -7,6 +7,7 @@ let T = cc.Class({
         panelBgDestroyFunc:null,
         // 赠送皮肤编号
         giftSkinIndex:'-1',
+        giftCounts: 0,
         giftSkinCfg: {
             '0': ['u1',2200],
         },
@@ -191,6 +192,8 @@ let T = cc.Class({
         enemyFadeTime: 0.2,
         // 敌人出现开始的倍数
         enemyStartScaleMul: 0.7,
+        // 礼物在游戏总出现的概率表
+        giftAutoShowProbability: [0.95,0.05],
         ///////////////// 背景数据 //////////////////
         bgCfgData: {
             // 背景改变的时间
@@ -202,18 +205,20 @@ let T = cc.Class({
         },
         weChatData: {
             isLogin: false,
-            //appSecret: "4512c39c66615628c91cc49b896d4612",
+            //appSecret: "4512c39c66615628c91cc49b89",
             appId: "wxdfc7eb71a7ad9df6",
             code: "",
             keyList: ["wxdata",'hitCountsData'],
             shareTicket: "",
         },
+        // local variable
+        _probaList: {},
         ///////// func /////////
         getDesignSize() {
             return cc.size(720,1280);
         },
         // 一个概率表
-        getRandom(arr) {
+        getRandom(arr, arrName) {
             // fix 概率 不为1的问题
             let random = function(tv) {
                 let randomC = cc.random0To1();
@@ -224,13 +229,17 @@ let T = cc.Class({
                 }
                 return randomCount;
             }
-            let tmpArr = [];
-            let totalValue = 0;
-            for (let i = 0; i < arr.length; i++) {
-                totalValue += (arr[i]*100);
-                for (let count = 0; count < arr[i]*100; count++) {
-                    tmpArr.push(i);
+            let tmpArr = T._probaList[arrName] ? T._probaList[arrName][0] : [];
+            let totalValue = T._probaList[arrName] ? T._probaList[arrName][1] : 0;
+            if(!(tmpArr.length != 0 && totalValue != 0)) {
+                for (let i = 0; i < arr.length; i++) {
+                    totalValue += (arr[i]*100);
+                    for (let count = 0; count < arr[i]*100; count++) {
+                        tmpArr.push(i);
+                    }
                 }
+                // 概率表缓存
+                T._probaList[arrName] = [tmpArr,totalValue]
             }
             totalValue/=100;
             let index = random((totalValue));

@@ -162,6 +162,8 @@ cc.Class({
         this.playSocreEffect();
         // 数值加分
         this.addScore();
+        // 自动弹出礼物弹窗
+        this.autoShowGiftDialog();
     },
 
     reset(type) {
@@ -357,11 +359,11 @@ cc.Class({
     checkIsRelife() {
         if(!this.relifeFlag) {
             this.relifeFlag = true
-            this.panel_bg.node.active = true
+            this.onOpenPanelBg()
             let node = cc.instantiate(this.relifePrefab)
             node.getComponent('RelifePanelCtrl').init({
                 hide_panel_func: ()=>{
-                    this.panel_bg.node.active = false
+                    this.onClosePanelBg()
                 },
                 need_friend_relife_func: ()=> {
                     this.relife()
@@ -387,5 +389,30 @@ cc.Class({
         cc.TB.wco.groupShare('hit',null,null,{
             hitCounts: this.hitCounts > cc.TB.GAME.hitPicCounts ? cc.TB.GAME.hitPicCounts : this.hitCounts
         })
+    },
+
+    // 自动弹出礼物啊
+    autoShowGiftDialog() {
+        let index = this.globalGame.getRandom(this.globalGame.giftAutoShowProbability, 'giftAutoShowProbability')
+        if(index == 1) {
+            this.onOpenPanelBg()
+            cc.loader.loadRes("prefab/panel1", cc.Prefab, (err, prefab)=>{
+                let node = cc.instantiate(prefab)
+                node.getComponent('PanelCtrl').init({
+                    hide_panel_func: ()=>{
+                        this.onClosePanelBg()
+                    },
+                })
+                this.node.addChild(node)
+            });
+        }
+    },
+
+    onOpenPanelBg() {
+        this.panel_bg.node.active = true
+    },
+
+    onClosePanelBg() {
+        this.panel_bg.node.active = false
     }
 });

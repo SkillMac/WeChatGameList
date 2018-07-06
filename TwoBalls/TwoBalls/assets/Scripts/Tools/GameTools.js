@@ -1,4 +1,5 @@
 let GameTools = {
+    address: 'https://vdgames.vdongchina.com',
     msgType: {
         clear: 0,
         updateRank: 1,
@@ -31,7 +32,7 @@ let GameTools = {
     },
 
     showLabelEffect(parent,startPos, text, endPos, moveTime, fadeTime, startDelayTime) {
-        cc.log(parent,startPos,text,endPos,moveTime,fadeTime, startDelayTime);
+        // cc.log(parent,startPos,text,endPos,moveTime,fadeTime, startDelayTime);
         cc.loader.loadRes("prefab/labelEffect", cc.Prefab, (err, prefab)=>{
             let node = cc.instantiate(prefab);
             let sp = node.getComponent('showMsgEffect');
@@ -41,6 +42,39 @@ let GameTools = {
             sp.show();
         });
     },
+
+    httpGet(url, reqData, callback) {
+        url += '?';
+        for (let item in reqData) {
+            url += item + '=' + reqData[item]
+        }
+        console.log('请求的连接', GameTools.address + url)
+
+        const xhr = cc.loader.getXMLHttpRequest()
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+                var response = xhr.responseText;
+                if(response) {
+                    if(callback) {
+                        callback(response)
+                    }
+                } else {
+                    // todo    
+                }
+                console.log('响应结果',response);
+            } else {
+                console.log('请求失败')
+            }
+        };
+        console.log(xhr)
+        xhr.withCredentials = true;
+        xhr.open("GET", GameTools.address + url, true);
+        xhr.send();
+    },
+
+    httpPost() {
+
+    }
 };
 
 export default GameTools;

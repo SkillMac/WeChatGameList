@@ -13,6 +13,8 @@ let T = cc.Class({
 
     ctor() {
         if(CC_WECHATGAME) {
+            // 检查新版本
+            this.checkNewVersion();
             // 开启shareTicket
             this.openShareTicketSetting();
             // 绑定启动监听函数
@@ -290,5 +292,24 @@ let T = cc.Class({
             node.getChildByName('tips').getComponent(cc.Label).string = str_
             cc.director.getScene().getChildByName('Canvas').addChild(node)
         })
+    },
+
+    checkNewVersion() {
+        if (typeof wx.getUpdateManager === 'function') {
+            const updateManager = wx.getUpdateManager()
+          
+            updateManager.onCheckForUpdate(function (res) {
+                console.log(res.hasUpdate)
+            })
+          
+            updateManager.onUpdateReady(function () {
+                // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+                updateManager.applyUpdate()
+            })
+          
+            updateManager.onUpdateFailed(function () {
+                // 新的版本下载失败
+            })
+          }
     }
 });

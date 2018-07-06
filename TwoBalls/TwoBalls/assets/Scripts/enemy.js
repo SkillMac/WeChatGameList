@@ -139,13 +139,13 @@ cc.Class({
         else {
             curProbIndex = Math.floor(GameStatus_.checkPoint / (tarCheckPoint / checkPointSize));
         }
-        let curSizeIndex = GameStatus_.getRandom(GameStatus_.enemyProbabilitySize[curProbIndex]);
+        let curSizeIndex = GameStatus_.getRandom(GameStatus_.enemyProbabilitySize[curProbIndex],'enemyProbabilitySize'+ curProbIndex);
         let curSize = GameStatus_.enemySize[curSizeIndex];
 
-        let curPosYIndex = GameStatus_.getRandom(GameStatus_.enemyProbabilityDis[curProbIndex]);
+        let curPosYIndex = GameStatus_.getRandom(GameStatus_.enemyProbabilityDis[curProbIndex], 'enemyProbabilityDis' + curProbIndex);
         let curPosY = GameStatus_.enemyDis[curPosYIndex];
 
-        let curSpeedXIndex = GameStatus_.getRandom(GameStatus_.enemyProbabilitySpeed[curProbIndex]);
+        let curSpeedXIndex = GameStatus_.getRandom(GameStatus_.enemyProbabilitySpeed[curProbIndex], 'enemyProbabilitySpeed' + curProbIndex);
         let curSpeedX = GameStatus_.enemySpeed[curSpeedXIndex];
 
         //cc.log('小球的倍数: '+ curSize + "| 小球的位置: " + curPosY + "| 小球移动速度: " + curSpeedX);
@@ -168,7 +168,7 @@ cc.Class({
     updateSelfPic() {
         let self = this;
         let GameStatus_ = this.gameStatus;
-        let enemyPic = GameStatus_.getRandom(GameStatus_.enemyProbabilityPic) + 1;
+        let enemyPic = GameStatus_.getRandom(GameStatus_.enemyProbabilityPic, 'enemyProbabilityPic') + 1;
         this._curEnemyPicIndex = enemyPic
         let curSpriteFrame = this._atlasCahce.getSpriteFrame(""+enemyPic);
         this.sprite.spriteFrame = curSpriteFrame;

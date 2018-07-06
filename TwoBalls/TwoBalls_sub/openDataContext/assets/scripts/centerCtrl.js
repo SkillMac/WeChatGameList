@@ -216,7 +216,11 @@ cc.Class({
                             this.destroyChild();
                             for (let i = 0; i < data.length; i++) {
                                 let playerInfo = data[i];
-                                if(playerInfo.KVDataList.length !=0){
+                                let scoreData = playerInfo.KVDataList[0].value;
+                                if(typeof(scoreData) ==='string'){
+                                    scoreData = JSON.parse(playerInfo.KVDataList[0].value);
+                                }
+                                if(playerInfo.KVDataList.length !=0 && scoreData.hitCounts.counts > 0){
                                     // 更新排行榜
                                     let node = cc.instantiate(this.hitPrefab);
                                     this.prefabList.push(node);
