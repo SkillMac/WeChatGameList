@@ -156,7 +156,7 @@ let T = cc.Class({
     // 群分享
     groupShare(type, callback_, callback2_, cfg) {
         if(CC_WECHATGAME) {
-            let address = 'https://vdgames.vdongchina.com/TB/1.0/share/'
+            let address = 'https://vdgames.vdongchina.com/TB/share/'
             let title = ''
             let params = ''
             let url = ''

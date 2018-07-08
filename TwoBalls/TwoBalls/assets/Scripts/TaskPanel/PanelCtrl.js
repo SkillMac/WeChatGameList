@@ -48,14 +48,17 @@ let T = cc.Class({
             if(!res.shareTickets) {
                 this.showFailTipsMsg()
             } else {
-                cc.TB.GAME.giftCounts ++ ;
                 cc.TB.GAME.giftSkinIndex = ''+params
-                // 清理开始时候的数据
-                cc.TB.GAME.initStartData()
-                cc.TB.GAME.isPlaying = true
-                // 直接跳转游戏
-                cc.director.loadScene('MainGame')
-                // console.log(cc.director.getScene().name)
+                if(!(cc.director.getScene().name == 'MainGame')) {
+                    // 清理开始时候的数据
+                    cc.TB.GAME.initStartData()
+                    cc.TB.GAME.isPlaying = true
+                    // 直接跳转游戏
+                    cc.director.loadScene('MainGame')
+                } else {
+                    cc.director.getScene().getChildByName('Canvas').getChildByName('player').getComponent('player').checkChangeSkin()
+                    this.offBtnEvent()
+                }
             }
         }, (res) => {
             this.showFailTipsMsg()
@@ -71,14 +74,14 @@ let T = cc.Class({
     },
 
     showFailTipsMsg(msg) {
-        // cc.loader.loadRes('prefab/Tips1', cc.Prefab, (err, prefab)=>{
-        //     let node = cc.instantiate(prefab)
-        //     node.getComponent('showMsgEffect').show2()
-        //     if(msg) {
-        //         node.getChildByName('tips').getComponent(cc.Label).string = msg
-        //     }
-        //     this.node.addChild(node)
-        // })
+        cc.loader.loadRes('prefab/Tips1', cc.Prefab, (err, prefab)=>{
+            let node = cc.instantiate(prefab)
+            node.getComponent('showMsgEffect').show2()
+            if(msg) {
+                node.getChildByName('tips').getComponent(cc.Label).string = msg
+            }
+            this.node.addChild(node)
+        })
     },
 
     urgeBtnEvent(event, params) {

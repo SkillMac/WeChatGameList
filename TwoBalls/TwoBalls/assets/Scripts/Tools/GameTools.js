@@ -48,7 +48,7 @@ let GameTools = {
         for (let item in reqData) {
             url += item + '=' + reqData[item]
         }
-        console.log('请求的连接', GameTools.address + url)
+        //console.log('请求的连接', GameTools.address + url)
 
         const xhr = cc.loader.getXMLHttpRequest()
         xhr.onreadystatechange = function () {
@@ -61,19 +61,28 @@ let GameTools = {
                 } else {
                     // todo    
                 }
-                console.log('响应结果',response);
+                //console.log('响应结果',response);
             } else {
-                console.log('请求失败')
+                //console.log('请求失败')
             }
         };
-        console.log(xhr)
+        // console.log(xhr)
         xhr.withCredentials = true;
         xhr.open("GET", GameTools.address + url, true);
         xhr.send();
     },
 
     httpPost() {
+        //todo
+    },
 
+    isShowPanelByServer(name) {
+        if(!cc.TB.GAME.panelCfg || cc.TB.GAME.panelCfg[name] != '1') {
+            return false
+        }
+        else {
+            return true
+        }
     }
 };
 

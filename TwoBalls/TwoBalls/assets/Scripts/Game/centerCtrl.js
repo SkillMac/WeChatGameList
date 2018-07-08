@@ -146,6 +146,7 @@ cc.Class({
         this.hitCounts = 0;
         this.showScore.level = 0;
         this.panel_bg.node.active = false
+        this.autoShowGiftDialogFlag = false
     },
 
     playFireEffect() {
@@ -357,7 +358,7 @@ cc.Class({
     },
 
     checkIsRelife() {
-        if(!this.relifeFlag) {
+        if(GameTools.isShowPanelByServer('relife') && !this.relifeFlag) {
             this.relifeFlag = true
             this.onOpenPanelBg()
             let node = cc.instantiate(this.relifePrefab)
@@ -393,9 +394,13 @@ cc.Class({
 
     // 自动弹出礼物啊
     autoShowGiftDialog() {
+        if(!GameTools.isShowPanelByServer('autoGiftDialog')) {
+            return
+        }
         let index = this.globalGame.getRandom(this.globalGame.giftAutoShowProbability, 'giftAutoShowProbability')
-        if(index == 1) {
+        if(!this.autoShowGiftDialog && index == 1) {
             this.onOpenPanelBg()
+            this.autoShowGiftDialog = true
             cc.loader.loadRes("prefab/panel1", cc.Prefab, (err, prefab)=>{
                 let node = cc.instantiate(prefab)
                 node.getComponent('PanelCtrl').init({

@@ -1,6 +1,9 @@
 
 let _res_cache = require('ResCache')
 let GameTools = require('GameTools')
+cc.TB = {}
+cc.TB.GAME = require('gameStatus')
+
 cc.Class({
     extends: cc.Component,
 
@@ -18,10 +21,29 @@ cc.Class({
     initData () {
         this._preLoadResFlag = true;
         this._btnList = [];
+        GameTools.httpGet('/PanelCfg.php',{
+            type:1,
+        },res=>{
+            let cfg = JSON.parse(res)
+            cc.TB.GAME.panelCfg = cfg
+            if(GameTools.isShowPanelByServer('urge_money')) {
+                cc.loader.loadRes('prefab/urgeBtn', cc.Prefab, (err, prefab)=>{
+                    let node = cc.instantiate(prefab)
+                    node.getComponent('urgeEffect').show1()
+                    node.on('click', this.urgeBtnEvent, this)
+                    let widget = node.addComponent(cc.Widget)
+                    this.node.addChild(node)
+                    widget.isAlignLeft = true
+                    widget.left = -340
+                    widget.updateAlignment()
+                    node.y = 0
+                })
+            }
+        })
     },
 
     init() {
-        if(cc.TB === undefined || cc.TB === null) {
+        if(!cc.TB.GAME.completeResFlag) {
             this.preload()
         }
     },
@@ -67,8 +89,6 @@ cc.Class({
     initOnceData () {
         // 游戏开始只初始化一次
         // 游戏开始时的数据初始化工作
-        cc.TB = {}
-        cc.TB.GAME = require('gameStatus')
         let WCO = require('weChat')
         cc.TB.GAME.firstEnterGameFlag = false
         // 绑定显示群排行的函数
@@ -79,11 +99,6 @@ cc.Class({
         let wco = cc.TB.wco
         // 微信登录
         wco.checkIsLogin()
-        GameTools.httpGet('/test.php',{
-            type:1,
-        },res=>{
-            console.log('开始界面',res)
-        })
     },
 
     preLoadGameScene(callFunc) {
@@ -110,11 +125,6 @@ cc.Class({
         let taskBtn = this.node.getChildByName('taskBtn')
         taskBtn.on('click', this.taskBtnEvent, this)
         this._btnList.push(taskBtn)
-
-        let urgeBtn = this.node.getChildByName('urgeBtn')
-        urgeBtn.getComponent('urgeEffect').show1()
-        urgeBtn.on('click', this.urgeBtnEvent, this)
-        this._btnList.push(urgeBtn)
 
         if(!cc.TB || !cc.TB.GAME || cc.TB.GAME.firstEnterGameFlag) {
             this.hideAllBtn()
@@ -154,6 +164,7 @@ cc.Class({
     },
 
     taskBtnEvent(event) {
+        if(!(GameTools.isShowPanelByServer('taskPanel'))) return
         this.panelShow()
         cc.loader.loadRes("prefab/panel1", cc.Prefab, (err, prefab)=>{
             this.hideTipsMsg()
@@ -246,6 +257,7 @@ cc.Class({
     },
 
     loadComplete() {
+        cc.TB.GAME.completeResFlag = true
         this.showAllBtn()
     },
 });

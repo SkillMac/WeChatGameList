@@ -2,12 +2,13 @@
 let T = cc.Class({
     name: "gameStatus",
     statics: {
+        // 加载资源的标签
+        completeResFlag: false,
         // 手机型号
         model: '',
         panelBgDestroyFunc:null,
         // 赠送皮肤编号
         giftSkinIndex:'-1',
-        giftCounts: 0,
         giftSkinCfg: {
             '0': ['u1',2200],
         },
