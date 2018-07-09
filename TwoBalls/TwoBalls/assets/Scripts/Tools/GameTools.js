@@ -46,7 +46,7 @@ let GameTools = {
     httpGet(url, reqData, callback) {
         url += '?';
         for (let item in reqData) {
-            url += item + '=' + reqData[item]
+            url += item + '=' + reqData[item] + "&"
         }
         //console.log('请求的连接', GameTools.address + url)
 

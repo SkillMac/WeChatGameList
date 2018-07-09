@@ -3,6 +3,7 @@ let _res_cache = require('ResCache')
 let GameTools = require('GameTools')
 cc.TB = {}
 cc.TB.GAME = require('gameStatus')
+let WCO = require('weChat')
 
 cc.Class({
     extends: cc.Component,
@@ -13,6 +14,8 @@ cc.Class({
     },
 
     onLoad () {
+        // 微信小游戏检测更新
+        WCO.checkNewVersion()
         this.initData();
         this.init()
         this.initClickEvent()
@@ -23,6 +26,7 @@ cc.Class({
         this._btnList = [];
         GameTools.httpGet('/PanelCfg.php',{
             type:1,
+            version : cc.TB.GAME.version,
         },res=>{
             let cfg = JSON.parse(res)
             cc.TB.GAME.panelCfg = cfg
@@ -89,7 +93,6 @@ cc.Class({
     initOnceData () {
         // 游戏开始只初始化一次
         // 游戏开始时的数据初始化工作
-        let WCO = require('weChat')
         cc.TB.GAME.firstEnterGameFlag = false
         // 绑定显示群排行的函数
         WCO.registerOnGroupShareFunc((ticket) => {
