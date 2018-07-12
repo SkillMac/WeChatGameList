@@ -16,6 +16,9 @@ cc.Class({
         window.KUN = {}
         window.KUN.GameTools = require('GameTools')
         window.KUN.GameStatus = require('GameStatus')
+        window.KUN.UserData = require('UserData')
+        window.KUN.Server = require('Server')
+        window.KUN.ResCache = require('ResCache')
     },
 
     startUp() {

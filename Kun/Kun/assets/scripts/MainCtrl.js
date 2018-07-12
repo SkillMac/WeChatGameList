@@ -1,41 +1,38 @@
-// Learn cc.Class:
-//  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+        camera: cc.Camera
     },
 
-    // LIFE-CYCLE CALLBACKS:
+    onLoad() {
+        this._birthCtrl = this.node.getChildByName('Birth').getComponent('BirthCtrl')
+        this._birthCtrl.init()
+        this._playerCtrl = this.node.getChildByName('Player').getComponent('Player')
+        this._playerCtrl.init()
+        this._touchCtrl = this.node.getChildByName('TouchNode').getComponent('TouchEvent')
+        this._touchCtrl.init(this)
+    },
 
-    // onLoad () {},
+    zoomOut() {
+        // this.camera.zoomRatio = 2.9
+    },
 
-    start () {
+    zoomIn() {
 
     },
 
-    // update (dt) {},
+    // ==== enmey module ====
+
+    buildNewFish() {
+        let data = KUN.Server.getEnemyData()
+        // adjust data with player data
+        let player_data = this._playerCtrl.getData()
+        data.player_data = player_data
+        this._birthCtrl.buildNewFish(data)
+        // tell player open mouth
+        this._playerCtrl.openMouth()
+    },
+
 });

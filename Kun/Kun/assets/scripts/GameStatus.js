@@ -1,16 +1,26 @@
 let T = {
     // L1,L2,L3 move speed
-    speed1: 10,
+    speed1: 30,
     speed2: 20,
-    speed3: 30,
+    speed3: 10,
     // C1,C2 move speed
     speedC1: 25,
     speedC2: 15,
     // move speed mul
-    speed_mul: 5,
+    speed_mul: 2.5,
 
     // display size
     showSize: cc.winSize,
+
+    // ======base fish config======
+    fishCounts: 20,
+    // default Growth range
+    size_cfg_p:[0.4,0.8],
+    // ======player fish config======
+    perLevel: 10,
+    size_cfg_p: [[0.4,0.8]],
+    // ======enemy fish config======
+    size_cfg_mul_e: 0.7,
 };
 
 T.speedList = [T.speed1,T.speedC1,T.speed2,T.speedC2,T.speed3]

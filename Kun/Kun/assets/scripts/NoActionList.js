@@ -34,7 +34,7 @@ cc.Class({
     },
 
     isOutScreen() {
-        let dis = this.node.x - this.node.scaleX * this.node.width / 2
+        let dis = this.node.x - Math.abs(this.node.scaleX) * this.node.width / 2
         if(dis > 700) {
             this.setSpeed(0)
             this.node.active = false

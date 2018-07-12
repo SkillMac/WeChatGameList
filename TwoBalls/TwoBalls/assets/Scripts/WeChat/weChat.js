@@ -64,7 +64,7 @@ let T = cc.Class({
                 updateManager.onUpdateReady(function ( res ) {
                     wx.showModal({
                         title: '更新提示',
-                        content: '新版本已经准备好，是否重启应用？',
+                        content: '新版本来袭，是否重启应用？',
                         success: function (res) {
                           if (res.confirm) {
                             updateManager.applyUpdate()
@@ -243,6 +243,10 @@ let T = cc.Class({
                 this.showGiftTips('礼物已使用')
             }
         }
+
+        if(option && GameTools.isShowPanelByServer('urge_money')) {
+            cc.director.getScene().getChildByName('Canvas').getChildByName('menuStart').getComponent('StartUICtrl').urgeBtnEvent()
+        }
         
         // 显示
         wx.onShow((res)=>{
@@ -272,7 +276,7 @@ let T = cc.Class({
         });
         wx.onShareAppMessage(
             () => {
-                let address = 'https://vdgames.vdongchina.com/TB/1.0/share/'
+                let address = 'https://vdgames.vdongchina.com/TB/share/'
                 return {
                     title: '一起玩',
                     imageUrl: address + 'share.jpg',
