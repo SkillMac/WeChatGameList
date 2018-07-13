@@ -28,7 +28,6 @@ let T = {
     },
 
     setSpriteFrame: function(node, spritePath) {
-        console.log('xxxxxx',spritePath)
         let callfunc = function(sf){
             node.spriteFrame = sf;
         }

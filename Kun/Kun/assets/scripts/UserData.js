@@ -2,6 +2,7 @@ let T = {
     _coins:0,
     _energy: 50,
     _level: 1,
+    _price:[],
 
     // func
 
@@ -28,6 +29,20 @@ let T = {
     getLevel() {
         return T._level
     },
+
+    setFishPrice(data){
+        T._price =data
+    },
+
+    getFishPrice(){
+        return T._price
+    },
+
+    setUserData(data) {
+        T.setCoin(data.coin)
+        T.setEnergy(data.energy)
+        T.setLevel(data.level)
+    }
 }
 
 export default T;

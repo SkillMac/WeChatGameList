@@ -6,9 +6,10 @@ cc.Class({
         
     },
 
-    init() {
+    init(ctrl) {
         this.showy()
-        this._showTime = 15
+        this._showTime = KUN.GameStatus.showTime
+        this._ctrl = ctrl
     },
 
     // float

@@ -12,8 +12,9 @@ cc.Class({
     },
 
     touchEvent(e) {
+        e.stopPropagation()
         // reflush new fish
         // tell main ctrl birth new fish
-        this._mainCtrl.buildNewFish()
+        this._mainCtrl.touchEndEvent()
     }
 });

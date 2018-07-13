@@ -15,9 +15,9 @@
                 <key>spriteSourceSize</key>
                 <string>{10,529}</string>
                 <key>textureRect</key>
-                <string>{{13,1},{10,529}}</string>
+                <string>{{1,13},{10,529}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>cj_0013_BG.png</key>
             <dict>
@@ -32,6 +32,21 @@
                 <key>textureRect</key>
                 <string>{{1,1},{10,720}}</string>
                 <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>kun_0003_an.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{140,48}</string>
+                <key>spriteSourceSize</key>
+                <string>{140,48}</string>
+                <key>textureRect</key>
+                <string>{{188,25},{140,48}}</string>
+                <key>textureRotated</key>
                 <false/>
             </dict>
             <key>kun_0012_4.png</key>
@@ -45,7 +60,7 @@
                 <key>spriteSourceSize</key>
                 <string>{75,75}</string>
                 <key>textureRect</key>
-                <string>{{1,739},{75,75}}</string>
+                <string>{{911,1},{75,75}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -60,9 +75,9 @@
                 <key>spriteSourceSize</key>
                 <string>{36,37}</string>
                 <key>textureRect</key>
-                <string>{{78,739},{36,37}}</string>
+                <string>{{895,78},{36,37}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>kun_0015_g.png</key>
             <dict>
@@ -75,7 +90,7 @@
                 <key>spriteSourceSize</key>
                 <string>{45,41}</string>
                 <key>textureRect</key>
-                <string>{{1,859},{45,41}}</string>
+                <string>{{265,75},{45,41}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -90,7 +105,7 @@
                 <key>spriteSourceSize</key>
                 <string>{75,41}</string>
                 <key>textureRect</key>
-                <string>{{1,816},{75,41}}</string>
+                <string>{{188,75},{75,41}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -105,9 +120,9 @@
                 <key>spriteSourceSize</key>
                 <string>{111,39}</string>
                 <key>textureRect</key>
-                <string>{{79,1},{111,39}}</string>
+                <string>{{330,25},{111,39}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>kun_0018_msg.png</key>
             <dict>
@@ -120,9 +135,9 @@
                 <key>spriteSourceSize</key>
                 <string>{92,39}</string>
                 <key>textureRect</key>
-                <string>{{79,114},{92,39}}</string>
+                <string>{{330,66},{92,39}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>kun_0019_3.png</key>
             <dict>
@@ -135,9 +150,9 @@
                 <key>spriteSourceSize</key>
                 <string>{186,52}</string>
                 <key>textureRect</key>
-                <string>{{25,1},{186,52}}</string>
+                <string>{{723,1},{186,52}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>kun_0020_2.png</key>
             <dict>
@@ -150,9 +165,9 @@
                 <key>spriteSourceSize</key>
                 <string>{185,52}</string>
                 <key>textureRect</key>
-                <string>{{25,377},{185,52}}</string>
+                <string>{{1,25},{185,52}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>kun_0021_1.png</key>
             <dict>
@@ -165,9 +180,9 @@
                 <key>spriteSourceSize</key>
                 <string>{186,52}</string>
                 <key>textureRect</key>
-                <string>{{25,189},{186,52}}</string>
+                <string>{{707,55},{186,52}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>tree_1.png</key>
             <dict>
@@ -180,9 +195,24 @@
                 <key>spriteSourceSize</key>
                 <string>{173,103}</string>
                 <key>textureRect</key>
-                <string>{{13,564},{173,103}}</string>
+                <string>{{532,13},{173,103}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
+            </dict>
+            <key>y.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{52,52}</string>
+                <key>spriteSourceSize</key>
+                <string>{52,52}</string>
+                <key>textureRect</key>
+                <string>{{443,25},{52,52}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
         </dict>
         <key>metadata</key>
@@ -196,9 +226,9 @@
             <key>realTextureFileName</key>
             <string>UI.png</string>
             <key>size</key>
-            <string>{119,901}</string>
+            <string>{987,117}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9f7ffa38f4bf511ae51de9da21963ac3:a0b4a0f1f9f2691c0634d158a68a951a:4d1c460786d5294715f9f3e199a00761$</string>
+            <string>$TexturePacker:SmartUpdate:8725bcb9569a84ef7479f4a9d133fb18:d20217226579504ac44602b2229b13cb:4d1c460786d5294715f9f3e199a00761$</string>
             <key>textureFileName</key>
             <string>UI.png</string>
         </dict>

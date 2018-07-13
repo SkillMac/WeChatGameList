@@ -7,8 +7,8 @@ cc.Class({
         
     },
 
-    init(data) {
-        this._super()
+    init(data,ctrl) {
+        this._super(ctrl)
         this.adjustByData(data)
         return this
     },
@@ -20,10 +20,12 @@ cc.Class({
         let mul = data.level / data.player_data.level
         let v = mul * data.player_data.size
         this.node.setScale(v)
+        this.node.y = data.player_data.tarPos.y
+        this.runToPlayer(data.player_data.tarPos)
     },
 
-    runToPlayer() {
-        this.node.runAction(cc.sequence(cc.moveTo(this._showTime,cc.p(0,0)),cc.callFunc(()=>{
+    runToPlayer(pos) {
+        this.node.runAction(cc.sequence(cc.moveTo(this._showTime,cc.p(pos.x,pos.y)),cc.callFunc(()=>{
             this.node.destroy()
         })))
     }

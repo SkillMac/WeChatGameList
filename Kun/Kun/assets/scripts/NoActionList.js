@@ -10,14 +10,15 @@ cc.Class({
         this._speedX = speed
         this._maxMoveX = 0.02 * this._speedX
         this._using = true
-        this.birthCtrl = birthCtrl
+        this._birthCtrl = birthCtrl
         this.node.active = true
         this._index = index
     },
 
     update(dt) {
-        let curMoveX = dt * this._speedX
-        this.node.x += this._maxMoveX < curMoveX ? this._maxMoveX : curMoveX
+        let curMoveX = dt * this._speedX * KUN.GameStatus.speed_mul
+        let maxMoveX = this._maxMoveX * KUN.GameStatus.speed_mul
+        this.node.x += maxMoveX < curMoveX ? maxMoveX : curMoveX
         this.isOutScreen()
     },
 
@@ -40,7 +41,7 @@ cc.Class({
             this.node.active = false
             this.setUsingFlag(false)
             // tell birth ctrl collect
-            this.birthCtrl.collectChild(this._index, this)
+            this._birthCtrl.collectChild(this._index, this)
         }
     },
 

@@ -13,7 +13,8 @@ cc.Class({
         enemyPos: cc.Node,
     },
 
-    init() {
+    init(ctrl) {
+        this._ctrl = ctrl
         this.initData()
         this.initPrefabList()
         this.buildAction()
@@ -85,7 +86,6 @@ cc.Class({
     buildNewFish(data) {
         let node_ = cc.instantiate(this.fishPrefab)
         this.enemyPos.addChild(node_)
-        let enmeyCtrl = node_.getComponent('Enemy').init(data)
-        enmeyCtrl.runToPlayer()
+        let enmeyCtrl = node_.getComponent('Enemy').init(data,this._ctrl)
     }
 });

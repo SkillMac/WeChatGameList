@@ -278,6 +278,19 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../dataPic/kun_0003_an.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>35,12,70,24</rect>
+                <key>scale9Paddings</key>
+                <rect>35,12,70,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../dataPic/kun_0019_3.png</key>
             <key type="filename">../dataPic/kun_0021_1.png</key>
             <struct type="IndividualSpriteSettings">
@@ -302,6 +315,19 @@
                 <rect>46,13,93,26</rect>
                 <key>scale9Paddings</key>
                 <rect>46,13,93,26</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../dataPic/y.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>13,13,26,26</rect>
+                <key>scale9Paddings</key>
+                <rect>13,13,26,26</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -346,6 +372,8 @@
             <filename>../mountain/cj_0010_wu1.png</filename>
             <filename>../mountain/tree_1.png</filename>
             <filename>../bg/cj_0013_BG.png</filename>
+            <filename>../dataPic/y.png</filename>
+            <filename>../dataPic/kun_0003_an.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

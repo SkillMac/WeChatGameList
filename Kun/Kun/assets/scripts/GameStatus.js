@@ -7,8 +7,11 @@ let T = {
     speedC1: 25,
     speedC2: 15,
     // move speed mul
-    speed_mul: 2.5,
+    target_speed_mul: 5,
+    speed_mul: 1,
 
+    // ======base fish config======
+    showTime: 3,
     // display size
     showSize: cc.winSize,
 
