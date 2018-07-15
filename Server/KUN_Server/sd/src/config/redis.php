@@ -9,7 +9,7 @@
 /**
  * 选择数据库环境
  */
-$config['redis']['enable'] = false;
+$config['redis']['enable'] = true;
 $config['redis']['active'] = 'local';
 
 /**
@@ -22,10 +22,10 @@ $config['redis']['local']['select'] = 0;
 /**
  * 本地环境2
  */
-$config['redis']['local2']['ip'] = 'localhost';
-$config['redis']['local2']['port'] = 6379;
-$config['redis']['local2']['select'] = 2;
-$config['redis']['local2']['password'] = '123456';
+// $config['redis']['local2']['ip'] = 'localhost';
+// $config['redis']['local2']['port'] = 6379;
+// $config['redis']['local2']['select'] = 2;
+// $config['redis']['local2']['password'] = '123456';
 
 $config['redis']['asyn_max_count'] = 10;
 /**

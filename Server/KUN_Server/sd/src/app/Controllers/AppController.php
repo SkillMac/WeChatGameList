@@ -38,4 +38,20 @@ class AppController extends Controller
 			$this->http_output->end(json_encode($this->result));
 		}
 	}
+
+	public function http_testModel()
+	{
+		// $type = $this->http_input->get('type');
+		$model = $this->loader->model('UserData', $this);
+		
+		// if($type == 1)
+		// {
+
+		// } elseif ($type == 2)
+		// {
+
+		// }
+		
+		$this->http_output->end($model->testModel());
+	}
 }
