@@ -1,13 +1,14 @@
 let T = {
     defaultEnemyData:{
-        type:1,
-        level: 0.5,
+        type:'x1',
+        level: 1,
     },
 
     defaultUserData: {
-        coin:0,
+        coin:20,
         energy:50,
         level:1,
+        maxEnergy:50,
     },
 
     incrementUserData: {
@@ -16,7 +17,10 @@ let T = {
         level_dt: 0,
     },
 
-    defaultFishPriceData: [0,3000,0],
+    defaultFishPriceData: [0,20,50,100,200,500,1000,2000,5000,10000,20000,50000,100000,200000,500000,1000000,2000000,5000000,10000000,20000000],
+    defaultGetCoinByEatFish: [1,2,5,10,20,50,100,200,500,1000,2000,5000,10000,20000,50000,100000,200000,500000,1000000,2000000],
+
+    fishCounts: 20,
 
     getEnemyData() {
         return T.defaultEnemyData
@@ -28,13 +32,18 @@ let T = {
 
     _calcUserData() {
         let data = T.defaultUserData
-        data.coin += 1
-        data.energy -= 1
-        data.level += 0
+        let data_dt = T.incrementUserData
+        data.coin += data_dt.coin_dt
+        data.energy -= data_dt.energy_dt
+        data.level += data_dt.level_dt
     },
 
     touchOnce() {
         T._calcUserData()
+        T.updateUsrInfo()
+    },
+
+    updateUsrInfo() {
         let data = T.getUserInfo()
         KUN.UserData.setCoin(data.coin)
         KUN.UserData.setLevel(data.level)
@@ -44,6 +53,30 @@ let T = {
     getFishPrice() {
         return T.defaultFishPriceData
     },
+
+    checkIsCanPlay() {
+        if(T.defaultUserData.energy - 1 <= -1) {
+            return false
+        }
+        return true
+    },
+
+    uploadUserData() {
+        // to do
+    },
+
+    purchaseNewFish(price) {
+        // to do
+        if(T.defaultUserData.coin >= price) {
+            T.defaultUserData.coin -=price
+            T.defaultUserData.level ++
+            T.incrementUserData.coin_dt = T.defaultGetCoinByEatFish[T.defaultUserData.level - 1]
+            T.updateUsrInfo()
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 export default T;

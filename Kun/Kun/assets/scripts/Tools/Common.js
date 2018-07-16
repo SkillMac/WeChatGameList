@@ -15,8 +15,15 @@ cc.Class({
         let t = 0.35
         if(this.show2_f) {
             this.node.runAction(cc.moveTo(t, cc.p(0,0)))
+            KUN.GameStatus.status = KUN.GameStatus.statusList[3]
         } else {
             this.node.runAction(cc.moveTo(t, cc.p(0,-720)))
+            KUN.GameStatus.status = KUN.GameStatus.statusList[2]
         }
+    },
+
+    show3(e,p) {
+        this.node.setScale(0)
+        this.node.runAction(cc.scaleTo(0.35,1))
     }
 });

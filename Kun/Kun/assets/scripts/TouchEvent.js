@@ -15,6 +15,8 @@ cc.Class({
         e.stopPropagation()
         // reflush new fish
         // tell main ctrl birth new fish
-        this._mainCtrl.touchEndEvent()
+        if(this._mainCtrl.checkCanTouch()) {
+            this._mainCtrl.touchEndEvent()
+        }
     }
 });

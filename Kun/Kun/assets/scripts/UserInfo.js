@@ -6,12 +6,15 @@ cc.Class({
         level: cc.Label,
         energy: cc.Label,
         coin: cc.Label,
+        top: cc.Node,
+        bottom: cc.Node,
     },
 
     init(ctrl) {
         this._ctrl = ctrl
         this._flag = true
-        this._actionTime = 0.35
+        this._actionTime = 0.25
+        this._moveDis = 90
         this._dataCtrl = KUN.UserData
 
         this.initUserInfoData()
@@ -27,9 +30,11 @@ cc.Class({
     showOrHide(e,p) {
         this._flag = !this._flag
         if(this._flag) {
-            this.node.runAction(cc.moveBy(this._actionTime,cc.p(0,69)))
+            this.bottom.runAction(cc.moveBy(this._actionTime,cc.p(0,this._moveDis)))
+            this.top.runAction(cc.moveBy(this._actionTime,cc.p(0,-this._moveDis)))
         } else {
-            this.node.runAction(cc.moveBy(this._actionTime,cc.p(0,-69)))
+            this.bottom.runAction(cc.moveBy(this._actionTime,cc.p(0,-this._moveDis)))
+            this.top.runAction(cc.moveBy(this._actionTime,cc.p(0,this._moveDis)))
         }
     },
 
@@ -57,6 +62,10 @@ cc.Class({
         return this._dataCtrl.getEnergy()
     },
 
+    getMaxEnergy() {
+        return this._dataCtrl.getMaxEnergy()
+    },
+
     msgEvent(e,p) {
 
     },
@@ -82,7 +91,7 @@ cc.Class({
     },
 
     updateEnergy() {
-        this.setEnergy(this.getEnergy())
+        this.setEnergy(this.getEnergy()+'/'+this.getMaxEnergy())
     },
 
     updateLevel() {
@@ -92,5 +101,5 @@ cc.Class({
     touchOnce() {
         this.updateEnergy()
         this.updateLevel()
-    }
+    },
 });

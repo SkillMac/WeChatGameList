@@ -23,5 +23,6 @@ cc.Class({
 
     startUp() {
         cc.director.loadScene('MainGame')
+        KUN.GameStatus.status = KUN.GameStatus.statusList[2]
     },
 });

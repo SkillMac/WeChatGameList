@@ -16,8 +16,10 @@ cc.Class({
     },
 
     turnningEvent(e) {
-        let price = this._priceList[this.pageView.getCurrentPageIndex()]
-        if(price && price > 0) {
+        let level = this.pageView.getCurrentPageIndex() + 1
+        let price = this._priceList[level-1]
+        let flag = KUN.UserData.getLevel() == (level - 1)
+        if(flag && price && price > 0) {
             this._curFishPrice = price
             this.coin.string = price
             this.coin.node.parent.active = true
@@ -28,6 +30,14 @@ cc.Class({
 
     purchaseEvent(e,p) {
         // console.log('购买鱼的价格',this._curFishPrice)
+        this._ctrl.purchaseNewFish(this._curFishPrice,(res)=>{
+            if(res.status == 'ok') {
+                console.log('购买成功')
+                // purchase success
+            } else if(res.status == '-1') {
+                // fail
+                console.log('金币不足')
+            }
+        })
     },
-
 });

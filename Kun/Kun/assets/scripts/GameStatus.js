@@ -24,8 +24,14 @@ let T = {
     size_cfg_p: [[0.4,0.8]],
     // ======enemy fish config======
     size_cfg_mul_e: 0.7,
+
+    // ======game obj flag======
+    // eating   loading   swimming
+    statusList: ['loading', 'eating', 'idle', 'mapping', 'noEnergy'],
+    status: ''
 };
 
 T.speedList = [T.speed1,T.speedC1,T.speed2,T.speedC2,T.speed3]
+T.status = T.statusList[0]
 
 export default T;

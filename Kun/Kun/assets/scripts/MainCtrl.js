@@ -3,7 +3,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        camera: cc.Camera
+        camera: cc.Camera,
+        hbPanel: cc.Prefab,
     },
 
     onLoad() {
@@ -68,8 +69,12 @@ cc.Class({
     },
 
     updataData() {
-        this.chageMemData()
-        this._userInfoCtrl.touchOnce()
+        if(KUN.Server.checkIsCanPlay()) {
+            this.chageMemData()
+            this._userInfoCtrl.touchOnce()
+        } else {
+            // 能量不足
+        }
     },
 
     chageMemData() {
@@ -81,7 +86,7 @@ cc.Class({
     },
 
     startEat() {
-
+        this.changeGameStatus(1)
     },
 
     finishEatBefore() {
@@ -92,5 +97,38 @@ cc.Class({
     finishEat() {
         // change user info coin data
         this._userInfoCtrl.updateCoin()
+        this.changeGameStatus(2)
     },
+
+    changeGameStatus(index) {
+        KUN.GameStatus.status = KUN.GameStatus.statusList[index]
+    },
+
+    checkCanTouch() {
+        if(KUN.GameStatus.status == KUN.GameStatus.statusList[2]) {
+            return true
+        } else {
+            return false
+        }
+    },
+
+    showNoEnergyPanel(e,p) {
+        let node_ = cc.instantiate(this.hbPanel)
+        node_.getComponent('HPPanel').init(this)
+        this.node.addChild(node_)
+    },
+
+    purchaseNewFish(price, callback) {
+        if(KUN.Server.purchaseNewFish(price)) {
+            // update new fish skin
+
+            // update user visible data
+            this._userInfoCtrl.updateCoin()
+            this._userInfoCtrl.updateLevel()
+            // call back map func
+            callback({status:'ok'})
+        } else {
+            callback({status:'-1'})
+        }
+    }
 });

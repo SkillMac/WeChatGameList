@@ -3,6 +3,7 @@ let T = {
     _energy: 50,
     _level: 1,
     _price:[],
+    _maxEnergy:50,
 
     // func
 
@@ -38,10 +39,19 @@ let T = {
         return T._price
     },
 
+    getMaxEnergy() {
+        return T._maxEnergy
+    },
+
+    setMaxEnergy(max) {
+        T._maxEnergy = max
+    },
+
     setUserData(data) {
         T.setCoin(data.coin)
         T.setEnergy(data.energy)
         T.setLevel(data.level)
+        T.setMaxEnergy(data.maxEnergy)
     }
 }
 

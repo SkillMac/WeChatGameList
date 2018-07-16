@@ -200,16 +200,56 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../btn/kun_0012_4.png</key>
+            <key type="filename">../btn/anniu.png</key>
+            <key type="filename">../dataPic/kun_0003_an.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>19,19,37,37</rect>
+                <rect>35,12,70,24</rect>
                 <key>scale9Paddings</key>
-                <rect>19,19,37,37</rect>
+                <rect>35,12,70,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../btn/hb.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>27,35,53,69</rect>
+                <key>scale9Paddings</key>
+                <rect>27,35,53,69</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../btn/khblnl.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>62,15,123,31</rect>
+                <key>scale9Paddings</key>
+                <rect>62,15,123,31</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../btn/kun_0004_gb.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>9,9,18,17</rect>
+                <key>scale9Paddings</key>
+                <rect>9,9,18,17</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -240,6 +280,8 @@
                 <false/>
             </struct>
             <key type="filename">../btn/kun_0016_audio.png</key>
+            <key type="filename">../btn/tj.png</key>
+            <key type="filename">../btn/yy.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -278,56 +320,81 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../dataPic/kun_0003_an.png</key>
+            <key type="filename">../btn/phb.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>35,12,70,24</rect>
+                <rect>45,16,91,33</rect>
                 <key>scale9Paddings</key>
-                <rect>35,12,70,24</rect>
+                <rect>45,16,91,33</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../dataPic/kun_0019_3.png</key>
-            <key type="filename">../dataPic/kun_0021_1.png</key>
+            <key type="filename">../btn/yqts.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>47,13,93,26</rect>
+                <rect>39,15,79,31</rect>
                 <key>scale9Paddings</key>
-                <rect>47,13,93,26</rect>
+                <rect>39,15,79,31</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../dataPic/kun_0020_2.png</key>
+            <key type="filename">../dataPic/c.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>46,13,93,26</rect>
+                <rect>40,9,81,19</rect>
                 <key>scale9Paddings</key>
-                <rect>46,13,93,26</rect>
+                <rect>40,9,81,19</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../dataPic/y.png</key>
+            <key type="filename">../dataPic/jb.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>13,13,26,26</rect>
+                <rect>8,8,15,15</rect>
                 <key>scale9Paddings</key>
-                <rect>13,13,26,26</rect>
+                <rect>8,8,15,15</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../dataPic/tl.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>9,9,17,17</rect>
+                <key>scale9Paddings</key>
+                <rect>9,9,17,17</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../dataPic/xx.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>9,8,17,17</rect>
+                <key>scale9Paddings</key>
+                <rect>9,8,17,17</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -360,10 +427,6 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>../dataPic/kun_0020_2.png</filename>
-            <filename>../dataPic/kun_0021_1.png</filename>
-            <filename>../dataPic/kun_0019_3.png</filename>
-            <filename>../btn/kun_0012_4.png</filename>
             <filename>../btn/kun_0014_+.png</filename>
             <filename>../btn/kun_0015_g.png</filename>
             <filename>../btn/kun_0017_rank.png</filename>
@@ -372,8 +435,19 @@
             <filename>../mountain/cj_0010_wu1.png</filename>
             <filename>../mountain/tree_1.png</filename>
             <filename>../bg/cj_0013_BG.png</filename>
-            <filename>../dataPic/y.png</filename>
             <filename>../dataPic/kun_0003_an.png</filename>
+            <filename>../dataPic/jb.png</filename>
+            <filename>../dataPic/tl.png</filename>
+            <filename>../dataPic/xx.png</filename>
+            <filename>../dataPic/c.png</filename>
+            <filename>../btn/tj.png</filename>
+            <filename>../btn/yqts.png</filename>
+            <filename>../btn/yy.png</filename>
+            <filename>../btn/anniu.png</filename>
+            <filename>../btn/khblnl.png</filename>
+            <filename>../btn/phb.png</filename>
+            <filename>../btn/hb.png</filename>
+            <filename>../btn/kun_0004_gb.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
