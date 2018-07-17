@@ -9,8 +9,9 @@ cc.Class({
     },
 
     init(ctrl) {
-        this.initData()
         this._super(ctrl)
+        this.initData()
+        this.changeFishSkin()
     },
 
     initData() {
@@ -30,11 +31,15 @@ cc.Class({
         return KUN.UserData.getLevel()
     },
 
+    getFishIndex() {
+        return KUN.UserData.getFishIndex()
+    },
+
     openMouth() {
         this._ctrl.startEat()
-        KUN.ResCache.setSpriteFrame(this.sprite, cc.js.formatStr('fish/yu%d_o',this.getLevel()))
+        KUN.ResCache.setSpriteFrame(this.sprite, cc.js.formatStr('fish/yu%d_o',this.getFishIndex()))
         this.node.runAction(cc.sequence(cc.delayTime(this._showTime),cc.callFunc(()=>{
-            KUN.ResCache.setSpriteFrame(this.sprite, cc.js.formatStr('fish/yu%d',this.getLevel()))
+            KUN.ResCache.setSpriteFrame(this.sprite, cc.js.formatStr('fish/yu%d',this.getFishIndex()))
             this._ctrl.finishEatBefore()
         })))
     },
@@ -58,5 +63,9 @@ cc.Class({
                 node_.destroy()
             }),
         ))
-    }
+    },
+
+    changeFishSkin() {
+        KUN.ResCache.setSpriteFrame(this.sprite, cc.js.formatStr('fish/yu%d',this.getFishIndex()))
+    },
 });

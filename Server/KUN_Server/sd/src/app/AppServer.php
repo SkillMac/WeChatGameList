@@ -5,6 +5,7 @@ namespace app;
 use Server\CoreBase\HttpInput;
 use Server\CoreBase\Loader;
 use Server\SwooleDistributedServer;
+use Server\Asyn\HttpClient\HttpClientPool;
 
 /**
  * Created by PhpStorm.
@@ -43,6 +44,8 @@ class AppServer extends SwooleDistributedServer
     public function initAsynPools($workerId)
     {
         parent::initAsynPools($workerId);
+
+        $this->addAsynPool('HttpClientX',new HttpClientPool($this->config,'https://api.weixin.qq.com'));
     }
 
     /**

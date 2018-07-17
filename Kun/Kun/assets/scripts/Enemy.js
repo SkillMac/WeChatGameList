@@ -17,7 +17,7 @@ cc.Class({
         // change skin
         KUN.ResCache.setSpriteFrame(this.getComponent(cc.Sprite),'fish/yu'+data.type)
         // change scale
-        let mul = data.level / data.player_data.level
+        let mul = data.level / data.player_data.level * 1.5
         let v = mul * data.player_data.size
         this.node.setScale(v)
         this.node.y = data.player_data.tarPos.y

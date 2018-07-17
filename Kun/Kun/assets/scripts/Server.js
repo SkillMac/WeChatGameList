@@ -2,18 +2,22 @@ let T = {
     defaultEnemyData:{
         type:'x1',
         level: 1,
+        coin: 1,
     },
 
     defaultUserData: {
-        coin:20,
+        coin:19,
         energy:50,
         level:1,
         maxEnergy:50,
+        fishIndex:1,
+        zoom: 3,
+        zoom_dt: 0.125,
     },
 
     incrementUserData: {
         coin_dt: 1,
-        energy_dt: -1,
+        energy_dt: 1,
         level_dt: 0,
     },
 
@@ -23,7 +27,9 @@ let T = {
     fishCounts: 20,
 
     getEnemyData() {
-        return T.defaultEnemyData
+        let data = T.defaultEnemyData
+        T.incrementUserData.coin_dt = data.coin
+        return data
     },
 
     getUserInfo() {
@@ -48,6 +54,7 @@ let T = {
         KUN.UserData.setCoin(data.coin)
         KUN.UserData.setLevel(data.level)
         KUN.UserData.setEnergy(data.energy)
+        KUN.UserData.setFishIndex(data.fishIndex)
     },
 
     getFishPrice() {
@@ -70,7 +77,8 @@ let T = {
         if(T.defaultUserData.coin >= price) {
             T.defaultUserData.coin -=price
             T.defaultUserData.level ++
-            T.incrementUserData.coin_dt = T.defaultGetCoinByEatFish[T.defaultUserData.level - 1]
+            T.defaultUserData.fishIndex ++
+            T.defaultUserData.zoom -= T.defaultUserData.zoom_dt
             T.updateUsrInfo()
             return true
         } else {

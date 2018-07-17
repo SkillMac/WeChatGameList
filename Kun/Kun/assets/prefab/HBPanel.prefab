@@ -50,13 +50,10 @@
     "_components": [
       {
         "__id__": 70
-      },
-      {
-        "__id__": 71
       }
     ],
     "_prefab": {
-      "__id__": 72
+      "__id__": 71
     },
     "_id": "",
     "_opacity": 255,
@@ -512,7 +509,7 @@
       "__id__": 1
     },
     "component": "HPPanel",
-    "handler": "offEvent",
+    "handler": "hideDialog",
     "customEventData": "1"
   },
   {
@@ -2214,16 +2211,6 @@
       "__id__": 1
     },
     "_enabled": true
-  },
-  {
-    "__type__": "77da5+15KRHHYtpMvOVTws6",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "show1_p": null
   },
   {
     "__type__": "cc.PrefabInfo",

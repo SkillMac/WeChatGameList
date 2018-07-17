@@ -4,6 +4,7 @@ let T = {
     _level: 1,
     _price:[],
     _maxEnergy:50,
+    _fishIndex:1,
 
     // func
 
@@ -47,11 +48,20 @@ let T = {
         T._maxEnergy = max
     },
 
+    setFishIndex(index) {
+        T._fishIndex = index
+    },
+
+    getFishIndex() {
+        return T._fishIndex
+    },
+
     setUserData(data) {
         T.setCoin(data.coin)
         T.setEnergy(data.energy)
         T.setLevel(data.level)
         T.setMaxEnergy(data.maxEnergy)
+        T.setFishIndex(data.fishIndex)
     }
 }
 

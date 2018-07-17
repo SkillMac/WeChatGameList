@@ -23,7 +23,10 @@ $config['ports'][] = [
     'socket_port' => 9092,
     'route_tool' => 'NormalRoute',
     'middlewares' => ['MonitorMiddleware', 'NormalHttpMiddleware'],
-    'method_prefix' => 'http_'
+    'method_prefix' => 'http_',
+    'socket_ssl' => true,
+    'ssl_cert_file' => '/home/cert/_.vdongchina.com.crt',
+    'ssl_key_file' => '/home/cert/_.vdongchina.com.key',
 ];
 
 // $config['ports'][] = [

@@ -4706,6 +4706,9 @@
     },
     "hbPanel": {
       "__uuid__": "2fd3d62d-51e9-4c00-870b-f8c87033388a"
+    },
+    "tipsPanel": {
+      "__uuid__": "daecb2b1-fac1-4f49-840e-dcc95226590e"
     }
   },
   {

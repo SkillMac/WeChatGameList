@@ -1,6 +1,7 @@
+import BasePanel from "BasePanel";
 
 cc.Class({
-    extends: cc.Component,
+    extends: BasePanel,
 
     properties: {
         
@@ -8,22 +9,16 @@ cc.Class({
 
     init(ctrl,callback) {
         KUN.GameStatus.status = KUN.GameStatus.statusList[4]
-        this._callback = callback
+        this._super(ctrl,callback)
         this.flagList = []
+        this._endFunc = ()=>{
+            KUN.GameStatus.status = KUN.GameStatus.statusList[2]
+        }
+        return this
     },
 
     hBEvent(e,p) {
         let obj = e.target
         // to do
-    },
-
-    offEvent(e,p) {
-        this.node.runAction(cc.sequence(cc.scaleTo(0.35,0),cc.callFunc(()=>{
-            if(this.callback) {
-                this.callback(callback)
-            }
-            this.node.destroy()
-            KUN.GameStatus.status = KUN.GameStatus.statusList[2]
-        })))
     },
 });

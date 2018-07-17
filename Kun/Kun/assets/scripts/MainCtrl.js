@@ -5,6 +5,7 @@ cc.Class({
     properties: {
         camera: cc.Camera,
         hbPanel: cc.Prefab,
+        tipsPanel: cc.Prefab,
     },
 
     onLoad() {
@@ -30,17 +31,39 @@ cc.Class({
         this.initData()
     },
 
+    update(dt) {
+        this.zoomOut()
+    },
+
     init(){
-        KUN.UserData.setUserData(KUN.Server.getUserInfo())
+        this._zoom = 3
+        let data = KUN.Server.getUserInfo()
+        this._zoom = data.zoom
+        this._zoom_dt = data.zoom_dt
+        KUN.UserData.setUserData(data)
         KUN.UserData.setFishPrice(KUN.Server.getFishPrice())
+
+        // 初始化镜头
+        this.camera.zoomRatio = this._zoom
     },
 
     initData() {
         this._goldPos = this.node.getChildByName('GoldPos').getPosition()
+        this._purchaseEnergyPanelFlag = false
+        this._tipsPanelFlag = false
+        this._zoomOutFlag = false
     },
 
     zoomOut() {
-        // this.camera.zoomRatio = 2.9
+        if(!this._zoomOutFlag) return
+        let tar = this._zoom
+        let n = 0
+        n = cc.lerp(this.camera.zoomRatio,tar,0.1)
+        if(n-tar <= 0.01) {
+            n = tar
+            this._zoomOutFlag = false
+        }
+        this.camera.zoomRatio = n
     },
 
     zoomIn() {
@@ -64,17 +87,17 @@ cc.Class({
     },
 
     touchEndEvent() {
-        this.updataData()
-        this.buildNewFish()
+        if(KUN.Server.checkIsCanPlay()) {
+            this.updataData()
+            this.buildNewFish()
+        } else {
+            this.showNoEnergyPanel()
+        }
     },
 
     updataData() {
-        if(KUN.Server.checkIsCanPlay()) {
-            this.chageMemData()
-            this._userInfoCtrl.touchOnce()
-        } else {
-            // 能量不足
-        }
+        this.chageMemData()
+        this._userInfoCtrl.touchOnce()
     },
 
     chageMemData() {
@@ -113,22 +136,50 @@ cc.Class({
     },
 
     showNoEnergyPanel(e,p) {
-        let node_ = cc.instantiate(this.hbPanel)
-        node_.getComponent('HPPanel').init(this)
-        this.node.addChild(node_)
+        if(!this._purchaseEnergyPanelFlag) {
+            this._purchaseEnergyPanelFlag = true
+            let node_ = cc.instantiate(this.hbPanel)
+            node_.getComponent('HPPanel').init(this,()=>{
+                this._purchaseEnergyPanelFlag = false
+            }).showDialog()
+            this.node.addChild(node_)
+        }
     },
 
     purchaseNewFish(price, callback) {
         if(KUN.Server.purchaseNewFish(price)) {
             // update new fish skin
-
+            this._playerCtrl.changeFishSkin()
             // update user visible data
             this._userInfoCtrl.updateCoin()
             this._userInfoCtrl.updateLevel()
             // call back map func
             callback({status:'ok'})
+            this.showTipsPanel('购买成功，赶快去玩耍吧！',true)
         } else {
             callback({status:'-1'})
+            this.showTipsPanel()
         }
-    }
+    },
+
+    showTipsPanel(tips,isAutoHidePanel) {
+        if(this._tipsPanelFlag) return
+        this._tipsPanelFlag = true
+        let node_ = cc.instantiate(this.tipsPanel)
+        let t = 0
+        node_.getComponent('TipsPanel').init(this,()=>{
+            this._tipsPanelFlag = false
+            if(isAutoHidePanel) {
+                t = this._mappingCtrl.showOrHied()
+                this.node.runAction(cc.sequence(cc.delayTime(t),cc.callFunc(()=>{
+                    this._zoom -= this._zoom_dt
+                    this._zoomOutFlag = true
+                })))
+            }
+        }).showDialog()
+        this.node.addChild(node_)        
+        if(tips) {
+            node_.getChildByName('tips').getComponent(cc.Label).string = tips;
+        }
+    },
 });

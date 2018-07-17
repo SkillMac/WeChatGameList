@@ -40,4 +40,9 @@ cc.Class({
             }
         })
     },
+
+    showOrHied() {
+        this.coin.node.parent.active = false
+        return this.getComponent('Common').show2()
+    }
 });

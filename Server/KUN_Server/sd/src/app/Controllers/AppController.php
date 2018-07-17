@@ -7,12 +7,21 @@ use Server\CoreBase\Controller;
 class AppController extends Controller
 {
 	// public $AppModel;
+	protected $GetIPAddressHttpClient;
 
 	public $result = array("urge_money"=>"1",
 		"relife"=>"1",
 		"autoGiftDialog"=>"1",
 		"taskPanel"=>"1"
 		);
+
+
+	public function initialization($controller_name, $method_name)
+    {
+        parent::initialization($controller_name, $method_name);
+        $this->GetIPAddressHttpClient = get_instance()->getAsynPool('HttpClientX');
+    }
+
 
 	public function http_test()
 	{
@@ -53,5 +62,31 @@ class AppController extends Controller
 		// }
 		
 		$this->http_output->end($model->testModel());
+	}
+
+	public function http_testHttpClient()
+	{
+		$response = $this->GetIPAddressHttpClient->httpClient
+        	->setQuery(['type'=>1,'version'=>'1.0.2'])
+        	->coroutineExecute('/AppController/echo');
+        $this->http_output->end($response['body']);
+	}
+
+	public function http_login()
+	{
+		$code = $this->http_input->get('code');
+		if(empty($code) || $code == '')
+		{
+			$this->http_output->end('-1');
+		} else {
+			$response = $this->GetIPAddressHttpClient->httpClient->setQuery([
+				'appid'=>'wxdfc7eb71a7ad9df6',
+        		'secret'=>'4512c39c66615628c91cc49b896d4612',
+        		'js_code'=>$code,
+        		'grant_type'=>'authorization_code'
+    		])->coroutineExecute('/sns/jscode2session');
+    		
+			$this->http_output->end($response['body']);
+		}
 	}
 }

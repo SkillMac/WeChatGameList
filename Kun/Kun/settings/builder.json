@@ -26,14 +26,14 @@
     "orientation": "portrait"
   },
   "renderMode": "0",
-  "startScene": "",
+  "startScene": "77d3c248-9b34-49e9-a801-db25a4655dbd",
   "title": "Kun",
   "webOrientation": "auto",
   "wechatgame": {
-    "REMOTE_SERVER_ROOT": "",
-    "appid": "wx6ac3f5090a6b99c5",
+    "REMOTE_SERVER_ROOT": "https://vdgames.vdongchina.com:9092/",
+    "appid": "wxdfc7eb71a7ad9df6",
     "isSubdomain": false,
-    "orientation": "portrait",
+    "orientation": "landscape",
     "subContext": ""
   },
   "xxteaKey": "0cd3b49f-c720-4c",
