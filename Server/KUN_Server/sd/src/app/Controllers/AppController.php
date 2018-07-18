@@ -85,8 +85,36 @@ class AppController extends Controller
         		'js_code'=>$code,
         		'grant_type'=>'authorization_code'
     		])->coroutineExecute('/sns/jscode2session');
-    		
-			$this->http_output->end($response['body']);
+
+    		$userInfo = json_decode($response['body']);
+
+    		if (array_key_exists('errcode', $userInfo))
+    		{
+    			// 登录失败
+    			$this->http_output->end('-1'); //$usrinfo['errmsg'])
+    			$this->interrupt();
+    		}
+
+    		$model = $this->loader->model('UserData', $this);
+    		$result = $model->saveUserOpenid($userInfo);
+
+			$this->http_output->end(json_encode($result));
 		}
 	}
+
+	public function http_getUserDataById()
+	{
+		$id = $this->http_input->get('id');
+		$model = $this->loader->model('UserData', $this);
+		$result = $model->getUserInfoById($id);
+		$this->http_output->end(json_encode($result));
+	}
+
+	/////// logic //////////
+	public function http_buildNewFish()
+	{
+
+	}
+
+
 }
