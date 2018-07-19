@@ -93,7 +93,7 @@ let T = cc.Class({
         });
     },
 
-    login() {
+    login(func_) {
         if(!CC_WECHATGAME) return
         wx.login({
             success: function(res) {
@@ -110,6 +110,7 @@ let T = cc.Class({
                     success: function(res) {
                         // console.log('请求成功',res.data)
                         KUN.Server.id = res.data
+                        func_()
                     },
                     fail: (res) => {
                         // console.log('请求失败',res)

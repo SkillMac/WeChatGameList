@@ -22,12 +22,12 @@ cc.Class({
         window.KUN.ResCache = require('ResCache')
         let WeChat = require('WeChat')
 
-        KUN.Server.init(()=>{
-            this._isCanClickFlag = true
-        })
-
         window.KUN.WeChat = new WeChat()
-        KUN.WeChat.login()
+        KUN.WeChat.login(()=>{
+            KUN.Server.init(()=>{
+                this._isCanClickFlag = true
+            })
+        })
     },
 
     startUp() {

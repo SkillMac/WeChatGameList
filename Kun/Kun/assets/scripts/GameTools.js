@@ -1,11 +1,10 @@
 let T = {
     httpGet(url_, reqData, callback, fail_) {
         if(CC_WECHATGAME) {
+            console.log('客户端数据',reqData);
             wx.request({
                 url: KUN.GameStatus.address + url_,
-                data: {
-                    code: reqData,
-                },
+                data: reqData,
                 header: {
                     'content-type': 'application/json' 
                 },

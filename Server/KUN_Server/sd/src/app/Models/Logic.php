@@ -137,7 +137,7 @@ class Logic extends Model
 			for ($i=1; $i < 21; $i++) {
 				$priceList[$i] = (pow($i, 2) - $i + 2) * 500;
 			}
-			$this->userDataM->set('priceList',json_encode($priceList,true));
+			$this->userDataM->set('priceList',json_encode($priceList));
 			return $priceList;
 		}
 	}
@@ -152,7 +152,7 @@ class Logic extends Model
 			$result['passByMul'] = 0.01;
 			$result['meetMul'] = 0.05;
 			$result['eatenPriceMul'] = 0.02;
-			return json_encode($result,true);
+			return json_encode($result);
 		} 
 		else {
 			return $result;
