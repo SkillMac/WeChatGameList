@@ -8,6 +8,7 @@ class AppController extends Controller
 {
 	// public $AppModel;
 	protected $GetIPAddressHttpClient;
+	private $logicM = null;
 
 	public $result = array("urge_money"=>"1",
 		"relife"=>"1",
@@ -20,6 +21,7 @@ class AppController extends Controller
     {
         parent::initialization($controller_name, $method_name);
         $this->GetIPAddressHttpClient = get_instance()->getAsynPool('HttpClientX');
+        $this->logicM = $this->loader->model('Logic',$this);
     }
 
 
@@ -87,6 +89,7 @@ class AppController extends Controller
     		])->coroutineExecute('/sns/jscode2session');
 
     		$userInfo = json_decode($response['body']);
+    		$userInfo->login_time = time();
 
     		if (array_key_exists('errcode', $userInfo))
     		{
@@ -97,24 +100,42 @@ class AppController extends Controller
 
     		$model = $this->loader->model('UserData', $this);
     		$result = $model->saveUserOpenid($userInfo);
-
-			$this->http_output->end(json_encode($result));
+			$this->http_output->end(json_encode($result,true));
 		}
 	}
 
 	public function http_getUserDataById()
 	{
 		$id = $this->http_input->get('id');
-		$model = $this->loader->model('UserData', $this);
-		$result = $model->getUserInfoById($id);
-		$this->http_output->end(json_encode($result));
+		$this->http_output->end($this->logicM->getUserInfo($id));
 	}
 
 	/////// logic //////////
 	public function http_buildNewFish()
 	{
-
+		$id = $this->http_input->get('id');
+		$res = $this->logicM->buildNewFish($id);
+		$this->http_output->end($res);
 	}
 
+	public function http_finishEat()
+	{
+		$id = $this->http_input->get('id');
+		$flag = $this->logicM->finishEat($id);
+		$this->http_output->end($flag);
+	}
 
+	public function http_flee()
+	{
+		$id = $this->http_input->get('id');
+		$flag = $this->logicM->flee($id);
+		$this->http_output->end($flag);
+	}
+
+	public function http_flockEnergy()
+	{
+		$id = $this->http_input->get('id');
+		$time = $this->logicM->flockEnergy($id);
+		$this->http_output->end($time);
+	}
 }

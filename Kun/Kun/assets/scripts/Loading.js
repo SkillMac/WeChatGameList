@@ -7,6 +7,7 @@ cc.Class({
     },
 
     onLoad() {
+        this._isCanClickFlag = false
         this.init()
         cc.director.preloadScene('MainGame')
         this.node.on(cc.Node.EventType.TOUCH_END,this.startUp,this)
@@ -20,11 +21,17 @@ cc.Class({
         window.KUN.Server = require('Server')
         window.KUN.ResCache = require('ResCache')
         let WeChat = require('WeChat')
+
+        KUN.Server.init(()=>{
+            this._isCanClickFlag = true
+        })
+
         window.KUN.WeChat = new WeChat()
         KUN.WeChat.login()
     },
 
     startUp() {
+        if(!this._isCanClickFlag) return
         cc.director.loadScene('MainGame')
         KUN.GameStatus.status = KUN.GameStatus.statusList[2]
     },

@@ -9,7 +9,7 @@ let GameTools = {
         slideRank: 5,
         hitCenterRank: 6,
     },
-
+    
     sendMessage(data) {
         if(CC_WECHATGAME) {
             // console.log('send sub content data');

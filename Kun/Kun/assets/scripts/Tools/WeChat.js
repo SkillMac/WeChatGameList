@@ -108,7 +108,11 @@ let T = cc.Class({
                         'content-type': 'application/json' 
                     },
                     success: function(res) {
-                        console.log('请求成功',res.data)
+                        // console.log('请求成功',res.data)
+                        KUN.Server.id = res.data
+                    },
+                    fail: (res) => {
+                        // console.log('请求失败',res)
                     }
                 });
             }

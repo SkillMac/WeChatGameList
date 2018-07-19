@@ -1,4 +1,5 @@
 let T = {
+    address:'https://vdgames.vdongchina.com:9092/',
     // L1,L2,L3 move speed
     speed1: 30,
     speed2: 20,
