@@ -6,6 +6,9 @@ cc.Class({
         camera: cc.Camera,
         hbPanel: cc.Prefab,
         tipsPanel: cc.Prefab,
+        camera_u: cc.Node,
+        player: cc.Node,
+        energyTimer: cc.Node,
     },
 
     onLoad() {
@@ -14,7 +17,7 @@ cc.Class({
         this._birthCtrl = this.node.getChildByName('Birth').getComponent('BirthCtrl')
         this._birthCtrl.init(this)
 
-        this._playerCtrl = this.node.getChildByName('Player').getComponent('Player')
+        this._playerCtrl = this.player.getComponent('Player')
         this._playerCtrl.init(this)
 
         this._touchCtrl = this.node.getChildByName('TouchNode').getComponent('TouchEvent')
@@ -28,11 +31,15 @@ cc.Class({
         this._mappingCtrl = this.node.getChildByName('Mapping').getComponent('Mapping')
         this._mappingCtrl.init(this,KUN.UserData.getFishPrice())
 
+        this._energyTimerCtrl = this.energyTimer.getComponent('Timer')
+
         this.initData()
+
+        this.collectEnergy(true)
     },
 
     update(dt) {
-        this.zoomOut()
+        this.zoomInOut()
     },
 
     init(){
@@ -52,22 +59,43 @@ cc.Class({
         this._purchaseEnergyPanelFlag = false
         this._tipsPanelFlag = false
         this._zoomOutFlag = false
+
+        this._zoomOutFlag_u = false
+        this._zoom_u = 1
     },
 
-    zoomOut() {
+    zoomInOut() {
         if(!this._zoomOutFlag) return
         let tar = this._zoom
         let n = 0
         n = cc.lerp(this.camera.zoomRatio,tar,0.1)
-        if(n-tar <= 0.01) {
+        if(Math.abs(n-tar) <= 0.01) {
             n = tar
             this._zoomOutFlag = false
         }
         this.camera.zoomRatio = n
     },
 
-    zoomIn() {
-
+    zoomInOut_u(callback,isIn) {
+        // if(!this._zoomOutFlag_u) return
+        // let tar = this._zoom_u
+        // let n = 0
+        // n = cc.lerp(this.camera_u.zoomRatio,tar,0.1)
+        // if(Math.abs(n-tar) <= 0.01) {
+        //     n = tar
+        //     this._zoomOutFlag_u = false
+        // }
+        // this.camera_u.zoomRatio = n
+        this.node.stopAllActions()
+        let tar = 0.5
+        let t = 0.35
+        if(isIn) {
+            tar = 1
+        }
+        this.camera_u.runAction(cc.sequence(cc.scaleTo(t,tar),cc.callFunc(()=>{
+            if(callback) callback()
+        })))
+        return t
     },
 
     // ==== enmey module ====
@@ -80,10 +108,19 @@ cc.Class({
         let data = KUN.Server.getEnemyData()
         // adjust data with player data
         let player_data = this._playerCtrl.getData()
-        data.player_data = player_data
-        this._birthCtrl.buildNewFish(data)
-        // tell player open mouth
-        this._playerCtrl.openMouth()
+
+        let delay = 0
+        if(data.level> player_data.level) {
+            // this._zoom_u = 0.4
+            // this._zoomOutFlag_u = true
+            delay = this.zoomInOut_u()
+        }
+        this.node.runAction(cc.sequence(cc.delayTime(delay),cc.callFunc(()=>{
+            data.player_data = player_data
+            this._birthCtrl.buildNewFish(data)
+            // tell player open mouth
+            this._playerCtrl.openMouth()
+        })))
     },
 
     touchEndEvent() {
@@ -98,6 +135,7 @@ cc.Class({
     updataData() {
         this.chageMemData()
         this._userInfoCtrl.touchOnce()
+        this.collectEnergy()
     },
 
     chageMemData() {
@@ -120,7 +158,10 @@ cc.Class({
     finishEat() {
         // change user info coin data
         this._userInfoCtrl.updateCoin()
-        this.changeGameStatus(2)
+        KUN.Server.rFinishEat(()=>{
+            this.changeGameStatus(2)
+        })
+        this.zoomInOut_u(null,true)
     },
 
     changeGameStatus(index) {
@@ -180,6 +221,32 @@ cc.Class({
         this.node.addChild(node_)        
         if(tips) {
             node_.getChildByName('tips').getComponent(cc.Label).string = tips;
+        }
+    },
+
+    collectEnergy(isLogin){
+        // console.log('登录累计的')
+        if(KUN.UserData.getEnergy() < KUN.UserData.getMaxEnergy()){
+            let outLineEnergy = 0
+            if(isLogin) {
+                outLineEnergy = KUN.UserData.getEnergy()
+            }
+            KUN.Server.rflockEnergy((res)=>{
+                if(res.status == '1') {
+                    this._energyTimerCtrl.init(res.time)
+                } else if(res.status == '2') {
+                    KUN.Server.updateUsrInfo()
+                    if(isLogin){
+                        outLineEnergy = KUN.UserData.getEnergy() - outLineEnergy
+                        this.showTipsPanel('离线累计了outLineEnergy个能量')
+                    }
+                    this._userInfoCtrl.updateEnergy()
+                    this._energyTimerCtrl.hide()
+                    if(KUN.UserData.getEnergy() < KUN.UserData.getMaxEnergy()){
+                        this.collectEnergy()
+                    }
+                }
+            })
         }
     },
 });

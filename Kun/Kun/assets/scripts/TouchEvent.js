@@ -16,7 +16,9 @@ cc.Class({
         // reflush new fish
         // tell main ctrl birth new fish
         if(this._mainCtrl.checkCanTouch()) {
-            this._mainCtrl.touchEndEvent()
+            KUN.Server.rEnemyData(()=>{
+                this._mainCtrl.touchEndEvent()
+            })
         }
     }
 });

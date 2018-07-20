@@ -197,28 +197,25 @@ class Logic extends Model
 		$maxEnergy = (int)($this->userDataM->getValByKey($id,'maxEnergy'));
 		if($energy >= $maxEnergy)
 		{
-			return '-1';
+			return json_encode($this->getUserInfo($id,true));
 		}
 
 		$res = $this->userDataM->getValByKey($id,'start_flock_energy_time');
 
 		if($res)
 		{
+			$intervalTime = 36;
 			$res = (int)$res;
-			$mul = (int)(time()+300 - $res) / 3600;
+			$mul = (int)(time() - $res) / $intervalTime;
 			if($mul > 1)
 			{
-				$val = $energy + ($mul * $this->addEnergy);
-				$val = $val > $maxEnergy ? $maxEnergy - $energy : $val;
+				$val = $mul * $this->addEnergy;
+				$val = ($val + $energy) > $maxEnergy ? $maxEnergy - $energy : $val;
 				$this->userDataM->incrValByKey($id,'energy',$val);
-				if($val > $maxEnergy) {
-					
-					return json_encode($this->getUserInfo($id,true));
-				}
-				
-				return $this->flockEnergy($id);
+				$this->userDataM->setValByKey($id,'start_flock_energy_time',(string)time());
+				return json_encode($this->getUserInfo($id,true));
 			}
-			return '-1';
+			return json_encode($intervalTime - ((int)(time() - $res)));
 		}
 
 		$start_time = time();

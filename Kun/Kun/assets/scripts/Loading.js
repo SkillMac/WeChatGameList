@@ -28,6 +28,9 @@ cc.Class({
                 this._isCanClickFlag = true
             })
         })
+        if(cc.sys.platform == 0 || cc.sys.platform == 101) {
+            this._isCanClickFlag = true
+        }
     },
 
     startUp() {
