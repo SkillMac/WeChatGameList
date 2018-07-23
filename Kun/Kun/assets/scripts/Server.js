@@ -88,7 +88,7 @@ let T = {
             id: T.id,
         },(res)=>{
             console.log('吃鱼结束',res)
-            this.initUserData(res)
+            // this.initUserData(res)
             if(callback) {
                 callback()
             }
@@ -99,7 +99,7 @@ let T = {
         T.rGet('flee',{
             id: T.id,
         },(res)=>{
-            this.initUserData(res)
+            // this.initUserData(res)
             if(callback) {
                 callback()
             }
@@ -119,14 +119,28 @@ let T = {
         })
     },
 
+    rUpgrade(callback){
+        T.rGet('upgrade',{
+            id: T.id,
+        },(res)=>{
+            if(callback) {
+                callback(res)
+            }
+        })
+    },
+
     dealFlockEnergyData(data) {
-        if(typeof(data) == 'number') {
+        if(data == '-1') {
+            // 能量满格
+            return data
+        }
+        else if(typeof(data) == 'number') {
             // 开始倒计时
             return {status:'1',time:data}
         } else if(typeof(data) == 'object'){
             // 收集能量
-            T.initUserData(data)
-            return {status:'2'}
+            T.defaultUserData.energy += data.add_energy
+            return {status:'2',add_energy:data.add_energy}
         }
     },
 
@@ -176,18 +190,19 @@ let T = {
         // to do
     },
 
-    purchaseNewFish(price) {
-        // to do
-        if(T.defaultUserData.coin >= price) {
-            T.defaultUserData.coin -=price
-            T.defaultUserData.level ++
-            T.defaultUserData.fishIndex ++
-            T.defaultUserData.zoom -= T.defaultUserData.zoom_dt
-            T.updateUsrInfo()
-            return true
-        } else {
-            return false
-        }
+    purchaseNewFish(price,callback) {
+        KUN.Server.rUpgrade((res)=>{
+            if(res == '1' && T.defaultUserData.coin >= price) {
+                T.defaultUserData.coin -=price
+                T.defaultUserData.level ++
+                T.defaultUserData.fishIndex ++
+                T.defaultUserData.zoom -= T.defaultUserData.zoom_dt
+                T.updateUsrInfo()   
+            } 
+            if(callback){
+                callback(res)
+            }
+        })
     },
 
     // require

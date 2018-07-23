@@ -50,6 +50,17 @@ class AppController extends Controller
 		}
 	}
 
+	public function http_setVal()
+	{
+		$id = $this->http_input->get('id');
+		$name = $this->http_input->get('key');
+		$val = $this->http_input->get('val');
+
+		$model = $this->loader->model('UserData', $this);
+		$model->setValByKey($id,$name,$val);
+		$this->http_output->end('1');
+	}
+
 	public function http_testModel()
 	{
 		// $type = $this->http_input->get('type');
@@ -137,5 +148,12 @@ class AppController extends Controller
 		$id = $this->http_input->get('id');
 		$time = $this->logicM->flockEnergy($id);
 		$this->http_output->end($time);
+	}
+
+	public function http_upgrade()
+	{
+		$id = $this->http_input->get('id');
+		$res = $this->logicM->upgrade($id);
+		$this->http_output->end($res);
 	}
 }

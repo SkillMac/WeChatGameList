@@ -5,6 +5,8 @@ cc.Class({
     properties: {
         pageView: cc.PageView,
         coin: cc.Label,
+        content: cc.Node,
+        enemyPreb: cc.Prefab,
     },
 
     init(ctrl, priceList_) {
@@ -17,6 +19,7 @@ cc.Class({
 
     turnningEvent(e) {
         let level = this.pageView.getCurrentPageIndex() + 1
+        this.buildNewFishCard(level)
         let price = this._priceList[level-1]
         let flag = KUN.UserData.getLevel() == (level - 1)
         if(flag && price && price > 0) {
@@ -44,5 +47,13 @@ cc.Class({
     showOrHied() {
         this.coin.node.parent.active = false
         return this.getComponent('Common').show2()
+    },
+
+    buildNewFishCard(level) {
+        let node_ = cc.instantiate(this.enemyPreb)
+        // console.log(node_.getComponent(cc.Sprite),'level',level+2)
+        KUN.ResCache.setSpriteFrame(node_.getComponent(cc.Sprite),'fish/yu' + (level + 2))
+        node_.setScale(0.7)
+        this.content.addChild(node_)
     }
 });

@@ -9,21 +9,27 @@ cc.Class({
 
     start() {
         this.ti = -1
+        this._callback = null
         this._flag = true
         this.hide()
         this.startTimer()
     },
 
-    init (time_) {
+    init (time_, callback_) {
         this.ti = time_
+        this._callback = callback_
         this.show()
     },
 
     showLeftTime(dt)
     {   
-        if(this.ti < 0){
+        if(this.ti <= 0){
             if(this._flag){
                 this.hide()
+                if(this._callback) {
+                    this._callback()
+                    this._callback = null
+                }
             }
             return
         }

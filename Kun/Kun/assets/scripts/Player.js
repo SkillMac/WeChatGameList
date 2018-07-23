@@ -35,12 +35,19 @@ cc.Class({
         return KUN.UserData.getFishIndex()
     },
 
-    openMouth() {
+    openMouth(data) {
         this._ctrl.startEat()
         KUN.ResCache.setSpriteFrame(this.sprite, cc.js.formatStr('fish/yu%d_o',this.getFishIndex()))
         this.node.runAction(cc.sequence(cc.delayTime(this._showTime),cc.callFunc(()=>{
             KUN.ResCache.setSpriteFrame(this.sprite, cc.js.formatStr('fish/yu%d',this.getFishIndex()))
-            this._ctrl.finishEatBefore()
+            if(data.flag != 'eaten') {
+                this._ctrl.finishEatBefore()
+            } else {
+                this.node.x = 1280
+                this.node.runAction(cc.sequence(cc.moveTo(this._showTime,cc.p(0,0)),cc.callFunc(()=>{
+                    this._ctrl.finishEatBefore()
+                })))
+            }
         })))
     },
 

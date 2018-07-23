@@ -15,13 +15,13 @@ class Logic extends Model
 		[
 			'flag'=>'eaten',
 			'prob'=>5,
-			'range'=> [1,4],
+			'range'=> [1,3],
 			'coastPre'=>0.02,
 		],
 		[
 			'flag'=>'passBy',
 			'prob'=> 70,
-			'range'=>['1',4],
+			'range'=>['1',3],
 			'coastPre'=>0.01,
 		],
 		[
@@ -33,7 +33,7 @@ class Logic extends Model
 		[
 			'flag'=>'meet',
 			'prob'=> 5,
-			'range'=>['1',4],
+			'range'=>['1',3],
 			'coastPre'=>0.05,
 		],
 	];
@@ -50,7 +50,7 @@ class Logic extends Model
     	if($this->level > 1)
     	{
     		foreach ($this->probCfg as $key => $value) {
-	    		$arr[$key] = $value[prob];
+	    		$arr[$key] = $value['prob'];
 	    	}
     	}
 
@@ -84,9 +84,13 @@ class Logic extends Model
     	return false;
     }
 
-    private function rand_level($cfg)
+    private function rand_level($cfg,$flag)
     {
     	$min = is_string($cfg['range'][0]) ? (int)($cfg['range'][0]) : $this->level + $cfg['range'][0];
+    	if($flag == 'eat' && $min < 1)
+    	{
+    		$min = 1;
+    	}
     	$max = is_string($cfg['range'][1]) ? (int)($cfg['range'][1]) : $this->level + $cfg['range'][1];
     	return mt_rand($min,$max);
     }
@@ -97,7 +101,7 @@ class Logic extends Model
 		$curConfig = $this->get_fish_show_way();
 		$tmp_array['flag'] = $curConfig['flag'];
 		// build level
-		$level = $this->rand_level($curConfig);
+		$level = $this->rand_level($curConfig,$curConfig['flag']);
 		$tmp_array['level'] = $level;
 		$tmp_array['fish_index'] = $level;
 		$tmp_array['coast_coin'] = $this->getFishListPrice()[$level] * $curConfig['coastPre'];
@@ -108,7 +112,21 @@ class Logic extends Model
 		$this->userDataM->setValByKey($id,'coast_coin',(string)($tmp_array['coast_coin']));
 		$this->userDataM->setValByKey($id,'coast_energy',(string)-1);
 
+		$energy = (int)($this->userDataM->getValByKey($id,'energy'));
+		$coast_energy = (int)($this->userDataM->getValByKey($id,'coast_energy'));
+		if($energy + $coast_energy < 0)
+		{
+			$coast_energy = -$energy;
+		}
+		$this->userDataM->incrValByKey($id,'energy',$coast_energy);
+
+		$maxEnergy = (int)($this->userDataM->getValByKey($id,'maxEnergy'));
+		if($energy == $maxEnergy - 1) {
+			$this->userDataM->setValByKey($id,'start_flock_energy_time',(string)time());
+		}
+
 		$tmp_array['user'] = $this->getUserInfo($id,true);
+		$tmp_array['user']['energy'] += 1;
 		return $tmp_array;
 	}
 
@@ -157,26 +175,19 @@ class Logic extends Model
 		else {
 			return $result;
 		}
-		
 	}
 
 	public function finishEat($id)
 	{
 		$coast_coin = (int)($this->userDataM->getValByKey($id,'coast_coin'));
 		$coin = (int)($this->userDataM->getValByKey($id,'coin'));
-		$energy = (int)($this->userDataM->getValByKey($id,'energy'));
-		$coast_energy = (int)($this->userDataM->getValByKey($id,'coast_energy'));
+		
 		if($coin + $coast_coin < 0)
 		{
 			$coast_coin = -$coin;
 		}
-		if($energy + $coast_energy < 0)
-		{
-			$coast_energy = -$energy;
-		}
 		$this->userDataM->incrValByKey($id,'coin',$coast_coin);
-		$this->userDataM->incrValByKey($id,'energy',$coast_energy);
-		return json_encode($this->getUserInfo($id,true));
+		return '1';
 	}
 
 	public function flee($id)
@@ -187,39 +198,64 @@ class Logic extends Model
 		{
 			$coast_energy = -$energy;
 		}
+		if($coast_energy == 0)
+		{
+			return '-1';
+		}
 		$this->userDataM->incrValByKey($id,'energy',-1);
-		return json_encode($this->getUserInfo($id,true));
+		return '1';
 	}
 
 	public function flockEnergy($id)
 	{
 		$energy = (int)($this->userDataM->getValByKey($id,'energy'));
 		$maxEnergy = (int)($this->userDataM->getValByKey($id,'maxEnergy'));
-		if($energy >= $maxEnergy)
-		{
-			return json_encode($this->getUserInfo($id,true));
-		}
+
+		$start_time = time();
 
 		$res = $this->userDataM->getValByKey($id,'start_flock_energy_time');
 
-		if($res)
+		if(!$res) {
+			$this->userDataM->setValByKey($id,'start_flock_energy_time',(string)$start_time);
+			$res = $start_time;
+		}
+		
+		if($energy < $maxEnergy)
 		{
 			$intervalTime = 36;
 			$res = (int)$res;
-			$mul = (int)(time() - $res) / $intervalTime;
-			if($mul > 1)
+			$mul = (int)(($start_time - $res) / $intervalTime);
+
+			if($mul >= 1)
 			{
 				$val = $mul * $this->addEnergy;
 				$val = ($val + $energy) > $maxEnergy ? $maxEnergy - $energy : $val;
 				$this->userDataM->incrValByKey($id,'energy',$val);
-				$this->userDataM->setValByKey($id,'start_flock_energy_time',(string)time());
-				return json_encode($this->getUserInfo($id,true));
+				$this->userDataM->setValByKey($id,'start_flock_energy_time',(string)$start_time);
+				$result = ['add_energy'=>$val];
+				return json_encode($result);
 			}
-			return json_encode($intervalTime - ((int)(time() - $res)));
-		}
+			return json_encode($intervalTime - ((int)($start_time - $res)));
 
-		$start_time = time();
-		$this->userDataM->setValByKey($id,'start_flock_energy_time',(string)$start_time);
-		return json_encode($start_time);
+		} 
+		else {
+			return '-1';
+		}
+	}
+
+	public function upgrade($id)
+	{
+		$curLevel = (int)($this->userDataM->getValByKey($id,'level'));
+		$coin = (int)($this->userDataM->getValByKey($id,'coin'));
+		$price = $this->getFishListPrice()[$curLevel];
+
+		if($coin - $price >= 0)
+		{
+			$this->userDataM->incrValByKey($id,'coin',$price);
+			$this->userDataM->incrValByKey($id,'level',1);
+			$this->userDataM->incrValByKey($id,'fishIndex',1);
+			return '1';
+		}
+		return '-1';
 	}
 }

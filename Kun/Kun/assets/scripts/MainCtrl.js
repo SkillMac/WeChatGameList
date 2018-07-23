@@ -36,6 +36,8 @@ cc.Class({
         this.initData()
 
         this.collectEnergy(true)
+
+        console.log('xxxxxxxxx',this._playerCtrl.node)
     },
 
     update(dt) {
@@ -55,7 +57,6 @@ cc.Class({
     },
 
     initData() {
-        this._goldPos = this.node.getChildByName('GoldPos').getPosition()
         this._purchaseEnergyPanelFlag = false
         this._tipsPanelFlag = false
         this._zoomOutFlag = false
@@ -77,6 +78,7 @@ cc.Class({
     },
 
     zoomInOut_u(callback,isIn) {
+        // exp1
         // if(!this._zoomOutFlag_u) return
         // let tar = this._zoom_u
         // let n = 0
@@ -86,16 +88,18 @@ cc.Class({
         //     this._zoomOutFlag_u = false
         // }
         // this.camera_u.zoomRatio = n
-        this.node.stopAllActions()
-        let tar = 0.5
-        let t = 0.35
-        if(isIn) {
-            tar = 1
-        }
-        this.camera_u.runAction(cc.sequence(cc.scaleTo(t,tar),cc.callFunc(()=>{
-            if(callback) callback()
-        })))
-        return t
+
+        // exp 2
+        // this.node.stopAllActions()
+        // let tar = 0.5
+        // let t = 0.35
+        // if(isIn) {
+        //     tar = 1
+        // }
+        // this.camera_u.runAction(cc.sequence(cc.scaleTo(t,tar),cc.callFunc(()=>{
+        //     if(callback) callback()
+        // })))
+        return 0//t
     },
 
     // ==== enmey module ====
@@ -119,7 +123,7 @@ cc.Class({
             data.player_data = player_data
             this._birthCtrl.buildNewFish(data)
             // tell player open mouth
-            this._playerCtrl.openMouth()
+            this._playerCtrl.openMouth(data)
         })))
     },
 
@@ -152,7 +156,8 @@ cc.Class({
 
     finishEatBefore() {
         this.setBgSpeedMul(1)
-        this._playerCtrl.collectGold(this._goldPos)
+        let goldPos = this.node.getChildByName('GoldPos').getPosition()
+        this._playerCtrl.collectGold(goldPos)
     },
 
     finishEat() {
@@ -188,19 +193,21 @@ cc.Class({
     },
 
     purchaseNewFish(price, callback) {
-        if(KUN.Server.purchaseNewFish(price)) {
-            // update new fish skin
-            this._playerCtrl.changeFishSkin()
-            // update user visible data
-            this._userInfoCtrl.updateCoin()
-            this._userInfoCtrl.updateLevel()
-            // call back map func
-            callback({status:'ok'})
-            this.showTipsPanel('购买成功，赶快去玩耍吧！',true)
-        } else {
-            callback({status:'-1'})
-            this.showTipsPanel()
-        }
+        KUN.Server.purchaseNewFish(price,res=>{
+            if(res == '1'){
+                // update new fish skin
+                this._playerCtrl.changeFishSkin()
+                // update user visible data
+                this._userInfoCtrl.updateCoin()
+                this._userInfoCtrl.updateLevel()
+                // call back map func
+                callback({status:'ok'})
+                this.showTipsPanel('购买成功，赶快去玩耍吧！',true)
+            } else if(res == '-1'){
+                callback({status:'-1'})
+                this.showTipsPanel()
+            }
+        })
     },
 
     showTipsPanel(tips,isAutoHidePanel) {
@@ -227,24 +234,24 @@ cc.Class({
     collectEnergy(isLogin){
         // console.log('登录累计的')
         if(KUN.UserData.getEnergy() < KUN.UserData.getMaxEnergy()){
-            let outLineEnergy = 0
-            if(isLogin) {
-                outLineEnergy = KUN.UserData.getEnergy()
-            }
             KUN.Server.rflockEnergy((res)=>{
                 if(res.status == '1') {
-                    this._energyTimerCtrl.init(res.time)
+                    this._energyTimerCtrl.init(res.time,()=>{
+                        this.collectEnergy()
+                    })
                 } else if(res.status == '2') {
                     KUN.Server.updateUsrInfo()
                     if(isLogin){
-                        outLineEnergy = KUN.UserData.getEnergy() - outLineEnergy
-                        this.showTipsPanel('离线累计了outLineEnergy个能量')
+                        this.showTipsPanel('离线累计' + res.add_energy + '个能量')
                     }
                     this._userInfoCtrl.updateEnergy()
                     this._energyTimerCtrl.hide()
                     if(KUN.UserData.getEnergy() < KUN.UserData.getMaxEnergy()){
                         this.collectEnergy()
                     }
+                } else if(res == '-1') {
+                    // to do 
+                    this._energyTimerCtrl.hide()
                 }
             })
         }

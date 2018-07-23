@@ -11,6 +11,7 @@ cc.Class({
         birthPos: [cc.Node],
         fishPrefab: cc.Prefab,
         enemyPos: cc.Node,
+        enemyPosFront: cc.Node,
     },
 
     init(ctrl) {
@@ -85,7 +86,11 @@ cc.Class({
 
     buildNewFish(data) {
         let node_ = cc.instantiate(this.fishPrefab)
-        this.enemyPos.addChild(node_)
+        if(data.flag == 'eaten') {
+            this.enemyPosFront.addChild(node_)
+        } else {
+            this.enemyPos.addChild(node_)
+        }
         let enmeyCtrl = node_.getComponent('Enemy').init(data,this._ctrl)
     }
 });
