@@ -1,0 +1,7 @@
+{
+  "ver": "1.0.0",
+  "uuid": "c9e391a8-0fe2-4d40-8ffd-6ef43e2a3ba5",
+  "atlasJson": "{\"SubTexture\":[{\"width\":1042,\"y\":1,\"height\":286,\"name\":\"dh_0006_st\",\"x\":1},{\"width\":259,\"y\":262,\"height\":106,\"name\":\"dh_0005_z1\",\"x\":1045},{\"width\":204,\"y\":160,\"height\":180,\"name\":\"dh_0004_z2\",\"x\":1615},{\"width\":190,\"y\":160,\"height\":161,\"name\":\"dh_0003_w\",\"x\":1821},{\"width\":159,\"y\":1,\"height\":76,\"name\":\"dh_0002_xq\",\"x\":1864},{\"width\":247,\"y\":1,\"height\":157,\"name\":\"dh_0001_xz\",\"x\":1615},{\"width\":568,\"y\":1,\"height\":259,\"name\":\"dh_0000_cb\",\"x\":1045}],\"width\":2048,\"height\":512,\"name\":\"kun5\",\"imagePath\":\"kun5_tex.png\"}",
+  "texture": "f3c4626f-7d67-4b68-92f5-e792d963b9c2",
+  "subMetas": {}
+}

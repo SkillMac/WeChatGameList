@@ -3,24 +3,27 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        pageView: cc.PageView,
         coin: cc.Label,
-        content: cc.Node,
-        enemyPreb: cc.Prefab,
     },
 
     init(ctrl, priceList_) {
         // console.log('init-mapping')
         this._ctrl = ctrl
         this._priceList = priceList_
+        this._pageView = this.getComponent('PageView')
+        this._pageView.init()
         this._curFishPrice = 0
-        this.node.on('page-turning',this.turnningEvent,this)
+        this.node.on('page-view-start',this.turnningEventStart,this)
+        this.node.on('page-view-end',this.turnningEventEnd,this)
     },
 
-    turnningEvent(e) {
-        let level = this.pageView.getCurrentPageIndex() + 1
-        this.buildNewFishCard(level)
-        let price = this._priceList[level-1]
+    turnningEventStart(e) {
+
+    },
+    // event.detail  // recive emit data //
+    turnningEventEnd(e) {
+        let level = this._pageView.getCurIndex() + 1
+        let price = this._priceList[level]
         let flag = KUN.UserData.getLevel() == (level - 1)
         if(flag && price && price > 0) {
             this._curFishPrice = price
@@ -29,6 +32,8 @@ cc.Class({
         } else {
             this.coin.node.parent.active = false
         }
+        // cheng item color
+        this.tryChangeItemColor()
     },
 
     purchaseEvent(e,p) {
@@ -49,11 +54,23 @@ cc.Class({
         return this.getComponent('Common').show2()
     },
 
-    buildNewFishCard(level) {
-        let node_ = cc.instantiate(this.enemyPreb)
-        // console.log(node_.getComponent(cc.Sprite),'level',level+2)
-        KUN.ResCache.setSpriteFrame(node_.getComponent(cc.Sprite),'fish/yu' + (level + 2))
-        node_.setScale(0.7)
-        this.content.addChild(node_)
-    }
+    tryChangeItemColor() {
+        let minIndex = this._pageView.getMinIndex()
+        let maxIndex = this._pageView.getMaxIndex()
+        let curIndex = this._pageView.getCurIndex()
+
+        this._pageView.getContentChild(this._pageView.getNextIndex()).color = new cc.Color(255,255,255,255)
+        this._pageView.getContentChild(this._pageView.getLastIndex()).color = new cc.Color(255,255,255,255)
+
+        if(curIndex == minIndex && (this._pageView.getNextIndex() + 1) - KUN.UserData.getLevel() > 1) {
+            this._pageView.getContentChild(this._pageView.getNextIndex()).color = new cc.Color(0,0,0,255)
+        } else if(curIndex == maxIndex && (this._pageView.getLastIndex() + 1) - KUN.UserData.getLevel() > 1) {
+            this._pageView.getContentChild(this._pageView.getLastIndex()).color = new cc.Color(0,0,0,255)
+        } else {
+            if((this._pageView.getNextIndex() + 1) - KUN.UserData.getLevel() > 1)
+                this._pageView.getContentChild(this._pageView.getNextIndex()).color = new cc.Color(0,0,0,255)
+            if((this._pageView.getLastIndex() + 1) - KUN.UserData.getLevel() > 1)
+                this._pageView.getContentChild(this._pageView.getLastIndex()).color = new cc.Color(0,0,0,255)
+        }
+    },
 });
