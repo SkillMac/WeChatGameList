@@ -1,7 +1,0 @@
-{
-  "ver": "1.0.0",
-  "uuid": "add36bbc-62cc-4a0a-badd-5af6b57faba0",
-  "atlasJson": "{\"width\":2048,\"imagePath\":\"kun_tex.png\",\"height\":512,\"name\":\"kun\",\"SubTexture\":[{\"width\":611,\"y\":307,\"height\":105,\"name\":\"hongkun_0000_xuzi1\",\"x\":847},{\"width\":1026,\"y\":1,\"height\":304,\"name\":\"hongkun_0004_shenti\",\"x\":847},{\"width\":844,\"y\":1,\"height\":371,\"name\":\"hongkun_0001_chibang\",\"x\":1},{\"width\":368,\"y\":307,\"height\":149,\"name\":\"hongkun_0002_weiba\",\"x\":1460},{\"width\":521,\"y\":374,\"height\":89,\"name\":\"hongkun_0005_xuzi2\",\"x\":1},{\"width\":299,\"y\":374,\"height\":127,\"name\":\"hongkun_0003_xiaba\",\"x\":524}]}",
-  "texture": "b1befe39-f229-47bd-95ea-65ffc9693206",
-  "subMetas": {}
-}

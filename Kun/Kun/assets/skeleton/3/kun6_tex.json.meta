@@ -1,7 +1,0 @@
-{
-  "ver": "1.0.0",
-  "uuid": "a8c6ef6a-e194-4772-bd16-239ebe3cb0b9",
-  "atlasJson": "{\"SubTexture\":[{\"width\":1215,\"y\":1,\"height\":461,\"name\":\"2\",\"x\":1},{\"width\":377,\"y\":1,\"height\":245,\"name\":\"1\",\"x\":1218}],\"width\":2048,\"height\":512,\"name\":\"kun6\",\"imagePath\":\"kun6_tex.png\"}",
-  "texture": "3d882241-9aca-4d2a-b701-e5f2d7ace499",
-  "subMetas": {}
-}

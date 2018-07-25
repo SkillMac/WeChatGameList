@@ -222,7 +222,7 @@ class Logic extends Model
 		
 		if($energy < $maxEnergy)
 		{
-			$intervalTime = 36;
+			$intervalTime = 30;
 			$res = (int)$res;
 			$mul = (int)(($start_time - $res) / $intervalTime);
 
@@ -247,11 +247,11 @@ class Logic extends Model
 	{
 		$curLevel = (int)($this->userDataM->getValByKey($id,'level'));
 		$coin = (int)($this->userDataM->getValByKey($id,'coin'));
-		$price = $this->getFishListPrice()[$curLevel];
+		$price = $this->getFishListPrice()[$curLevel + 1];
 
 		if($coin - $price >= 0)
 		{
-			$this->userDataM->incrValByKey($id,'coin',$price);
+			$this->userDataM->incrValByKey($id,'coin',-$price);
 			$this->userDataM->incrValByKey($id,'level',1);
 			$this->userDataM->incrValByKey($id,'fishIndex',1);
 			return '1';

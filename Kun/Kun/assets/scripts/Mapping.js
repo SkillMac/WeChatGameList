@@ -59,9 +59,12 @@ cc.Class({
         let maxIndex = this._pageView.getMaxIndex()
         let curIndex = this._pageView.getCurIndex()
 
-        this._pageView.getContentChild(this._pageView.getNextIndex()).color = new cc.Color(255,255,255,255)
-        this._pageView.getContentChild(this._pageView.getLastIndex()).color = new cc.Color(255,255,255,255)
-
+        if(curIndex != maxIndex) {
+            this._pageView.getContentChild(this._pageView.getNextIndex()).color = new cc.Color(255,255,255,255)
+        }
+        if(curIndex != minIndex) {
+            this._pageView.getContentChild(this._pageView.getLastIndex()).color = new cc.Color(255,255,255,255)
+        }
         if(curIndex == minIndex && (this._pageView.getNextIndex() + 1) - KUN.UserData.getLevel() > 1) {
             this._pageView.getContentChild(this._pageView.getNextIndex()).color = new cc.Color(0,0,0,255)
         } else if(curIndex == maxIndex && (this._pageView.getLastIndex() + 1) - KUN.UserData.getLevel() > 1) {

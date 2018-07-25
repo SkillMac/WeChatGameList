@@ -1,7 +1,0 @@
-{
-  "ver": "1.0.0",
-  "uuid": "b76b7662-6029-4f4a-b5d1-ea408aa678d8",
-  "atlasJson": "{\"width\":1024,\"imagePath\":\"kun2_tex.png\",\"height\":1024,\"name\":\"kun2\",\"SubTexture\":[{\"width\":878,\"y\":1,\"height\":286,\"name\":\"kun_0005_st\",\"x\":1},{\"width\":544,\"y\":601,\"height\":62,\"name\":\"kun_0004_qi\",\"x\":446},{\"width\":443,\"y\":459,\"height\":167,\"name\":\"kun_0003_cb\",\"x\":1},{\"width\":695,\"y\":289,\"height\":168,\"name\":\"kun_0002_cj1\",\"x\":1},{\"width\":355,\"y\":459,\"height\":140,\"name\":\"kun_0001_wb\",\"x\":446},{\"width\":128,\"y\":459,\"height\":95,\"name\":\"kun_0006_xb\",\"x\":803},{\"width\":173,\"y\":289,\"height\":69,\"name\":\"kun_0000_xz\",\"x\":698}]}",
-  "texture": "7f937ed6-4e49-4efc-a186-748457504126",
-  "subMetas": {}
-}

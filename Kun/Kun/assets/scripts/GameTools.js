@@ -64,6 +64,28 @@ let T = {
         let m = Math.floor((result / 60 % 60)) < 10 ? '0' + Math.floor((result / 60 % 60)) : Math.floor((result / 60 % 60));
         let s = Math.floor((result % 60)) < 10 ? '0' + Math.floor((result % 60)) : Math.floor((result % 60));
         return '' + m + ":" + s;
+    },
+
+    loadDragonBones(node_,path,armatureName='Armature',animationName,timeScale,playTimes,completeCallback){
+        cc.loader.loadResDir('dragonBones/' + path, (err,assets)=>{
+            if(err || assets) return
+            let armatureDisplay = node_.getComponent(dragonBones.ArmatureDisplay)
+            if(!armatureDisplay) {
+                armatureDisplay = node_.addComponent(dragonBones.ArmatureDisplay)
+            }
+            assets.forEach(asset => {
+                if(asset instanceof dragonBones.DragonBonesAsset){
+                    armatureDisplay.dragonAsset = asset
+                }
+                if(asset instanceof dragonBones.DragonBonesAtlasAsset){
+                    armatureDisplay.dragonAtlasAsset  = asset
+                }
+            })
+            armatureDisplay.armatureName = armatureName
+            armatureDisplay.timeScale = timeScale
+            armatureDisplay.playAnimation(animationName,playTimes)
+            armatureDisplay.addEventListener(dragonBones.EventObject.COMPLETE,completeCallback)
+        })
     }
 }
 

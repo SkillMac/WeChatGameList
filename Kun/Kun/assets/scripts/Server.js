@@ -63,7 +63,9 @@ let T = {
         T.rGet('buildNewFish',{
             id: T.id,
         },(res)=>{
-            this.updateEnemyData(res)
+            if(res != '-1') {
+                this.updateEnemyData(res)
+            }
             if(callback) {
                 callback()
             }
@@ -193,7 +195,7 @@ let T = {
     purchaseNewFish(price,callback) {
         KUN.Server.rUpgrade((res)=>{
             if(res == '1' && T.defaultUserData.coin >= price) {
-                T.defaultUserData.coin -=price
+                T.defaultUserData.coin -= price
                 T.defaultUserData.level ++
                 T.defaultUserData.fishIndex ++
                 T.defaultUserData.zoom -= T.defaultUserData.zoom_dt
@@ -212,6 +214,10 @@ let T = {
                 success(res)
             }
         })
+    },
+
+    checkIsOnWindows(){
+        return cc.sys.platform == 0 || cc.sys.platform == 101
     }
 }
 

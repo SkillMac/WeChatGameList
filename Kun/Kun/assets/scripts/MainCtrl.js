@@ -36,8 +36,6 @@ cc.Class({
         this.initData()
 
         this.collectEnergy(true)
-
-        console.log('xxxxxxxxx',this._playerCtrl.node)
     },
 
     update(dt) {
@@ -53,7 +51,7 @@ cc.Class({
         KUN.UserData.setFishPrice(KUN.Server.getFishPrice())
 
         // 初始化镜头
-        this.camera.zoomRatio = this._zoom
+        this.camera.zoomRatio = 2//this._zoom
     },
 
     initData() {
