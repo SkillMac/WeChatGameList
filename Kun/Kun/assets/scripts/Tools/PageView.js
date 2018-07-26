@@ -2,7 +2,9 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        itemList: [cc.SpriteFrame], //you want to show elements
+        picRoot: 'fish/yu',
+        picShadowPath: '',
+        picCounts: 20,
         mask: cc.Node, // you must define yourself mask node
     },
 
@@ -10,8 +12,6 @@ cc.Class({
     init() {
         // init must local data
         this.initData()
-        // keep per item size
-        this.keepItemSize()
         // create Content Node and sort itemList by item width
         this.initElemet()
         // move to default page index
@@ -21,13 +21,12 @@ cc.Class({
     },
 
     initData() {
-        this._itemListSize = []
         this._content = null
         this._initItemCounts = 3
         this._itemScale = 0.7
         this._curIndex = 0
         this._minIndex = 0
-        this._maxIndex = this.itemList.length - 1
+        this._maxIndex = this.picCounts - 1
         this._startPosX = 0
         this._endPosX = 0
         this._minSlideDis = 50
@@ -104,12 +103,6 @@ cc.Class({
         }
     },
 
-    keepItemSize() {
-        this.itemList.forEach(element => {
-            this._itemListSize.push(element._originalSize)
-        });
-    },
-
     initElemet() {
         let node_ = new cc.Node()
         this._content = node_
@@ -128,11 +121,14 @@ cc.Class({
         let node_ = new cc.Node()
         node_.setName(index.toString())
         let sprite_ = node_.addComponent(cc.Sprite)
-        sprite_.spriteFrame = this.itemList[index]
+        this.loadPic(index+1,sp=>{
+            sprite_.spriteFrame = sp
+            let lastNode_ = this.getContentChild(index-1)
+            let lastPosX_ = index - 1 >= 0 ? lastNode_.x : 0
+            let posX_ = index - 1 >= 0 ? lastPosX_ + ((this.getNodeWidth(lastNode_) / 2) + (this.getNodeWidth(node_) / 2)) : 0
+            node_.setPosition(posX_,0)
+        })
         node_.setScale(this._itemScale)
-        let lastPosX_ = index - 1 >= 0 ? this._content.getChildByName((index-1).toString()).x : 0
-        let posX_ = index - 1 >= 0 ? lastPosX_ + ((this._itemListSize[index-1].width / 2) + (this._itemListSize[index-1].width / 2)) : 0
-        node_.setPosition(posX_,0)
         return node_
     },
 
@@ -148,14 +144,24 @@ cc.Class({
                 if(this.getContentChild(this.getNextIndex())) return
                 let old_ = this.getContentChild(this.getLastIndex() - 1)
                 old_.setName(this.getNextIndex().toString())
-                old_.getComponent(cc.Sprite).spriteFrame = this.itemList[this.getNextIndex()]
-                old_.x = this.getContentChild(this.getCurIndex()).x + this._itemListSize[this.getCurIndex()].width / 2 + this._itemListSize[this.getNextIndex()].width / 2
+                let nextIndex_ = this.getNextIndex()
+                this.loadPic(nextIndex_ + 1,sp=>{
+                    if(this.getNextIndex() != nextIndex_) return
+                    old_.getComponent(cc.Sprite).spriteFrame = sp    
+                })
+                let curNode_ = this.getContentChild(this.getCurIndex())
+                old_.x = curNode_.x + this.getNodeWidth(curNode_) / 2 + this.getNodeWidth(old_) / 2
             } else if(dir < 0) {
                 if(this.getContentChild(this.getLastIndex())) return
                 let old_ = this.getContentChild(this.getNextIndex() + 1)
                 old_.setName(this.getLastIndex().toString())
-                old_.getComponent(cc.Sprite).spriteFrame = this.itemList[this.getLastIndex()]
-                old_.x = this.getContentChild(this.getCurIndex()).x - (this._itemListSize[this.getCurIndex()].width / 2 + this._itemListSize[this.getLastIndex()].width / 2)
+                let lastIndex_ = this.getLastIndex()
+                this.loadPic(lastIndex_ + 1, sp=>{
+                    if(lastIndex_ != this.getLastIndex()) return
+                    old_.getComponent(cc.Sprite).spriteFrame = sp    
+                })
+                let curNode_ = this.getContentChild(this.getCurIndex())
+                old_.x = curNode_.x - (this.getNodeWidth(curNode_) / 2 + this.getNodeWidth(old_) / 2)
             }
         }
     },
@@ -221,4 +227,20 @@ cc.Class({
     registerMoveEndFunc(func) {
         this._endCallFunc = func
     },
+
+    getNodeWidth(node_) {
+        return 1050//node_.getComponent(cc.Sprite).spriteFrame.getRect().width
+    },
+
+    loadPic(path,callback) {
+        cc.loader.loadRes(this.picRoot+path, cc.SpriteFrame, (err,sp)=>{
+            if(err) {
+                // load fail
+                return
+            }
+            if(callback) {
+                callback(sp)
+            }
+        })
+    }
 });

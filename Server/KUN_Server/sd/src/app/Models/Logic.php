@@ -251,6 +251,9 @@ class Logic extends Model
 
 		if($coin - $price >= 0)
 		{
+			$zoom = (int)$this->userDataM->getValByKey($id,'zoom');
+			$zoom -= ($zoom * 0.1);
+			$this->userDataM->setValByKey($id,'zoom',(string)$zoom);
 			$this->userDataM->incrValByKey($id,'coin',-$price);
 			$this->userDataM->incrValByKey($id,'level',1);
 			$this->userDataM->incrValByKey($id,'fishIndex',1);

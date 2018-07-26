@@ -1,11 +1,12 @@
 let T = {
+    ONWINDOWS : false,
     id:'',
     subAddress:'AppController/',
     defaultEnemyData:{
-        type:'x1',
+        type: 1,
         level: 1,
         coin: 1,
-        flag: 'passBy',
+        flag: 'eat',
     },
 
     defaultUserData: {
@@ -25,8 +26,6 @@ let T = {
     },
 
     defaultFishPriceData: [0,0,20,50,100,200,500,1000,2000,5000,10000,20000,50000,100000,200000,500000,1000000,2000000,5000000,10000000,20000000],
-
-    fishCounts: 20,
 
     init(callback) {
         // on loading init user data
@@ -50,7 +49,6 @@ let T = {
         usr.maxEnergy = Number(data.maxEnergy)
         usr.fishIndex = Number(data.fishIndex)
         usr.zoom = Number(data.zoom)
-        usr.zoom_dt = Number(data.zoom_dt)
 
         // console.log('更新数据',isLogin,data)
         // init fish price
@@ -114,7 +112,7 @@ let T = {
             id: T.id,
         },(res)=>{
             let result = T.dealFlockEnergyData(res)
-            console.log('收集能',res, result)
+            // console.log('收集能',res, result)
             if(callback) {
                 callback(result)
             }
@@ -209,11 +207,41 @@ let T = {
 
     // require
     rGet(method, reqData, success){
-        KUN.GameTools.httpGet(T.subAddress+method,reqData,(res)=>{
-            if(success) {
-                success(res)
+        if(T.ONWINDOWS) {
+            switch (method) {
+                case 'getUserDataById':
+                    let data = T.defaultUserData
+                    data.fishPrice = T.defaultEnemyData
+                    success(data)
+                    break;
+                case 'buildNewFish':
+                    data = null
+                    data = T.defaultEnemyData
+                    data.fish_index = T.defaultEnemyData.type
+                    data.coast_coin = -1
+                    data.user = T.defaultUserData
+                    data.user.coast_energy = -1
+                    success(data)
+                    break;
+                case 'finishEat':
+                    success('1')
+                    break;
+                case 'flockEnergy':
+                    success('-1')
+                    break;
+                case 'upgrade':
+
+                    break;
+                default:
+                    break;
             }
-        })
+        } else {
+            KUN.GameTools.httpGet(T.subAddress+method,reqData,(res)=>{
+                if(success) {
+                    success(res)
+                }
+            })
+        }
     },
 
     checkIsOnWindows(){

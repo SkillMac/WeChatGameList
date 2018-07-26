@@ -86,7 +86,11 @@ let T = {
             armatureDisplay.playAnimation(animationName,playTimes)
             armatureDisplay.addEventListener(dragonBones.EventObject.COMPLETE,completeCallback)
         })
-    }
+    },
+
+    playAudio(file) {
+        cc.audioEngine.play(cc.url.raw('resources/audio/') + file + '.mp3',false, 1)
+    },
 }
 
 export default T;

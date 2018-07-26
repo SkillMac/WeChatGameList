@@ -17,7 +17,6 @@ let T = {
     showSize: cc.winSize,
 
     // ======base fish config======
-    fishCounts: 20,
     // default Growth range
     size_cfg_p:[0.4,0.8],
     // ======player fish config======

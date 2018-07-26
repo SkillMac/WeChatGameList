@@ -3,7 +3,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        camera: cc.Camera,
+        camera: cc.Node,
         hbPanel: cc.Prefab,
         tipsPanel: cc.Prefab,
         camera_u: cc.Node,
@@ -37,42 +37,32 @@ cc.Class({
 
         this.collectEnergy(true)
     },
-
-    update(dt) {
-        this.zoomInOut()
-    },
-
+    
     init(){
         this._zoom = 3
         let data = KUN.Server.getUserInfo()
         this._zoom = data.zoom
-        this._zoom_dt = data.zoom_dt
         KUN.UserData.setUserData(data)
         KUN.UserData.setFishPrice(KUN.Server.getFishPrice())
 
         // 初始化镜头
-        this.camera.zoomRatio = 2//this._zoom
+        this.camera.setScale(this._zoom)
     },
 
     initData() {
         this._purchaseEnergyPanelFlag = false
         this._tipsPanelFlag = false
-        this._zoomOutFlag = false
 
         this._zoomOutFlag_u = false
         this._zoom_u = 1
     },
 
-    zoomInOut() {
+    zoomOut() {
         if(!this._zoomOutFlag) return
-        let tar = this._zoom
         let n = 0
-        n = cc.lerp(this.camera.zoomRatio,tar,0.1)
-        if(Math.abs(n-tar) <= 0.01) {
-            n = tar
-            this._zoomOutFlag = false
-        }
-        this.camera.zoomRatio = n
+        n = cc.lerp(this.camera.scaleX,0.5,0.1)
+        // this.camera.setScale(n)
+        this.camera.runAction(cc.scaleTo(0.5,n))
     },
 
     zoomInOut_u(callback,isIn) {
@@ -152,10 +142,14 @@ cc.Class({
         this.changeGameStatus(1)
     },
 
+    playerToDie(){
+        this._playerCtrl.eatenEvent()
+    },
+
     finishEatBefore() {
         this.setBgSpeedMul(1)
-        let goldPos = this.node.getChildByName('GoldPos').getPosition()
-        this._playerCtrl.collectGold(goldPos)
+        // let goldPos = this.node.getChildByName('GoldPos').getPosition()
+        this._playerCtrl.collectGold()
     },
 
     finishEat() {
@@ -218,8 +212,7 @@ cc.Class({
             if(isAutoHidePanel) {
                 t = this._mappingCtrl.showOrHied()
                 this.node.runAction(cc.sequence(cc.delayTime(t),cc.callFunc(()=>{
-                    this._zoom -= this._zoom_dt
-                    this._zoomOutFlag = true
+                    this.zoomOut()
                 })))
             }
         }).showDialog()

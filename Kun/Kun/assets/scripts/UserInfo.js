@@ -6,7 +6,6 @@ cc.Class({
         level: cc.Label,
         energy: cc.Label,
         coin: cc.Label,
-        top: cc.Node,
         bottom: cc.Node,
     },
 
@@ -29,12 +28,11 @@ cc.Class({
     // out
     showOrHide(e,p) {
         this._flag = !this._flag
+        KUN.GameTools.playAudio('btn1')
         if(this._flag) {
             this.bottom.runAction(cc.moveBy(this._actionTime,cc.p(0,this._moveDis)))
-            this.top.runAction(cc.moveBy(this._actionTime,cc.p(0,-this._moveDis)))
         } else {
             this.bottom.runAction(cc.moveBy(this._actionTime,cc.p(0,-this._moveDis)))
-            this.top.runAction(cc.moveBy(this._actionTime,cc.p(0,this._moveDis)))
         }
     },
 
