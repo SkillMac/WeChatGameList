@@ -22,6 +22,9 @@ cc.Class({
         window.KUN.Server = require('Server')
         window.KUN.ResCache = require('ResCache')
         let WeChat = require('WeChat')
+
+        WeChat.checkNewVersion()
+
         window.KUN.WeChat = new WeChat()
 
         this.login()

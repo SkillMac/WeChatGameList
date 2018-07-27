@@ -61,6 +61,15 @@ class AppController extends Controller
 		$this->http_output->end('1');
 	}
 
+	public function http_getVal()
+	{
+		$id = $this->http_input->get('id');
+		$name = $this->http_input->get('key');
+		$model = $this->loader->model('UserData', $this);
+		$res = $model->getValByKey($id, $name);
+		$this->http_output->end($res);
+	}
+
 	public function http_testModel()
 	{
 		// $type = $this->http_input->get('type');
@@ -154,6 +163,14 @@ class AppController extends Controller
 	{
 		$id = $this->http_input->get('id');
 		$res = $this->logicM->upgrade($id);
+		$this->http_output->end($res);
+	}
+
+	public function http_saveUserInfo()
+	{
+		$id = $this->http_input->get('id');
+		$userInfo = $this->http_input->get('userInfo');
+		$res = $this->logicM->saveUserInfo($id,$userInfo);
 		$this->http_output->end($res);
 	}
 }

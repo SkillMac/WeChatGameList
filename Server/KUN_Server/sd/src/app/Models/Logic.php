@@ -20,7 +20,7 @@ class Logic extends Model
 		],
 		[
 			'flag'=>'passBy',
-			'prob'=> 70,
+			'prob'=> 45,
 			'range'=>['1',3],
 			'coastPre'=>0.01,
 		],
@@ -32,7 +32,7 @@ class Logic extends Model
 		],
 		[
 			'flag'=>'meet',
-			'prob'=> 5,
+			'prob'=> 20,
 			'range'=>['1',3],
 			'coastPre'=>0.05,
 		],
@@ -46,7 +46,7 @@ class Logic extends Model
 
 	private function get_fish_show_way()
     {
-    	$arr = [5,90,0,5];
+    	$arr = [5,75,0,20];
     	if($this->level > 1)
     	{
     		foreach ($this->probCfg as $key => $value) {
@@ -260,5 +260,13 @@ class Logic extends Model
 			return '1';
 		}
 		return '-1';
+	}
+
+	public function saveUserInfo($id, $userInfo)
+	{
+		$info = json_decode($userInfo,true);
+		$this->userDataM->setValByKey($id,'nickName',$info['nickName']);
+		$this->userDataM->setValByKey($id,'avatarUrl',$info['avatarUrl']);
+		return '1';
 	}
 }

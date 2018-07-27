@@ -53,6 +53,7 @@ cc.Class({
         this._purchaseEnergyPanelFlag = false
         this._tipsPanelFlag = false
 
+        this._zoomOutFlag = false
         this._zoomOutFlag_u = false
         this._zoom_u = 1
     },
@@ -62,7 +63,9 @@ cc.Class({
         let n = 0
         n = cc.lerp(this.camera.scaleX,0.5,0.1)
         // this.camera.setScale(n)
-        this.camera.runAction(cc.scaleTo(0.5,n))
+        this.camera.runAction(cc.sequence(cc.scaleTo(0.5,n),cc.callFunc(()=>{
+            this._zoomOutFlag = false
+        })))
     },
 
     zoomInOut_u(callback,isIn) {
@@ -212,6 +215,7 @@ cc.Class({
             if(isAutoHidePanel) {
                 t = this._mappingCtrl.showOrHied()
                 this.node.runAction(cc.sequence(cc.delayTime(t),cc.callFunc(()=>{
+                    this._zoomOutFlag = true
                     this.zoomOut()
                 })))
             }

@@ -20,15 +20,17 @@ let T = cc.Class({
             // 打开被动转发 并监听
             // this.openShareSetting();
 
-            // wx.getSystemInfo({
-            //     success: res =>{
-            //         cc.TB.GAME.model = res.model
-            //     }
-            // })
+            wx.getSystemInfo({
+                success: res =>{
+                    KUN.GameStatus.model = res.model
+                }
+            })
         }
     },
 
     statics: {
+        baseUrl_ : 'https://vdgames.vdongchina.com:9092/',
+        baseServerUrl : 'https://vdgames.vdongchina.com:9092/AppController/',
         registerOnGroupShareFunc(func) {
             if(CC_WECHATGAME) {
                 T._onGroupShareFunc = func;
@@ -95,10 +97,10 @@ let T = cc.Class({
 
     login(func_) {
         if(!CC_WECHATGAME) return
+        let self = this
         wx.login({
             success: function(res) {
-                console.log('code is ',res.code)
-                let curUrl = "https://vdgames.vdongchina.com:9092/AppController/login";
+                let curUrl = T.baseServerUrl + 'login'
                 wx.request({
                     url: curUrl,
                     data: {
@@ -110,33 +112,86 @@ let T = cc.Class({
                     success: function(res) {
                         // console.log('请求成功',res.data)
                         KUN.Server.id = res.data
-                        func_()
+                        console.log('唯一id',res.data)
+                        self.getUserInfo(func_)
                     },
                     fail: (res) => {
                         // console.log('请求失败',res)
                     }
                 });
-            }
+            },
         });
     },
 
-    getUserInfo() {
+    getUserInfo(func_) {
         if(!this.checkIsWeChat()) {return;}
-        let weChatData = cc.TB.GAME.weChatData;
-        let self = this;
         wx.getUserInfo({
-            success: function(res) {
-                let userInfo = res.userInfo;
-                weChatData.userInfo = userInfo;
+            withCredentials : false,
+            success: (res) => {
+                let userInfo = res.userInfo
                 // avatarUrl
                 // nickName
                 // gender //性别 0：未知、1：男、2：女
                 // province 省
                 // city
                 // country
-                if (self.callfunc) {
-                    self.callfunc();
-                }
+                KUN.Server.uploadUserData(JSON.stringify(userInfo),res=>{
+                    if(res == '1') {
+                        func_()
+                    } else {
+                        // 暂时不做处理
+                    }
+                })
+            },
+            fail: (res)=>{
+                // 未授权 处理
+                wx.showModal({
+                    title: '温馨提示',
+                    content: '为了良好的体验,请开启用户信息授权,以便我们可以储存你的数据!',
+                    success: res =>{
+                        if(res.confirm || res.cancel) {
+                            let button = wx.createOpenSettingButton({
+                                type: 'text',
+                                text: '打开设置页面',
+                                style: {
+                                    left: 10,
+                                    top: 76,
+                                    width: 170,
+                                    height: 40,
+                                    lineHeight: 40,
+                                    backgroundColor: '#4b6881',
+                                    color: '#ffffff',
+                                    textAlign: 'center',
+                                    fontSize: 16,
+                                    borderRadius: 4
+                                }
+                            })
+                            button.show()
+                            button.onTap(() => {
+                                wx.getSetting({
+                                    success: res => {
+                                        button.destroy()
+                                        if(res.authSetting['scope.userInfo']) {
+                                            wx.getUserInfo({
+                                                withCredentials : false,
+                                                success: res => {
+                                                    let info = res.userInfo
+                                                    KUN.Server.uploadUserData(JSON.stringify(info),res=>{
+                                                        if(res == '1') {
+                                                            func_()
+                                                        } else {
+                                                            // 暂时不做处理
+                                                        }
+                                                    })
+                                                }
+                                            })
+                                        }
+                                    }
+                                })
+                            })
+                        }
+                    }
+                })
             }
         });
     },

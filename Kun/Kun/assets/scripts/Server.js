@@ -10,7 +10,7 @@ let T = {
     },
 
     defaultUserData: {
-        coin:0,
+        coin:21,
         energy:50,
         level:1,
         maxEnergy:50,
@@ -186,8 +186,16 @@ let T = {
         return true
     },
 
-    uploadUserData() {
+    uploadUserData(data,callback) {
         // to do
+        T.rGet('saveUserInfo',{
+            id : T.id,
+            userInfo: data,
+        }, res =>{
+            if(callback) {
+                callback(res)
+            }
+        })
     },
 
     purchaseNewFish(price,callback) {
@@ -218,7 +226,7 @@ let T = {
                     data = null
                     data = T.defaultEnemyData
                     data.fish_index = T.defaultEnemyData.type
-                    data.coast_coin = -1
+                    data.coast_coin = data.coin
                     data.user = T.defaultUserData
                     data.user.coast_energy = -1
                     success(data)
@@ -230,7 +238,7 @@ let T = {
                     success('-1')
                     break;
                 case 'upgrade':
-
+                    success('1')
                     break;
                 default:
                     break;
