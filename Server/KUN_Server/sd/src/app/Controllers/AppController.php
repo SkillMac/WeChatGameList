@@ -173,4 +173,12 @@ class AppController extends Controller
 		$res = $this->logicM->saveUserInfo($id,$userInfo);
 		$this->http_output->end($res);
 	}
+
+	public function http_freeEnergy()
+	{
+		$id = $this->http_input->get('id');
+		$addEnergy = $this->http_input->get('addEnergy');
+		$res = $this->logicM->freeEnergy($id,$addEnergy);
+		$this->http_output->end($res);
+	}
 }

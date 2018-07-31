@@ -10,17 +10,19 @@ class Logic extends Model
 	private $userDataM = null;
 	private $level = 1;
 	private $addEnergy = 6;
+	private $tmp_head_counts = 500;
+	private $max_level = 20;
 
 	private $probCfg = [
 		[
 			'flag'=>'eaten',
 			'prob'=>5,
 			'range'=> [1,3],
-			'coastPre'=>0.02,
+			'coastPre'=>0.05,
 		],
 		[
 			'flag'=>'passBy',
-			'prob'=> 45,
+			'prob'=> 55,
 			'range'=>['1',3],
 			'coastPre'=>0.01,
 		],
@@ -28,13 +30,13 @@ class Logic extends Model
 			'flag'=>'eat',
 			'prob'=> 20,
 			'range'=>[-4,-1],
-			'coastPre'=>0.02,
+			'coastPre'=>0.05,
 		],
 		[
 			'flag'=>'meet',
 			'prob'=> 20,
 			'range'=>['1',3],
-			'coastPre'=>0.05,
+			'coastPre'=>0.02,
 		],
 	];
 
@@ -47,7 +49,11 @@ class Logic extends Model
 	private function get_fish_show_way()
     {
     	$arr = [5,75,0,20];
-    	if($this->level > 1)
+    	if($this->level >= $this->max_level)
+    	{
+    		$arr = [0,60,20,20];
+    	}
+    	if($this->level > 1 && $this->level < $this->max_level)
     	{
     		foreach ($this->probCfg as $key => $value) {
 	    		$arr[$key] = $value['prob'];
@@ -87,11 +93,13 @@ class Logic extends Model
     private function rand_level($cfg,$flag)
     {
     	$min = is_string($cfg['range'][0]) ? (int)($cfg['range'][0]) : $this->level + $cfg['range'][0];
+    	$min = $min > $this->max_level ? $this->max_level : $min;
     	if($flag == 'eat' && $min < 1)
     	{
     		$min = 1;
     	}
     	$max = is_string($cfg['range'][1]) ? (int)($cfg['range'][1]) : $this->level + $cfg['range'][1];
+    	$max = $max > $this->max_level ? $this->max_level : $max;
     	return mt_rand($min,$max);
     }
 	
@@ -127,6 +135,7 @@ class Logic extends Model
 
 		$tmp_array['user'] = $this->getUserInfo($id,true);
 		$tmp_array['user']['energy'] += 1;
+		$tmp_array['head_url'] = 'head/' . (string)mt_rand(1,$this->tmp_head_counts) . '.jpg';
 		return $tmp_array;
 	}
 
@@ -214,7 +223,7 @@ class Logic extends Model
 		$start_time = time();
 
 		$res = $this->userDataM->getValByKey($id,'start_flock_energy_time');
-
+ 
 		if(!$res) {
 			$this->userDataM->setValByKey($id,'start_flock_energy_time',(string)$start_time);
 			$res = $start_time;
@@ -236,8 +245,7 @@ class Logic extends Model
 				return json_encode($result);
 			}
 			return json_encode($intervalTime - ((int)($start_time - $res)));
-
-		} 
+		}     
 		else {
 			return '-1';
 		}
@@ -267,6 +275,14 @@ class Logic extends Model
 		$info = json_decode($userInfo,true);
 		$this->userDataM->setValByKey($id,'nickName',$info['nickName']);
 		$this->userDataM->setValByKey($id,'avatarUrl',$info['avatarUrl']);
+		return '1';
+	}
+
+	public function freeEnergy($id, $addEnergy)
+	{
+		$energy = $this->userDataM->getValByKey($id, 'energy');
+		$energy += (int)$addEnergy;
+		$this->userDataM->setValByKey($id, 'energy', $energy);
 		return '1';
 	}
 }
