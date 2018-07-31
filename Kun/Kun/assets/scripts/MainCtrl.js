@@ -251,4 +251,34 @@ cc.Class({
             })
         }
     },
+
+    weChatFunc(type_,params_) {
+        // 微信回调函数
+        switch (type_) {
+            case KUN.GameStatus.weChatFuncType.freeEnergy:
+                this.freeEnergy()
+                break;
+            case KUN.GameStatus.weChatFuncType.fail:
+                // 分享失败
+                this.shareFail()
+                break;
+            default:
+                break;
+        }
+    },
+
+    freeEnergy() {
+        KUN.Server.rFreeEnergy('3',res=>{
+            if(res == '1') {
+                this.showTipsPanel('红包领取成功,能量+3!!!')
+                this._userInfoCtrl.updateEnergy()
+            } else if(res == '-1') {
+                this.showTipsPanel('红包领取失败!!!')
+            }
+        });
+    },
+
+    shareFail() {
+        this.showTipsPanel('请分享到群!!!')
+    }
 });

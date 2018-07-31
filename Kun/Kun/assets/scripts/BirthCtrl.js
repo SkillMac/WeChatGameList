@@ -32,6 +32,7 @@ cc.Class({
         this._prefabList.push(this.l2Prefab)
         this._prefabList.push(this.c2Prefab)
         this._prefabList.push(this.l3Prefab)
+        // this._tex = null
     },
 
     initPrefabList() {
@@ -86,11 +87,13 @@ cc.Class({
 
     buildNewFish(data) {
         let node_ = cc.instantiate(this.fishPrefab)
+        // let head_ = this.buildHead(data.headUrl,node_)
         if(data.flag == 'eaten') {
             this.enemyPosFront.addChild(node_)
         } else {
             this.enemyPos.addChild(node_)
         }
         let enmeyCtrl = node_.getComponent('Enemy').init(data,this._ctrl)
-    }
+        
+    },
 });

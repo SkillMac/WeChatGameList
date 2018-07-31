@@ -7,6 +7,7 @@ cc.Class({
         energy: cc.Label,
         coin: cc.Label,
         bottom: cc.Node,
+        rankPfb: cc.Prefab,
     },
 
     init(ctrl) {
@@ -23,6 +24,17 @@ cc.Class({
         this.updateCoin()
         this.updateEnergy()
         this.updateLevel()
+    },
+
+    showRank() {
+        let node_ = cc.instantiate(this.rankPfb)
+        let offBtn_ = node_.getChildByName('offBtn')
+        offBtn_.on('click',()=>{
+            offBtn_.destroy()
+        })
+        node_.getComponent('Rank').init()
+        node_.addComponent('Common').show3()
+        this.node.parent.addChild(node_)
     },
 
     // out

@@ -10,16 +10,17 @@ cc.Class({
         this._ctrl = ctrl
         this._callback = callback
         this._endFunc = null
+        this._showTime = 0.1
         return this
     },
 
     showDialog(e, p) {
-        this.node.setScale(0)
-        this.node.runAction(cc.scaleTo(0.35,1))
+        this.node.setScale(0.7)
+        this.node.runAction(cc.scaleTo(this._showTime,1))
     },
 
     hideDialog(e,p) {
-        this.node.runAction(cc.sequence(cc.scaleTo(0.35,0),cc.callFunc(()=>{
+        this.node.runAction(cc.sequence(cc.scaleTo(0.1,0),cc.callFunc(()=>{
             if(this._callback) {
                 this._callback()
             }

@@ -187,6 +187,32 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">//desktop-92f0i2f/share/上古鲲/726/红包资源/hongbao.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>53,69,105,138</rect>
+                <key>scale9Paddings</key>
+                <rect>53,69,105,138</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">//desktop-92f0i2f/share/上古鲲/726/红包资源/mb.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>39,138,77,277</rect>
+                <key>scale9Paddings</key>
+                <rect>39,138,77,277</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../bg/cj_0013_BG.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -237,6 +263,19 @@
                 <rect>62,15,123,31</rect>
                 <key>scale9Paddings</key>
                 <rect>62,15,123,31</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../btn/kun_0001_lan.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>142,18,284,35</rect>
+                <key>scale9Paddings</key>
+                <rect>142,18,284,35</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -448,6 +487,9 @@
             <filename>../btn/phb.png</filename>
             <filename>../btn/hb.png</filename>
             <filename>../btn/kun_0004_gb.png</filename>
+            <filename>//desktop-92f0i2f/share/上古鲲/726/红包资源/hongbao.png</filename>
+            <filename>//desktop-92f0i2f/share/上古鲲/726/红包资源/mb.png</filename>
+            <filename>../btn/kun_0001_lan.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

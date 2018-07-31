@@ -4,15 +4,28 @@ cc.Class({
     extends: BaseFish,
 
     properties: {
-        
+        head:cc.Sprite,
     },
 
     init(data,ctrl) {
         // this.widthList = [0,1031,1186,1206,1230,1147]
         this.disList = [0,350,700,700]
+        this._tex = null
         this._super(ctrl)
         this.adjustByData(data)
+        this.setHead(data.headUrl)
         return this
+    },
+
+    setHead(url_) {
+        if(url_ != '') {
+            cc.loader.load(KUN.GameStatus.address+url_,(err,tex)=>{
+                if(err) return
+                this._tex = tex
+                this.head.spriteFrame = new cc.SpriteFrame(tex)
+            })
+            this.head.node.setScale(2 * Math.abs(this.head.node.scaleX)/Math.abs(this.node.scaleX))
+        }
     },
 
     adjustByData(data) {
@@ -65,6 +78,7 @@ cc.Class({
                 this._ctrl.playerToDie()
                 KUN.ResCache.setSpriteFrame(this.getComponent(cc.Sprite),'fish/yu'+type)
                 this.node.runAction(cc.sequence(cc.moveTo(this._showTime,-640-adjustWidth,pos.y),cc.callFunc(()=>{
+                    if(this._tex) cc.loader.release(this._tex)
                     this.node.destroy()
                 })))
             }

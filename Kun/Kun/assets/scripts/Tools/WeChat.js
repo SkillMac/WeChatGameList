@@ -2,11 +2,7 @@
 let GameTools = require('GameTools');
 let shareParams = {
     type: {
-        share: 0, // 单纯的分享
-        groupShare: 1, // 查看群排行
-        dare: 2,    // 发起挑战
-        needRelife: 3, // 寻求好友复活
-        gift: 4, //赠送
+        shareEnergy:0,
     }
 }
 let T = cc.Class({
@@ -14,11 +10,11 @@ let T = cc.Class({
     ctor() {
         if(CC_WECHATGAME) {
             // 开启shareTicket
-            // this.openShareTicketSetting();
+            this.openShareTicketSetting();
             // 绑定启动监听函数
-            // this.bandingOnShowFunc();
+            this.bandingOnShowFunc();
             // 打开被动转发 并监听
-            // this.openShareSetting();
+            this.openShareSetting();
 
             wx.getSystemInfo({
                 success: res =>{
@@ -223,42 +219,22 @@ let T = cc.Class({
     },
 
     // 群分享
-    groupShare(type, callback_, callback2_, cfg) {
+    groupShare(type, callback_, callback2_, cfg_) {
         if(CC_WECHATGAME) {
             let address = 'https://vdgames.vdongchina.com/TB/share/'
             let title = ''
             let params = ''
             let url = ''
-            if(type === 'share'){
 
-                title = '发射吧,我的小泡珠!'
-                params = 'type=' + shareParams.type.share
-                url = address + 'share.jpg'
-            } else if(type === 'groupShare') {
-
-                title = '看一看,我的群排行'
-                params = 'type=' + shareParams.type.groupShare
-                url = address + 'share4.jpg'
-            } else if (type === 'dare') {
-
-                title = '你能超越我吗?'
-                params = 'type=' + shareParams.type.dare + '&score=' + cc.TB.GAME.score
-                url = address + 'share2.jpg'
-            } else if (type === 'gift') {
-
-                title = '收下我的礼物!'
-                params = 'type=' + shareParams.type.gift + "&index=" + cfg.index + "&ticket=" + cfg.time
-                url = address + 'share3.jpg'
-            } else if (type === 'relife') {
-                
-                title = '帮帮我,我要复活!'
-                params = 'type=' + shareParams.type.needRelife
-                url = address + 'share5.jpg'
-            } else if (type === 'hit') {
-
-                title = '我已连中靶心'+ cfg.hitCounts + '次,你行吗?',
-                params = 'type='+ shareParams.type.share,
-                url = 'https://vdgames.vdongchina.com/TB/hitPic/'+ cfg.hitCounts + '.jpg'
+            switch (type) {
+                case 'FreeEnergy':
+                    title = '鲲只能当零食!!!'
+                    params = 'type=' + shareParams.type.shareEnergy
+                    url = T.baseUrl_+'share/share1.jpg'
+                    break;
+            
+                default:
+                    break;
             }
             T.openWeChatShare(title,params,url, res=>{
                 if(callback_) {
@@ -279,41 +255,26 @@ let T = cc.Class({
     bandingOnShowFunc() {
         // 启动
         let option = wx.getLaunchOptionsSync();
-        if(option.query.type == shareParams.type.groupShare && option.shareTicket != undefined) {
-            // 群排行
-            cc.TB.GAME.weChatData.shareTicket = option.shareTicket;
-            this.onGroupShareFunc();
-        } 
-        else if(option.query.type == shareParams.type.gift && option.shareTicket) {
-            if(!cc.TB.GAME.checkIsOldShareTicket(option.query.time)) {
-                this.showGiftTips('已领取礼物快来,开始游戏吧!')
-                cc.TB.GAME.giftSkinIndex = option.query.index
-            } else {
-                this.showGiftTips('礼物已使用')
-            }
+        console.log('启动信息',option)
+        if(option.shareTicket) {
+            if(option.query.type == shareParams.type.shareEnergy) {
+                // 从微信群里面点击
+                KUN.GameStatus.weChatData.shareTicket = option.shareTicket;
+                if(!KUN.GameTools.checkIsOldShareTicket(option.shareTicket)) {
+                    this.tellMainCtrl(KUN.GameStatus.weChatFuncType.freeEnergy)
+                }
+            } 
         }
 
-        if(option && GameTools.isShowPanelByServer('urge_money')) {
-            cc.director.getScene().getChildByName('Canvas').getChildByName('menuStart').getComponent('StartUICtrl').urgeBtnEvent()
-        }
-        
         // 显示
         wx.onShow((res)=>{
+            console.log('切回前台信息',res)
             // shareTicket
-            if(res.query.type == shareParams.type.groupShare && res.shareTicket){
+            if(res.query.type == shareParams.type.shareEnergy && res.shareTicket){
                 // 群排行
-                cc.TB.GAME.weChatData.shareTicket = res.shareTicket;
-                // 显示群排行
-                cc.director.loadScene('StartScene',()=>{
-                    cc.director.getScene().getChildByName('Canvas').getChildByName('menuStart').getComponent('StartUICtrl').onGroupShare(res.shareTicket)
-                })
-            }
-            else if (res.query.type == shareParams.type.gift && res.shareTicket) {
-                if(!cc.TB.GAME.checkIsOldShareTicket(res.query.time)) {
-                    cc.TB.GAME.giftSkinIndex = res.query.index
-                    this.showGiftTips('已领取礼物快来,开始游戏吧!')
-                } else {
-                    this.showGiftTips('礼物已使用')
+                KUN.GameStatus.weChatData.shareTicket = res.shareTicket;
+                if(!KUN.GameTools.checkIsOldShareTicket(res.shareTicket)) {
+                    this.tellMainCtrl(KUN.GameStatus.weChatFuncType.freeEnergy)
                 }
             }
         });
@@ -325,10 +286,9 @@ let T = cc.Class({
         });
         wx.onShareAppMessage(
             () => {
-                let address = 'https://vdgames.vdongchina.com/TB/share/'
                 return {
-                    title: '一起玩',
-                    imageUrl: address + 'share.jpg',
+                    title: '鲲时代来临',
+                    imageUrl: T.baseUrl_ + 'share/share.jpg',
                 }
             }
         );
@@ -352,18 +312,11 @@ let T = cc.Class({
         }
     },
 
-    onGroupShareFunc() {
-        if(T._onGroupShareFunc) {
-            T._onGroupShareFunc(cc.TB.GAME.weChatData.shareTicket);
-        }
+    showGiftTips(str_) {
+        //提示 信息
     },
 
-    showGiftTips(str_) {
-        cc.loader.loadRes('prefab/Tips1', cc.Prefab, (err, prefab)=>{
-            let node = cc.instantiate(prefab)
-            node.getComponent('showMsgEffect').show2()
-            node.getChildByName('tips').getComponent(cc.Label).string = str_
-            cc.director.getScene().getChildByName('Canvas').addChild(node)
-        })
+    tellMainCtrl(type_) {
+        cc.director.getScene().getChildByName('Canvas').getComponent('MainCtrl').weChatFunc(type_)
     },
 });

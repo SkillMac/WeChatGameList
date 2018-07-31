@@ -91,6 +91,21 @@ let T = {
     playAudio(file) {
         cc.audioEngine.play(cc.url.raw('resources/audio/') + file + '.mp3',false, 1)
     },
+
+    checkIsOldShareTicket(ticket) {
+        if(T.giftShareTicketsList.indexOf(ticket) > -1) {
+            return true
+        }
+        T.giftShareTicketsList.push(ticket)
+        return false
+    },
+
+    sendMessage(data) {
+        if(CC_WECHATGAME) {
+            let content = wx.getOpenDataContext()
+            content.postMessage(data)
+        }
+    },
 }
 
 export default T;

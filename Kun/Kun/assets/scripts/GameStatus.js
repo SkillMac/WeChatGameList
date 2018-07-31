@@ -27,8 +27,24 @@ let T = {
 
     // ======game obj flag======
     // eating   loading   swimming
-    statusList: ['loading', 'eating', 'idle', 'mapping', 'noEnergy'],
-    status: ''
+    //              0           1       2           3       4           5
+    statusList: ['loading', 'eating', 'idle', 'mapping', 'noEnergy', 'rank'],
+    status: '',
+
+    weChatData: {},
+    weChatFuncType: {
+        fail: -1,
+        freeEnergy: 0 ,
+    },
+
+    levelKeyList: ['levelData'],
+    msgType: {
+        clear:0, // 清除
+        updateRank: 1, // 跟新排行榜
+        submitScore: 2, // 提交分数
+        groupShare: 3, // 群排行
+        slideRank: 4,   
+    }
 };
 
 T.speedList = [T.speed1,T.speedC1,T.speed2,T.speedC2,T.speed3]

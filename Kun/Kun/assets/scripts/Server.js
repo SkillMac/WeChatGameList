@@ -7,6 +7,7 @@ let T = {
         level: 1,
         coin: 1,
         flag: 'eat',
+        headUrl: '',
     },
 
     defaultUserData: {
@@ -33,6 +34,7 @@ let T = {
             id: T.id,
         },(res)=>{
             this.initUserData(res,true)
+            T.submitLevel()
             if(callback) {
                 callback()
             }
@@ -78,6 +80,7 @@ let T = {
         ed.coin = Number(data.coast_coin)
         ed.type = data.fish_index
         ed.flag = data.flag
+        ed.headUrl = data.head_url
         T.incrementUserData.energy_dt = Number(data.user.coast_energy)
         T.incrementUserData.coin_dt = Number(ed.coin)
         T.initUserData(data.user)
@@ -198,6 +201,16 @@ let T = {
         })
     },
 
+    uploadWeChatData(type_,data_) {
+        if(type_ == 'level') {
+            KUN.GameTools.sendMessage(data_)
+        }
+    },
+
+    submitLevel() {
+        T.uploadWeChatData('level',{type:KUN.GameStatus.msgType.submitScore,scoreData:{score:T.defaultUserData.level, key: KUN.GameStatus.levelKeyList[0]}})
+    },
+
     purchaseNewFish(price,callback) {
         KUN.Server.rUpgrade((res)=>{
             if(res == '1' && T.defaultUserData.coin >= price) {
@@ -205,9 +218,28 @@ let T = {
                 T.defaultUserData.level ++
                 T.defaultUserData.fishIndex ++
                 T.defaultUserData.zoom -= T.defaultUserData.zoom_dt
-                T.updateUsrInfo()   
+                T.updateUsrInfo() 
+                T.submitLevel()
             } 
             if(callback){
+                callback(res)
+            }
+        })
+    },
+
+    rFreeEnergy(energy_,callback) {
+        KUN.Server.rGet('freeEnergy',{
+            id: T.id,
+            addEnergy: energy_,
+        }, res => {
+            if(res == '1') {
+                let data = T.getUserInfo()
+                data.energy += 3
+                T.updateUsrInfo()
+            } else if (res == '-1') {
+                // fail
+            }
+            if(callback) {
                 callback(res)
             }
         })
