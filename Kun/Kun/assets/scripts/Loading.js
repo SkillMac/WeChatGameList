@@ -7,14 +7,20 @@ cc.Class({
     },
 
     onLoad() {
-        this._isCanClickFlag = false
+        var manager = cc.director.getCollisionManager()
+        manager.enabled = true
+        manager.FIXED_TIME_STEP = 1 / 30
+        manager.VELOCITY_ITERATIONS = 8
+        manager.POSITION_ITERATIONS  = 8
+        manager.enabledDebugDraw  = true
+
         this.init()
         cc.director.preloadScene('MainGame')
         this.node.on(cc.Node.EventType.TOUCH_END,this.startUp,this)
     },
 
     init() {
-
+        this._isCanClickFlag = false
         window.KUN = {}
         window.KUN.GameTools = require('GameTools')
         window.KUN.GameStatus = require('GameStatus')

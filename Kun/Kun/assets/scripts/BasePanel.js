@@ -20,6 +20,7 @@ cc.Class({
     },
 
     hideDialog(e,p) {
+        KUN.GameTools.playAudio('btn1')
         this.node.runAction(cc.sequence(cc.scaleTo(0.1,0),cc.callFunc(()=>{
             if(this._callback) {
                 this._callback()

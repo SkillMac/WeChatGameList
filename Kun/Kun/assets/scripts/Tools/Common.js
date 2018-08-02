@@ -12,7 +12,7 @@ cc.Class({
 
     baseShow(statusIndex_) {
         KUN.GameTools.playAudio('btn1')
-        if(KUN.GameStatus.status == KUN.GameStatus.statusList[1]) return
+        if(KUN.GameStatus.status == KUN.GameStatus.statusList[1] && KUN.GameStatus.status != KUN.GameStatus.statusList[2]) return
         this.show2_f = !this.show2_f
         let t = 0.1
         if(this.show2_f) {

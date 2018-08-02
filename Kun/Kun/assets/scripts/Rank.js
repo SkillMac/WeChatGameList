@@ -1,10 +1,10 @@
+import BasePanel from "BasePanel";
 
 cc.Class({
-    extends: cc.Component,
+    extends: BasePanel,
 
     properties: {
         rankView: cc.Sprite,
-        offBtn: cc.Node,
     },
 
     init () {
@@ -12,14 +12,16 @@ cc.Class({
             this.tex = new cc.Texture2D()
             window.sharedCanvas.width = 1280
             window.sharedCanvas.height = 720
+            this.onSlideRankEvent()
         }
         KUN.GameTools.sendMessage({
             type: KUN.GameStatus.msgType.updateRank,
             keyList:[KUN.GameStatus.levelKeyList[0]],
         });
-        this.offBtn.on('click',()=>{
-            this.node.destroy()
-        })
+
+        this._endFunc = ()=>{
+            KUN.GameStatus.status = KUN.GameStatus.statusList[2]
+        }
     },
 
     update (dt) {

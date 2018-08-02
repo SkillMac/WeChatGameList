@@ -13,7 +13,9 @@ cc.Class({
 
     initData_p(ctrl) {
         this._isUserDragonBones = false
-        this._animation = this.getComponent(dragonBones.ArmatureDisplay)
+        if(this._isUserDragonBones) {
+            this._animation = this.getComponent(dragonBones.ArmatureDisplay)
+        }
         this._showTime = KUN.GameStatus.showTime
         this._ctrl = ctrl
     },
@@ -36,6 +38,7 @@ cc.Class({
     },
 
     playAnima(name_, playTimes, timeScale, completeCallback) {
+        if(!this._isUserDragonBones) return
         this._animation.timeScale = timeScale
         this._animation.playAnimation(name_,playTimes)
         this._animation.addEventListener(dragonBones.EventObject.COMPLETE,completeCallback)

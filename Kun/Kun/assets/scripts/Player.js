@@ -11,13 +11,18 @@ cc.Class({
     init(ctrl) {
         this._super(ctrl)
         this.initData()
-        this.changeFishSkin()
     },
 
     initData() {
         this._baseSize = this.node.scaleX
         this.sprite = this.getComponent(cc.Sprite)
         this._coin = 0
+        this._fishData = null
+        this._enemyCtrl = null
+    },
+
+    setFishData(data) {
+        this._fishData = data
     },
 
     getData() {
@@ -37,18 +42,22 @@ cc.Class({
         return KUN.UserData.getFishIndex()
     },
 
-    openMouth(data) {
+    openMouth() {
+        let data = this._fishData
         this._coin = data.coin
         this._ctrl.startEat()
         if(!this._isUserDragonBones) {
             if(data.flag == 'eat') {
-                this.node.runAction(cc.sequence(cc.delayTime(this._showTime - 1.5),cc.callFunc(()=>{
-                    KUN.ResCache.setSpriteFrame(this.sprite, cc.js.formatStr('fish/yu%d_o',this.getFishIndex()))
-                })))
+                KUN.ResCache.setSpriteFrame(this.sprite, cc.js.formatStr('fish/yu%d_o',this.getFishIndex()))
             }
-            this.node.runAction(cc.sequence(cc.delayTime(this._showTime),cc.callFunc(()=>{
+            this.node.runAction(cc.sequence(cc.delayTime(2),cc.callFunc(()=>{
                 if(data.flag == 'eat') {
+                    KUN.GameTools.playAudio('eatOrEaten')
                     KUN.ResCache.setSpriteFrame(this.sprite, cc.js.formatStr('fish/yu%d',this.getFishIndex()))
+                    if(this._enemyCtrl) {
+                        this._enemyCtrl.toDie()
+                        this._enemyCtrl = null
+                    }
                 }
                 if(data.flag != 'eaten') {
                     this._ctrl.finishEatBefore()
@@ -104,8 +113,25 @@ cc.Class({
 
     eatenEvent() {
         this.node.x = 1280
-        this.node.runAction(cc.sequence(cc.moveTo(this._showTime + 0.3,cc.p(0,0)),cc.callFunc(()=>{
+        this.node.runAction(cc.sequence(cc.moveTo(this._showTime,cc.p(0,0)),cc.callFunc(()=>{
             this._ctrl.finishEatBefore()
         })))
     },
+
+
+    onCollisionEnter(other, self) {
+        //to do
+        this.openMouth()
+        if(this._fishData.flag == 'eat') {
+            this._enemyCtrl = other.getComponent('Enemy')
+        }
+    },
+
+    // onCollisionStay(other, self) {
+    //     //to do
+    // },
+
+    // onCollisionExit(other, self) {
+    //     // to do
+    // },
 });

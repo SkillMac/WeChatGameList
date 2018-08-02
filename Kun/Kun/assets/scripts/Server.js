@@ -3,10 +3,10 @@ let T = {
     id:'',
     subAddress:'AppController/',
     defaultEnemyData:{
-        type: 1,
-        level: 1,
+        type: 3,
+        level: 3,
         coin: 1,
-        flag: 'eat',
+        flag: 'eaten',
         headUrl: '',
     },
 

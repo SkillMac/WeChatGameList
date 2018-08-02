@@ -9,7 +9,6 @@ cc.Class({
         c1Prefab: [cc.Prefab],
         c2Prefab: [cc.Prefab],
         birthPos: [cc.Node],
-        fishPrefab: cc.Prefab,
         enemyPos: cc.Node,
         enemyPosFront: cc.Node,
     },
@@ -71,11 +70,15 @@ cc.Class({
 
     playUseableChild(index, isStartGame, child) {
         if(isStartGame) {
-            child.getComponent('NoActionList').init(index, KUN.GameStatus.speedList[index], this)
+            child.getComponent('NoActionList').init(KUN.GameStatus.speedList[index], obj=>{
+                this.collectChild(index,obj)
+            })
         } else {
             let item = this.getUseableChild(index)
             item.node.x = -1280
-            item.init(index, KUN.GameStatus.speedList[index], this)
+            item.init(KUN.GameStatus.speedList[index], obj=>{
+                this.collectChild(index,obj)
+            })
         }
     },
 
@@ -86,14 +89,17 @@ cc.Class({
     },
 
     buildNewFish(data) {
-        let node_ = cc.instantiate(this.fishPrefab)
-        // let head_ = this.buildHead(data.headUrl,node_)
-        if(data.flag == 'eaten') {
-            this.enemyPosFront.addChild(node_)
-        } else {
-            this.enemyPos.addChild(node_)
-        }
-        let enmeyCtrl = node_.getComponent('Enemy').init(data,this._ctrl)
-        
+        cc.loader.loadRes(cc.js.formatStr('prefab/Enemy%d',data.type),cc.Prefab,(err,pfb)=>{
+            if(err) return
+            let node_ = cc.instantiate(pfb)
+            // let head_ = this.buildHead(data.headUrl,node_)
+            let enmeyCtrl = node_.getComponent('Enemy').init(data,this._ctrl)
+
+            if(data.flag == 'eaten') {
+                this.enemyPosFront.addChild(node_)
+            } else {
+                this.enemyPos.addChild(node_)
+            }
+        })
     },
 });

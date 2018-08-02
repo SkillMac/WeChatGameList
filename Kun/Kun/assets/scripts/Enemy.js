@@ -9,12 +9,32 @@ cc.Class({
 
     init(data,ctrl) {
         // this.widthList = [0,1031,1186,1206,1230,1147]
-        this.disList = [0,350,700,700]
+        this._wheelCtrl = this.getComponent('NoActionList')
+        this._disList = [0,350,700,700]
         this._tex = null
+        this.initData(data)
         this._super(ctrl)
         this.adjustByData(data)
         this.setHead(data.headUrl)
+        this.startUp()
         return this
+    },
+
+    initData(data) {
+        this._type = data.type
+        this._flag = data.flag
+    },
+
+    startUp() {
+        let speed = 200
+        this._wheelCtrl.init(speed, obj=>{
+            console.log('敌人死去')
+            this.toDie()
+        })
+        let dir = this._flag == 'eaten' ? -1 : 1
+        this._wheelCtrl.setDir(dir)
+        this._wheelCtrl.setMoveType('other')
+        this._wheelCtrl.setSpeedMul(1)
     },
 
     setHead(url_) {
@@ -39,53 +59,69 @@ cc.Class({
         this.node.setScaleY(Math.abs(v))
 
         let type = data.flag == 'eaten' ? data.type + '_o' : data.type
-
         KUN.ResCache.setSpriteFrame(this.getComponent(cc.Sprite),'fish/yu' + type)
+
         if(data.flag == 'passBy') {
+
             data.player_data.tarPos.x = 640 + (this.getWidth_me() * this.node.scaleX) / 2
-            // data.player_data.size = -data.player_data.size
             if (data.level > data.player_data.level) {
-                data.player_data.tarPos.y += 400 //this.disList[data.level - data.player_data.level]
+                KUN.GameTools.playAudio('passby')
+                data.player_data.tarPos.y += 400
             } else {
                 data.player_data.tarPos.y -= 300
             }
         } else if(data.flag == 'eaten') {
+
             this.node.x = 640 + (this.getWidth_me() * this.node.scaleX) / 2
         } else if(data.flag == 'eat') {
             
         } else if(data.flag == 'meet') {
-            data.player_data.tarPos.x = 640 + (this.getWidth_me() * (-this.node.scaleX))
+            //to do
         }
-
         this.node.y = data.player_data.tarPos.y
 
-        // console.log('flag',data.flag,'| 目标位置',data.player_data.tarPos,'| 开始位置',this.node.x,this.node.y,'| 缩放值', this.node.scaleX)
-        // change skin
-        this.runToPlayer(data.player_data.tarPos,data.flag,data.type)
-
-    },
-
-    runToPlayer(pos,flag,type) {
-        let adjustWidth = 0
-        if(flag == 'eaten'){
-            pos.x = 0
-            adjustWidth = this.getWidth_me() * this.node.scaleX / 2
-        }
-        this.node.runAction(cc.sequence(cc.moveTo(this._showTime,cc.p(pos.x+adjustWidth,pos.y)),cc.callFunc(()=>{
-            if(flag != 'eaten') {
-                this.node.destroy()
-            } else {
-                this._ctrl.playerToDie()
-                KUN.ResCache.setSpriteFrame(this.getComponent(cc.Sprite),'fish/yu'+type)
-                this.node.runAction(cc.sequence(cc.moveTo(this._showTime,-640-adjustWidth,pos.y),cc.callFunc(()=>{
-                    if(this._tex) cc.loader.release(this._tex)
-                    this.node.destroy()
-                })))
-            }
-        })))
     },
 
     getWidth_me(){
-        return 1050//node_.getComponent(cc.Sprite).spriteFrame.getRect().width
+        return this.node.width
+    },
+
+    onCollisionEnter(other, self) {
+        switch (this._flag) {
+            case 'passBy':
+                
+                break;
+            case 'eat':
+                
+                break;
+
+            case 'meet':
+                
+                break;
+
+            case 'eaten':
+                KUN.GameTools.playAudio('eatOrEaten')
+                other.getComponent('Player').eatenEvent()
+                KUN.ResCache.setSpriteFrame(this.getComponent(cc.Sprite),'fish/yu'+this._type)
+                this._wheelCtrl.setSpeedMul(3)
+                break;
+
+            default:
+                break;
+            
+        }
+    },
+
+    toDie() {
+        if(this._tex) cc.loader.release(this._tex)
+        this.node.destroy()
     }
+
+    // onCollisionStay(other, self) {
+    //     // to do
+    // },
+    
+    // onCollisionExit(other, self) {
+    //     // to do
+    // },
 });

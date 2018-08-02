@@ -1,3 +1,8 @@
+/*
+problem
+reconsitution panel
+**/
+
 
 cc.Class({
     extends: cc.Component,
@@ -7,18 +12,17 @@ cc.Class({
         hbPanel: cc.Prefab,
         tipsPanel: cc.Prefab,
         camera_u: cc.Node,
-        player: cc.Node,
         energyTimer: cc.Node,
+        playerBirthNode: cc.Node,
     },
 
     onLoad() {
+
         this.init()
+        this.buildCurFish()
         
         this._birthCtrl = this.node.getChildByName('Birth').getComponent('BirthCtrl')
         this._birthCtrl.init(this)
-
-        this._playerCtrl = this.player.getComponent('Player')
-        this._playerCtrl.init(this)
 
         this._touchCtrl = this.node.getChildByName('TouchNode').getComponent('TouchEvent')
         this._touchCtrl.init(this)
@@ -49,6 +53,17 @@ cc.Class({
         this.camera.setScale(this._zoom)
     },
 
+    buildCurFish() {
+        let fishIndex = KUN.UserData.getFishIndex()
+        cc.loader.loadRes(cc.js.formatStr('prefab/Player%d',fishIndex),cc.Prefab,(err,prefab)=>{
+            if(err || !prefab) return
+            let node_ = cc.instantiate(prefab)
+            this.playerBirthNode.addChild(node_)
+            this._playerCtrl = node_.getComponent('Player')
+            this._playerCtrl.init(this)
+        })
+    },
+
     initData() {
         this._purchaseEnergyPanelFlag = false
         this._tipsPanelFlag = false
@@ -56,12 +71,15 @@ cc.Class({
         this._zoomOutFlag = false
         this._zoomOutFlag_u = false
         this._zoom_u = 1
+
+        this._clickCounts = 0
     },
 
     zoomOut() {
         if(!this._zoomOutFlag) return
         let n = 0
         n = cc.lerp(this.camera.scaleX,0.5,0.1)
+        this._zoom = n
         // this.camera.setScale(n)
         this.camera.runAction(cc.sequence(cc.scaleTo(0.5,n),cc.callFunc(()=>{
             this._zoomOutFlag = false
@@ -98,7 +116,7 @@ cc.Class({
     buildNewFish() {
         // effect
         this._effect1Ctrl.show1()
-
+        KUN.GameTools.playAudio('accelerate')
         this.setBgSpeedMul(KUN.GameStatus.target_speed_mul)
         let data = KUN.Server.getEnemyData()
         // adjust data with player data
@@ -114,20 +132,26 @@ cc.Class({
             data.player_data = player_data
             this._birthCtrl.buildNewFish(data)
             // tell player open mouth
-            this._playerCtrl.openMouth(data)
+            this._playerCtrl.setFishData(data)
         })))
     },
 
     touchEndEvent() {
-        if(KUN.Server.checkIsCanPlay()) {
+        if(!(this.checkIsShowEnergyPanel()) || KUN.Server.checkIsCanPlay()) {
             this.updataData()
             this.buildNewFish()
         } else {
+            this._clickCounts = 0
             this.showNoEnergyPanel()
         }
     },
 
+    checkIsShowEnergyPanel() {
+        return (this._clickCounts >= 10 && KUN.GameTools.random(1,100) <= 30)
+    },
+
     updataData() {
+        this._clickCounts ++
         this.chageMemData()
         this._userInfoCtrl.touchOnce()
         this.collectEnergy()
@@ -139,6 +163,7 @@ cc.Class({
 
     setBgSpeedMul(mul) {
         KUN.GameStatus.speed_mul = mul
+        
     },
 
     startEat() {

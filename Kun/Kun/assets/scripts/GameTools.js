@@ -88,8 +88,8 @@ let T = {
         })
     },
 
-    playAudio(file) {
-        cc.audioEngine.play(cc.url.raw('resources/audio/') + file + '.mp3',false, 1)
+    playAudio(file,isLoop=false,volume=1) {
+        cc.audioEngine.play(cc.url.raw('resources/audio/') + file + '.mp3',isLoop, volume)
     },
 
     checkIsOldShareTicket(ticket) {
@@ -106,6 +106,17 @@ let T = {
             content.postMessage(data)
         }
     },
+
+    random(num1,num2) {
+        num1 = parseInt(num1)
+        num2 = parseInt(num2)
+        return parseInt(cc.random0To1() * (num2 - num1) + num1)
+    },
+
+    // exchange(num1,num2) {
+    //     num1 = [num2,num2=num1][0]
+    //     return [num1,num2]
+    // }
 }
 
 export default T;

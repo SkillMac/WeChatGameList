@@ -16,6 +16,7 @@ cc.Class({
         this._actionTime = 0.25
         this._moveDis = 90
         this._dataCtrl = KUN.UserData
+        this._rankFlag = false
 
         this.initUserInfoData()
     },
@@ -27,9 +28,13 @@ cc.Class({
     },
 
     showRank() {
+        if(this._rankFlag) return
+        this._rankFlag = true
         let node_ = cc.instantiate(this.rankPfb)
         let offBtn_ = node_.getChildByName('offBtn')
         offBtn_.on('click',()=>{
+            this._rankFlag = false
+            KUN.GameTools.playAudio('btn1')
             offBtn_.destroy()
         })
         node_.getComponent('Rank').init()

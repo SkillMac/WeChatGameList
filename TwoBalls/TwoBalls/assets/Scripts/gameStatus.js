@@ -248,10 +248,12 @@ let T = cc.Class({
             let index = random((totalValue));
             return tmpArr[index];
         },
+        
         checkIsWeChat() {
             // CC_WECHATGAME
             return cc.sys.platform === cc.sys.WECHAT_GAME;
         },
+
         getShowScoreVal(counts) {
             return counts * 2;
         },

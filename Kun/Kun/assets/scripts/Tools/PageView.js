@@ -3,7 +3,7 @@ cc.Class({
 
     properties: {
         picRoot: 'fish/yu',
-        picShadowPath: '',
+        picShadowPath: '', // to do
         picCounts: 20,
         mask: cc.Node, // you must define yourself mask node
     },
