@@ -261,6 +261,7 @@ let T = {
                     data.coast_coin = data.coin
                     data.user = T.defaultUserData
                     data.user.coast_energy = -1
+                    data.head_url = 'head/4'
                     success(data)
                     break;
                 case 'finishEat':

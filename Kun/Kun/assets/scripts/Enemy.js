@@ -8,8 +8,9 @@ cc.Class({
     },
 
     init(data,ctrl) {
+        this.node.removeComponent('Player')
         // this.widthList = [0,1031,1186,1206,1230,1147]
-        this._wheelCtrl = this.getComponent('NoActionList')
+        this._wheelCtrl = this.node.addComponent('NoActionList')
         this._disList = [0,350,700,700]
         this._tex = null
         this.initData(data)
@@ -30,7 +31,7 @@ cc.Class({
         this._wheelCtrl.init(speed, obj=>{
             console.log('敌人死去')
             this.toDie()
-        })
+        },true)
         let dir = this._flag == 'eaten' ? -1 : 1
         this._wheelCtrl.setDir(dir)
         this._wheelCtrl.setMoveType('other')
@@ -39,11 +40,19 @@ cc.Class({
 
     setHead(url_) {
         if(url_ != '') {
-            cc.loader.load(KUN.GameStatus.address+url_,(err,tex)=>{
-                if(err) return
-                this._tex = tex
-                this.head.spriteFrame = new cc.SpriteFrame(tex)
-            })
+            if(KUN.Server.ONWINDOWS) {
+                cc.loader.loadRes(url_,(err,tex)=>{
+                    if(err) return
+                    this._tex = tex
+                    this.head.spriteFrame = new cc.SpriteFrame(tex)
+                })
+            } else {
+                cc.loader.load(KUN.GameStatus.address+url_,(err,tex)=>{
+                    if(err) return
+                    this._tex = tex
+                    this.head.spriteFrame = new cc.SpriteFrame(tex)
+                })
+            }
             this.head.node.setScale(2 * Math.abs(this.head.node.scaleX)/Math.abs(this.node.scaleX))
         }
     },

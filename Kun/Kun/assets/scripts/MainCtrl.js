@@ -55,7 +55,7 @@ cc.Class({
 
     buildCurFish() {
         let fishIndex = KUN.UserData.getFishIndex()
-        cc.loader.loadRes(cc.js.formatStr('prefab/Player%d',fishIndex),cc.Prefab,(err,prefab)=>{
+        cc.loader.loadRes(cc.js.formatStr('prefab/%d',fishIndex),cc.Prefab,(err,prefab)=>{
             if(err || !prefab) return
             let node_ = cc.instantiate(prefab)
             this.playerBirthNode.addChild(node_)
@@ -133,6 +133,7 @@ cc.Class({
             this._birthCtrl.buildNewFish(data)
             // tell player open mouth
             this._playerCtrl.setFishData(data)
+            this._playerCtrl.startEat()
         })))
     },
 
@@ -163,7 +164,7 @@ cc.Class({
 
     setBgSpeedMul(mul) {
         KUN.GameStatus.speed_mul = mul
-        
+
     },
 
     startEat() {
@@ -215,11 +216,12 @@ cc.Class({
     purchaseNewFish(price, callback) {
         KUN.Server.purchaseNewFish(price,res=>{
             if(res == '1'){
-                // update new fish skin
-                this._playerCtrl.changeFishSkin()
                 // update user visible data
                 this._userInfoCtrl.updateCoin()
                 this._userInfoCtrl.updateLevel()
+                // update new fish skin
+                this._playerCtrl.node.destroy()
+                this.buildCurFish()
                 // call back map func
                 callback({status:'ok'})
                 this.showTipsPanel('购买成功，赶快去玩耍吧！',true)

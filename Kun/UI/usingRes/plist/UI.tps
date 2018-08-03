@@ -226,6 +226,19 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../btn/TXK.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,2,5,5</rect>
+                <key>scale9Paddings</key>
+                <rect>2,2,5,5</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../btn/anniu.png</key>
             <key type="filename">../dataPic/kun_0003_an.png</key>
             <struct type="IndividualSpriteSettings">
@@ -490,6 +503,7 @@
             <filename>//desktop-92f0i2f/share/上古鲲/726/红包资源/hongbao.png</filename>
             <filename>//desktop-92f0i2f/share/上古鲲/726/红包资源/mb.png</filename>
             <filename>../btn/kun_0001_lan.png</filename>
+            <filename>../btn/TXK.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

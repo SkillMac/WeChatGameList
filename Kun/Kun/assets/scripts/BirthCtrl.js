@@ -72,13 +72,13 @@ cc.Class({
         if(isStartGame) {
             child.getComponent('NoActionList').init(KUN.GameStatus.speedList[index], obj=>{
                 this.collectChild(index,obj)
-            })
+            },true)
         } else {
             let item = this.getUseableChild(index)
             item.node.x = -1280
             item.init(KUN.GameStatus.speedList[index], obj=>{
                 this.collectChild(index,obj)
-            })
+            },true)
         }
     },
 
@@ -89,7 +89,7 @@ cc.Class({
     },
 
     buildNewFish(data) {
-        cc.loader.loadRes(cc.js.formatStr('prefab/Enemy%d',data.type),cc.Prefab,(err,pfb)=>{
+        cc.loader.loadRes(cc.js.formatStr('prefab/%d',data.type),cc.Prefab,(err,pfb)=>{
             if(err) return
             let node_ = cc.instantiate(pfb)
             // let head_ = this.buildHead(data.headUrl,node_)

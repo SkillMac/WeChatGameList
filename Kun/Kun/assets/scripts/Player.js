@@ -9,8 +9,9 @@ cc.Class({
     },
 
     init(ctrl) {
-        this._super(ctrl)
+        this._super(ctrl,['run'])
         this.initData()
+        this.node.removeComponent('Enemy')
     },
 
     initData() {
@@ -40,6 +41,13 @@ cc.Class({
 
     getFishIndex() {
         return KUN.UserData.getFishIndex()
+    },
+
+    startEat() {
+        //this.node.runAction(cc.sequence(cc.moveBy(0.1,cc.p(-100,0)),cc.moveBy(0.5,cc.p(100,0))))
+        this.playNativeAnima('run',0,()=>{
+            // to do
+        })
     },
 
     openMouth() {
@@ -121,6 +129,7 @@ cc.Class({
 
     onCollisionEnter(other, self) {
         //to do
+        console.log('玩家碰撞触发')
         this.openMouth()
         if(this._fishData.flag == 'eat') {
             this._enemyCtrl = other.getComponent('Enemy')

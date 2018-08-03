@@ -6,7 +6,7 @@ cc.Class({
         
     },
 
-    init(speed,outScreenFunc) {
+    init(speed,outScreenFunc,isStartUp) {
         this._speedX = speed
         this._maxMoveX = 0.02 * this._speedX
         this._using = true
@@ -16,9 +16,11 @@ cc.Class({
         this._speedMul =  1
         this._dir = 1 // -1 | 0  |  1
         this._moveType = 'mountion'  // mountion  | other
+        this._isStartUp = isStartUp
     },
 
     update(dt) {
+        if(!this._isStartUp) return
         let curMoveX = dt * this._speedX * this.getCurSpeedMul()
         let maxMoveX = this._maxMoveX * this.getCurSpeedMul()
         this.node.x += this._dir * (maxMoveX < curMoveX ? maxMoveX : curMoveX)

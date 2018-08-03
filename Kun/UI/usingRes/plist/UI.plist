@@ -4,6 +4,21 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>TXK.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{9,9}</string>
+                <key>spriteSourceSize</key>
+                <string>{9,9}</string>
+                <key>textureRect</key>
+                <string>{{1382,200},{9,9}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>anniu.png</key>
             <dict>
                 <key>aliases</key>
@@ -378,7 +393,7 @@
             <key>size</key>
             <string>{1392,243}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ad72b079260784dd512c674c7b51dc3e:1392f4d134b41f8929319d48a7dfcd49:4d1c460786d5294715f9f3e199a00761$</string>
+            <string>$TexturePacker:SmartUpdate:93d6aafdc87762a006d5979783c7a6ed:00df72b534ac603fa2be45ea9e881797:4d1c460786d5294715f9f3e199a00761$</string>
             <key>textureFileName</key>
             <string>UI.png</string>
         </dict>
