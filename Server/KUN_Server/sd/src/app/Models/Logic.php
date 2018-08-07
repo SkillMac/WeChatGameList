@@ -116,9 +116,13 @@ class Logic extends Model
 		if($tmp_array['flag'] == 'eaten') {
 			$tmp_array['coast_coin'] = - $tmp_array['coast_coin'];
 		}
+
+		$tmp_array['flee_counts'] = $curConfig['flag'] == 'eaten' ? mt_rand(1,$level) : 0;
+
 		// deal user data
 		$this->userDataM->setValByKey($id,'coast_coin',(string)($tmp_array['coast_coin']));
 		$this->userDataM->setValByKey($id,'coast_energy',(string)-1);
+		// $this->userDataM->setValByKey($id, 'flee_counts',(string)$tmp_array['flee_counts']);
 
 		$energy = (int)($this->userDataM->getValByKey($id,'energy'));
 		$coast_energy = (int)($this->userDataM->getValByKey($id,'coast_energy'));
@@ -136,6 +140,8 @@ class Logic extends Model
 		$tmp_array['user'] = $this->getUserInfo($id,true);
 		$tmp_array['user']['energy'] += 1;
 		$tmp_array['head_url'] = 'head/' . (string)mt_rand(1,$this->tmp_head_counts) . '.jpg';
+		// flee_counts //// to do
+		
 		return $tmp_array;
 	}
 
@@ -202,16 +208,16 @@ class Logic extends Model
 	public function flee($id)
 	{
 		$energy = (int)($this->userDataM->getValByKey($id,'energy'));
+		// $flee_energy = (int)($this->userDataM->getValByKey($id,'flee_counts'));
 		$coast = -1;
 		if($energy + $coast < 0)
 		{
-			$coast_energy = -$energy;
+			$coast = -$energy;
 		}
-		if($coast_energy == 0)
-		{
+		if($coast == 0) {
 			return '-1';
 		}
-		$this->userDataM->incrValByKey($id,'energy',-1);
+		$this->userDataM->incrValByKey($id,'energy',$coast);
 		return '1';
 	}
 

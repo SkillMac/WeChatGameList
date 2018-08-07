@@ -18,6 +18,8 @@ use Server\CoreBase\Model;
 * login_time
 *
 * start_flock_energy_time
+*
+* flee_counts
 * 
 * //
 * priceList
