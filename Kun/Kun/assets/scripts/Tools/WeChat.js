@@ -268,6 +268,7 @@ let T = cc.Class({
 
         // 显示
         wx.onShow((res)=>{
+            KUN.GameStatus.status = KUN.GameStatus.statusList[2]
             console.log('切回前台信息',res)
             // shareTicket
             if(res.query.type == shareParams.type.shareEnergy && res.shareTicket){

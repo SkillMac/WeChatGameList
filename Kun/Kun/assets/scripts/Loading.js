@@ -12,7 +12,7 @@ cc.Class({
         manager.FIXED_TIME_STEP = 1 / 30
         manager.VELOCITY_ITERATIONS = 8
         manager.POSITION_ITERATIONS  = 8
-        manager.enabledDebugDraw  = true
+        // manager.enabledDebugDraw  = true
 
         this.init()
         cc.director.preloadScene('MainGame')

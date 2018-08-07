@@ -17,6 +17,8 @@ cc.Class({
         this._dir = 1 // -1 | 0  |  1
         this._moveType = 'mountion'  // mountion  | other
         this._isStartUp = isStartUp
+        this._maxDis = 700
+        this._minDis = -700
     },
 
     update(dt) {
@@ -79,6 +81,14 @@ cc.Class({
         this._outScreenFunc = func
     },
 
+    setMaxDis(dis) {
+        this._maxDis = dis
+    },
+
+    setMinDis(dis) {
+        this._minDis = dis
+    },
+
     isOutScreen() {
         let dis = 0
         if(this._dir < 0) {
@@ -86,7 +96,7 @@ cc.Class({
         } else if (this._dir > 0) {
             dis = this.node.x - Math.abs(this.node.scaleX) * this.node.width / 2
         }
-        if((this._dir > 0 && dis > 700) ||(this._dir < 0 && dis < -700)) {
+        if((this._dir > 0 && dis > this._maxDis) ||(this._dir < 0 && dis < this._minDis)) {
             this.setSpeed(0)
             this.node.active = false
             this.setUsingFlag(false)
@@ -95,5 +105,9 @@ cc.Class({
                 this._outScreenFunc(this)
             }
         }
-    },    
+    },
+    
+    shutDown() {
+        this._isStartUp = false
+    },
 });

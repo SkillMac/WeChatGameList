@@ -268,6 +268,18 @@
     "_atlas": null
   },
   {
+    "__type__": "31029KtGzRIXJ64IE7PoGJ/",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "head": {
+      "__id__": 5
+    }
+  },
+  {
     "__type__": "cc.BoxCollider",
     "_name": "",
     "_objFlags": 0,
@@ -278,25 +290,13 @@
     "tag": 0,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": -115,
+      "x": 0,
       "y": 0
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 505,
-      "height": 321
-    }
-  },
-  {
-    "__type__": "31029KtGzRIXJ64IE7PoGJ/",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "head": {
-      "__id__": 5
+      "width": 1031,
+      "height": 380
     }
   },
   {

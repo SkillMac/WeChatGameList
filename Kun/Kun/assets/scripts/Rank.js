@@ -39,7 +39,7 @@ cc.Class({
     },
 
     onSlideRankEvent() {
-        this.rank_bg.node.on('touchmove',(event)=>{
+        this.node.on('touchmove',(event)=>{
             KUN.GameTools.sendMessage({
                 type: KUN.GameStatus.msgType.slideRank,
                 y: event.getDelta().y,

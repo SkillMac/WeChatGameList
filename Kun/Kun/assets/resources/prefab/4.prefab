@@ -117,7 +117,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -339,
-      "y": 43
+      "y": 57
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -268,6 +268,18 @@
     "_atlas": null
   },
   {
+    "__type__": "31029KtGzRIXJ64IE7PoGJ/",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "head": {
+      "__id__": 5
+    }
+  },
+  {
     "__type__": "cc.BoxCollider",
     "_name": "",
     "_objFlags": 0,
@@ -278,25 +290,13 @@
     "tag": 0,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": -94,
+      "x": 0,
       "y": 0
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 435,
-      "height": 321
-    }
-  },
-  {
-    "__type__": "31029KtGzRIXJ64IE7PoGJ/",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "head": {
-      "__id__": 5
+      "width": 1028,
+      "height": 339
     }
   },
   {

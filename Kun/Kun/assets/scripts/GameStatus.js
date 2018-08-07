@@ -24,6 +24,7 @@ let T = {
     size_cfg_p: [[0.4,0.8]],
     // ======enemy fish config======
     size_cfg_mul_e: 0.7,
+    enemyType : '',
 
     // ======game obj flag======
     // eating   loading   swimming

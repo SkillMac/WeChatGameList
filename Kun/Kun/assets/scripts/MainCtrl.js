@@ -73,6 +73,16 @@ cc.Class({
         this._zoom_u = 1
 
         this._clickCounts = 0
+
+        this._curEnemyCtrl = null
+    },
+
+    registerEnemyCtrl(enemyCtrl) {
+        this._curEnemyCtrl = enemyCtrl
+    },
+
+    unRegisterEnemyCtrl() {
+        this._curEnemyCtrl = null
     },
 
     zoomOut() {
@@ -175,10 +185,10 @@ cc.Class({
         this._playerCtrl.eatenEvent()
     },
 
-    finishEatBefore() {
+    finishEatBefore(type_) {
         this.setBgSpeedMul(1)
         // let goldPos = this.node.getChildByName('GoldPos').getPosition()
-        this._playerCtrl.collectGold()
+        this._playerCtrl.collectGold(type_)
     },
 
     finishEat() {
@@ -187,7 +197,7 @@ cc.Class({
         KUN.Server.rFinishEat(()=>{
             this.changeGameStatus(2)
         })
-        this.zoomInOut_u(null,true)
+        // this.zoomInOut_u(null,true)
     },
 
     changeGameStatus(index) {
@@ -198,6 +208,20 @@ cc.Class({
         if(KUN.GameStatus.status == KUN.GameStatus.statusList[2]) {
             return true
         } else {
+            if(KUN.GameStatus.status == KUN.GameStatus.statusList[1] && KUN.GameStatus.enemyType == "eaten" && this._curEnemyCtrl) {
+                if(KUN.Server.checkIsCanPlay()) {
+                    KUN.Server.rFlee(res=>{
+                        if(res == '-1') {
+                            this.showNoEnergyPanel()
+                        } else {
+                            this._userInfoCtrl.updateEnergy()
+                            this._curEnemyCtrl.changeDir(1)
+                        }  
+                    })
+                } else {
+                    this.showNoEnergyPanel()
+                }
+            }
             return false
         }
     },

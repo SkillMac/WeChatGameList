@@ -57,8 +57,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1022,
-      "height": 321
+      "width": 1032,
+      "height": 393
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -132,7 +132,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "4b5d508b-7b76-41bf-801d-1e3500a8f3e1"
+      "__uuid__": "4cb7d55a-5aac-422f-8ac3-ac277a40f951"
     },
     "fileId": "0dn4PbZHxASJQyPGcpvTyk",
     "sync": false
@@ -221,7 +221,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "4b5d508b-7b76-41bf-801d-1e3500a8f3e1"
+      "__uuid__": "4cb7d55a-5aac-422f-8ac3-ac277a40f951"
     },
     "fileId": "bfS/2V0m5BmJ/jr/aoEG/7",
     "sync": false
@@ -250,7 +250,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "db198716-9409-4a87-8c36-95fa16afc295"
+      "__uuid__": "f403b982-6c8e-4402-b9e2-5402cc30fa99"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -268,26 +268,6 @@
     "_atlas": null
   },
   {
-    "__type__": "cc.BoxCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "tag": 0,
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": -94,
-      "y": 0
-    },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 435,
-      "height": 321
-    }
-  },
-  {
     "__type__": "31029KtGzRIXJ64IE7PoGJ/",
     "_name": "",
     "_objFlags": 0,
@@ -300,12 +280,32 @@
     }
   },
   {
+    "__type__": "cc.BoxCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 1032,
+      "height": 393
+    }
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "4b5d508b-7b76-41bf-801d-1e3500a8f3e1"
+      "__uuid__": "4cb7d55a-5aac-422f-8ac3-ac277a40f951"
     },
     "fileId": "e6jxj7g09C8apByHvDlfU9",
     "sync": false

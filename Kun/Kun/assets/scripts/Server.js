@@ -6,12 +6,13 @@ let T = {
         type: 3,
         level: 3,
         coin: 1,
-        flag: 'eaten',
+        flag: 'meet',
         headUrl: '',
+        fleeCounts: 0,
     },
 
     defaultUserData: {
-        coin:21,
+        coin:0,
         energy:50,
         level:1,
         maxEnergy:50,
@@ -81,8 +82,14 @@ let T = {
         ed.type = data.fish_index
         ed.flag = data.flag
         ed.headUrl = data.head_url
+        ed.fleeCounts = data.flee_counts
         T.incrementUserData.energy_dt = Number(data.user.coast_energy)
-        T.incrementUserData.coin_dt = Number(ed.coin)
+        if(data.flag == 'eaten') {
+            T.incrementUserData.coin_dt = 0
+        } else {
+            T.incrementUserData.coin_dt = Number(ed.coin)
+        }
+        
         T.initUserData(data.user)
     },
 
@@ -99,12 +106,21 @@ let T = {
     },
 
     rFlee(callback) {
+        // let usr = T.defaultUserData
+        // usr.coin += T.incrementUserData.coin_dt
         T.rGet('flee',{
             id: T.id,
         },(res)=>{
             // this.initUserData(res)
+            console.log('逃跑',res)
+            if(res == '-1') {
+                callback(res)
+                return
+            }
+            T.defaultUserData.energy --
+            KUN.UserData.setEnergy(T.defaultUserData.energy)
             if(callback) {
-                callback()
+                callback(res)
             }
         })
     },
@@ -262,6 +278,7 @@ let T = {
                     data.user = T.defaultUserData
                     data.user.coast_energy = -1
                     data.head_url = 'head/4'
+                    data.flee_counts = 2
                     success(data)
                     break;
                 case 'finishEat':
@@ -271,6 +288,9 @@ let T = {
                     success('-1')
                     break;
                 case 'upgrade':
+                    success('1')
+                    break;
+                case 'flee':
                     success('1')
                     break;
                 default:
@@ -287,6 +307,11 @@ let T = {
 
     checkIsOnWindows(){
         return cc.sys.platform == 0 || cc.sys.platform == 101
+    },
+
+    lFreeFail() {
+        T.defaultUserData.coin += T.defaultEnemyData.coin
+        KUN.UserData.setCoin(T.defaultUserData.coin)
     }
 }
 
