@@ -1,3 +1,4 @@
+let GameTools = require('GameTools');
 
 let T = cc.Class({
     extends: cc.Component,
@@ -23,7 +24,7 @@ let T = cc.Class({
             if(this.call_back) {
                 this.call_back()
             }
-            this.node.destroy()
+            GameTools.destroy(this.node);
         })));
     },
 

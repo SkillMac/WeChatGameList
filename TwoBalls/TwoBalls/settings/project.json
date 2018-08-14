@@ -16,9 +16,12 @@
   "excluded-modules": [
     "TiledMap",
     "Spine Skeleton",
+    "VideoPlayer",
+    "WebView",
     "Collider",
     "DragonBones",
-    "Physics"
+    "Physics",
+    "Camera"
   ],
   "fit-height": true,
   "fit-width": false,

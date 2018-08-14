@@ -30,7 +30,7 @@
   "title": "TwoBalls",
   "webOrientation": "auto",
   "wechatgame": {
-    "REMOTE_SERVER_ROOT": "https://vdgames.vdongchina.com/TB/1.03",
+    "REMOTE_SERVER_ROOT": "https://vdgames.vdongchina.com/TB/1.05",
     "appid": "wx63453205f722ae15",
     "isSubdomain": false,
     "orientation": "portrait",

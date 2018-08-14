@@ -34,10 +34,11 @@ cc.Class({
     // 刷新子域的纹理
     _updateSubDomainCanvas() {
         if (CC_WECHATGAME && this.updateRankViewFlag) {
-            if (window.sharedCanvas != undefined) {
+            if (window.sharedCanvas != undefined && this.tex) {
                 this.tex.initWithElement(window.sharedCanvas);
                 this.tex.handleLoadedTexture();
-                this.rankView.spriteFrame = new cc.SpriteFrame(this.tex);
+                if((!this.rankView.spriteFrame) || this.rankView.spriteFrame && this.rankView.spriteFrame.isValid)
+                    this.rankView.spriteFrame = new cc.SpriteFrame(this.tex);
             }
         }
     },
@@ -124,6 +125,7 @@ cc.Class({
         this.panelShow()
         this.updateRankViewFlag = false;
         cc.loader.loadRes("prefab/rank", cc.Prefab, function(err, prefab){
+            if(err) return
             let node = cc.instantiate(prefab);
             node.getComponent('rankCtrl').init(()=>{
                 self.panelHide()

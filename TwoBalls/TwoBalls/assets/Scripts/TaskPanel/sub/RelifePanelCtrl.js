@@ -1,5 +1,7 @@
 
-let parentPanelCtrl = require('PanelCtrl')
+let parentPanelCtrl = require('PanelCtrl');
+let GameTools = require('GameTools');
+
 cc.Class({
     extends: parentPanelCtrl,
 
@@ -26,7 +28,7 @@ cc.Class({
             if(this.call_back) {
                 this.call_back()
             }
-            this.node.destroy()
+            GameTools.destroy(this.node);
         })))
     },
 

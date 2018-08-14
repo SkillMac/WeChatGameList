@@ -35,10 +35,11 @@ cc.Class({
     // 刷新子域的纹理
     _updateSubDomainCanvas() {
         if (CC_WECHATGAME) {
-            if (window.sharedCanvas != undefined) {
+            if (window.sharedCanvas != undefined && this.tex) {
                 this.tex.initWithElement(window.sharedCanvas)
                 this.tex.handleLoadedTexture()
-                this.rankView.spriteFrame = new cc.SpriteFrame(this.tex)
+                if((!this.rankView.spriteFrame) || this.rankView.spriteFrame && this.rankView.spriteFrame.isValid)
+                    this.rankView.spriteFrame = new cc.SpriteFrame(this.tex)
             }
         }
     },
@@ -69,7 +70,7 @@ cc.Class({
         if(this.call_back) {
             this.call_back()
         }
-        this.node.destroy()
+        GameTools.destroy(this.node);
     },
     groupBtnEvent(event) {
         // 查看群排行

@@ -49,14 +49,6 @@ class UserData extends Model
 		}
 	}
 
-
-	public function testModel()//$key, $value)
-	{
-		// $result = $this->redis->set($key,$value);
-		$result = $this->redis->ping();
-		return $result;
-	}
-
 	public function saveUserOpenid($userInfo)
 	{
 		$openid = $userInfo->openid;

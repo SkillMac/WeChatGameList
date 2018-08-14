@@ -31,7 +31,7 @@ cc.Class({
         }
         this.readData();
         // -------------------------- 测试  //
-        this.clearData();
+        // this.clearData();
     },
 
     writeData() {

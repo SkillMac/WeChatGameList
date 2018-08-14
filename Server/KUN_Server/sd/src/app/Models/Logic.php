@@ -122,8 +122,8 @@ class Logic extends Model
 		// deal user data
 		$this->userDataM->setValByKey($id,'coast_coin',(string)($tmp_array['coast_coin']));
 		$this->userDataM->setValByKey($id,'coast_energy',(string)-1);
-		// $this->userDataM->setValByKey($id, 'flee_counts',(string)$tmp_array['flee_counts']);
-
+		$this->userDataM->setValByKey($id, 'flee_counts',(string)$tmp_array['flee_counts']);
+		// calc user energy data
 		$energy = (int)($this->userDataM->getValByKey($id,'energy'));
 		$coast_energy = (int)($this->userDataM->getValByKey($id,'coast_energy'));
 		if($energy + $coast_energy < 0)
@@ -131,22 +131,65 @@ class Logic extends Model
 			$coast_energy = -$energy;
 		}
 		$this->userDataM->incrValByKey($id,'energy',$coast_energy);
-
 		$maxEnergy = (int)($this->userDataM->getValByKey($id,'maxEnergy'));
 		if($energy == $maxEnergy - 1) {
 			$this->userDataM->setValByKey($id,'start_flock_energy_time',(string)time());
 		}
 
+		// add user data to new fish data
 		$tmp_array['user'] = $this->getUserInfo($id,true);
-		$tmp_array['user']['energy'] += 1;
+
+		// add nick name and head url logic
+		$tmp_nickName_list = $this->userDataM->get('tmpNickNameList');
+		$tmp_nickName_list = json_decode($tmp_nickName_list,true);
+		$nickName_index = mt_rand(0,count($tmp_nickName_list)-1);
+		$tmp_array['nick_name'] = $tmp_nickName_list[$nickName_index];
 		$tmp_array['head_url'] = 'head/' . (string)mt_rand(1,$this->tmp_head_counts) . '.jpg';
 		// flee_counts //// to do
 		
 		return $tmp_array;
 	}
 
-	public function buildNewFish($id)
+	public function deal_last_fish_data($id, $result)
 	{
+		if(!$result || !$id) return;
+		$res = json_decode($result,true);
+		if(!$res['type']) return;
+		switch ($res['type']) {
+			case 'passBy':
+			case 'meet':
+			case 'eat':
+			case 'eaten':
+				$coast_coin = (int)($this->userDataM->getValByKey($id,'coast_coin'));
+				$coin = (int)($this->userDataM->getValByKey($id,'coin'));
+				
+				if($coin + $coast_coin < 0)
+				{
+					$coast_coin = -$coin;
+				}
+				$this->userDataM->incrValByKey($id,'coin',$coast_coin);
+				break;
+			case 'flee':
+				$flee_counts = -(int)($this->userDataM->getValByKey($id,'flee_counts'));
+				$energy = (int)($this->userDataM->getValByKey($id, 'energy'));
+				if($energy + $flee_counts < 0)
+				{
+					$flee_counts = -$energy;
+				}
+				$this->userDataM->incrValByKey($id,'energy',$flee_counts);
+				break;
+			case 'first':
+				// undo
+				break;
+			default:
+				// to do
+				break;
+		}
+	}
+
+	public function buildNewFish($id, $last_result)
+	{
+		$this->deal_last_fish_data($id, $last_result);
 		$energy = (int)($this->userDataM->getValByKey($id,'energy'));
 		if($energy <= 0)
 		{
@@ -168,7 +211,7 @@ class Logic extends Model
 		else {
 			$priceList = [];
 			for ($i=1; $i < 21; $i++) {
-				$priceList[$i] = (pow($i, 2) - $i + 2) * 500;
+				$priceList[$i] = (pow($i, 2) - $i + 2) * 50;
 			}
 			$this->userDataM->set('priceList',json_encode($priceList));
 			return $priceList;
@@ -265,8 +308,8 @@ class Logic extends Model
 
 		if($coin - $price >= 0)
 		{
-			$zoom = (int)$this->userDataM->getValByKey($id,'zoom');
-			$zoom = $zoom - ($zoom - 0.5) * 0.1;
+			$zoom = (float)$this->userDataM->getValByKey($id,'zoom');
+			$zoom = round(($zoom - ($zoom - 0.5) * 0.1),2);
 			$this->userDataM->setValByKey($id,'zoom',(string)$zoom);
 			$this->userDataM->incrValByKey($id,'coin',-$price);
 			$this->userDataM->incrValByKey($id,'level',1);

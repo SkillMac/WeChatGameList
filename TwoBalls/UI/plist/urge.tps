@@ -187,7 +187,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">res/打击文字/1.png</key>
+            <key type="filename">res/打击文字_程序/1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -200,20 +200,20 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/10.png</key>
+            <key type="filename">res/打击文字_程序/10.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>53,21,105,43</rect>
+                <rect>26,13,51,25</rect>
                 <key>scale9Paddings</key>
-                <rect>53,21,105,43</rect>
+                <rect>26,13,51,25</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/100.png</key>
+            <key type="filename">res/打击文字_程序/100.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -226,7 +226,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/101.png</key>
+            <key type="filename">res/打击文字_程序/101.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -239,7 +239,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/102.png</key>
+            <key type="filename">res/打击文字_程序/102.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -252,7 +252,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/103.png</key>
+            <key type="filename">res/打击文字_程序/103.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -265,9 +265,8 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/104.png</key>
-            <key type="filename">res/打击文字/25.png</key>
-            <key type="filename">res/打击文字/59.png</key>
+            <key type="filename">res/打击文字_程序/104.png</key>
+            <key type="filename">res/打击文字_程序/59.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -280,7 +279,8 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/105.png</key>
+            <key type="filename">res/打击文字_程序/105.png</key>
+            <key type="filename">res/打击文字_程序/14.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -293,7 +293,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/106.png</key>
+            <key type="filename">res/打击文字_程序/106.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -306,7 +306,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/107.png</key>
+            <key type="filename">res/打击文字_程序/107.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -319,597 +319,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/108.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>37,18,73,35</rect>
-                <key>scale9Paddings</key>
-                <rect>37,18,73,35</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/11.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>51,13,103,27</rect>
-                <key>scale9Paddings</key>
-                <rect>51,13,103,27</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/12.png</key>
-            <key type="filename">res/打击文字/31.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>55,27,111,54</rect>
-                <key>scale9Paddings</key>
-                <rect>55,27,111,54</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/13.png</key>
-            <key type="filename">res/打击文字/32.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>36,18,73,35</rect>
-                <key>scale9Paddings</key>
-                <rect>36,18,73,35</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/14.png</key>
-            <key type="filename">res/打击文字/15.png</key>
-            <key type="filename">res/打击文字/36.png</key>
-            <key type="filename">res/打击文字/38.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>54,20,108,39</rect>
-                <key>scale9Paddings</key>
-                <rect>54,20,108,39</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/16.png</key>
-            <key type="filename">res/打击文字/39.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>69,19,138,39</rect>
-                <key>scale9Paddings</key>
-                <rect>69,19,138,39</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/17.png</key>
-            <key type="filename">res/打击文字/42.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>23,53,47,105</rect>
-                <key>scale9Paddings</key>
-                <rect>23,53,47,105</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/18.png</key>
-            <key type="filename">res/打击文字/43.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>74,24,147,48</rect>
-                <key>scale9Paddings</key>
-                <rect>74,24,147,48</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/19.png</key>
-            <key type="filename">res/打击文字/54.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>55,30,109,59</rect>
-                <key>scale9Paddings</key>
-                <rect>55,30,109,59</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/2.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>43,20,86,39</rect>
-                <key>scale9Paddings</key>
-                <rect>43,20,86,39</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/20.png</key>
-            <key type="filename">res/打击文字/55.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>55,18,110,35</rect>
-                <key>scale9Paddings</key>
-                <rect>55,18,110,35</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/21.png</key>
-            <key type="filename">res/打击文字/56.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>54,23,107,45</rect>
-                <key>scale9Paddings</key>
-                <rect>54,23,107,45</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/22.png</key>
-            <key type="filename">res/打击文字/57.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>56,20,112,39</rect>
-                <key>scale9Paddings</key>
-                <rect>56,20,112,39</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/23.png</key>
-            <key type="filename">res/打击文字/58.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>34,13,67,25</rect>
-                <key>scale9Paddings</key>
-                <rect>34,13,67,25</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/24.png</key>
-            <key type="filename">res/打击文字/60.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>43,23,85,45</rect>
-                <key>scale9Paddings</key>
-                <rect>43,23,85,45</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/26.png</key>
-            <key type="filename">res/打击文字/61.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>64,18,129,36</rect>
-                <key>scale9Paddings</key>
-                <rect>64,18,129,36</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/27.png</key>
-            <key type="filename">res/打击文字/62.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>63,19,127,39</rect>
-                <key>scale9Paddings</key>
-                <rect>63,19,127,39</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/28.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>43,12,85,24</rect>
-                <key>scale9Paddings</key>
-                <rect>43,12,85,24</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/29.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>50,17,99,35</rect>
-                <key>scale9Paddings</key>
-                <rect>50,17,99,35</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/3.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>58,31,116,61</rect>
-                <key>scale9Paddings</key>
-                <rect>58,31,116,61</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/30.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>52,17,104,34</rect>
-                <key>scale9Paddings</key>
-                <rect>52,17,104,34</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/33.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>48,15,97,30</rect>
-                <key>scale9Paddings</key>
-                <rect>48,15,97,30</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/34.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>48,16,97,32</rect>
-                <key>scale9Paddings</key>
-                <rect>48,16,97,32</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/35.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>45,20,90,40</rect>
-                <key>scale9Paddings</key>
-                <rect>45,20,90,40</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/37.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>42,17,85,34</rect>
-                <key>scale9Paddings</key>
-                <rect>42,17,85,34</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/4.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>48,20,96,41</rect>
-                <key>scale9Paddings</key>
-                <rect>48,20,96,41</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/40.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>20,8,39,15</rect>
-                <key>scale9Paddings</key>
-                <rect>20,8,39,15</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/41.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>74,19,149,37</rect>
-                <key>scale9Paddings</key>
-                <rect>74,19,149,37</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/44.png</key>
-            <key type="filename">res/打击文字/84.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>43,16,85,33</rect>
-                <key>scale9Paddings</key>
-                <rect>43,16,85,33</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/45.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>31,17,63,33</rect>
-                <key>scale9Paddings</key>
-                <rect>31,17,63,33</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/46.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>42,16,85,31</rect>
-                <key>scale9Paddings</key>
-                <rect>42,16,85,31</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/47.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>35,12,69,23</rect>
-                <key>scale9Paddings</key>
-                <rect>35,12,69,23</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/48.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>47,23,93,45</rect>
-                <key>scale9Paddings</key>
-                <rect>47,23,93,45</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/49.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>47,19,94,39</rect>
-                <key>scale9Paddings</key>
-                <rect>47,19,94,39</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/5.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>27,12,53,23</rect>
-                <key>scale9Paddings</key>
-                <rect>27,12,53,23</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/50.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>52,12,105,24</rect>
-                <key>scale9Paddings</key>
-                <rect>52,12,105,24</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/51.png</key>
-            <key type="filename">res/打击文字/52.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>35,12,69,24</rect>
-                <key>scale9Paddings</key>
-                <rect>35,12,69,24</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/53.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>54,16,108,31</rect>
-                <key>scale9Paddings</key>
-                <rect>54,16,108,31</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/6.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>23,12,46,23</rect>
-                <key>scale9Paddings</key>
-                <rect>23,12,46,23</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/63.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>45,17,91,33</rect>
-                <key>scale9Paddings</key>
-                <rect>45,17,91,33</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/64.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>45,21,91,41</rect>
-                <key>scale9Paddings</key>
-                <rect>45,21,91,41</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/65.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>35,14,70,28</rect>
-                <key>scale9Paddings</key>
-                <rect>35,14,70,28</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/66.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>36,14,71,27</rect>
-                <key>scale9Paddings</key>
-                <rect>36,14,71,27</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/67.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>22,12,44,24</rect>
-                <key>scale9Paddings</key>
-                <rect>22,12,44,24</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/68.png</key>
+            <key type="filename">res/打击文字_程序/108.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -922,163 +332,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/69.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>43,16,85,32</rect>
-                <key>scale9Paddings</key>
-                <rect>43,16,85,32</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/7.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>34,20,67,39</rect>
-                <key>scale9Paddings</key>
-                <rect>34,20,67,39</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/70.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>43,15,85,31</rect>
-                <key>scale9Paddings</key>
-                <rect>43,15,85,31</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/71.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>40,11,80,21</rect>
-                <key>scale9Paddings</key>
-                <rect>40,11,80,21</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/72.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>40,12,80,23</rect>
-                <key>scale9Paddings</key>
-                <rect>40,12,80,23</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/73.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>21,12,43,23</rect>
-                <key>scale9Paddings</key>
-                <rect>21,12,43,23</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/74.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>36,16,71,31</rect>
-                <key>scale9Paddings</key>
-                <rect>36,16,71,31</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/75.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>32,16,65,31</rect>
-                <key>scale9Paddings</key>
-                <rect>32,16,65,31</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/76.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>39,11,79,21</rect>
-                <key>scale9Paddings</key>
-                <rect>39,11,79,21</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/77.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>30,12,59,24</rect>
-                <key>scale9Paddings</key>
-                <rect>30,12,59,24</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/78.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>30,12,61,23</rect>
-                <key>scale9Paddings</key>
-                <rect>30,12,61,23</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/79.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>27,29,53,58</rect>
-                <key>scale9Paddings</key>
-                <rect>27,29,53,58</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/8.png</key>
+            <key type="filename">res/打击文字_程序/11.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1091,112 +345,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/80.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>34,17,68,33</rect>
-                <key>scale9Paddings</key>
-                <rect>34,17,68,33</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/81.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>44,14,88,27</rect>
-                <key>scale9Paddings</key>
-                <rect>44,14,88,27</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/82.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>51,16,101,32</rect>
-                <key>scale9Paddings</key>
-                <rect>51,16,101,32</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/83.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>43,13,85,26</rect>
-                <key>scale9Paddings</key>
-                <rect>43,13,85,26</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/85.png</key>
-            <key type="filename">res/打击文字/86.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>51,16,101,33</rect>
-                <key>scale9Paddings</key>
-                <rect>51,16,101,33</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/87.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>29,14,58,27</rect>
-                <key>scale9Paddings</key>
-                <rect>29,14,58,27</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/88.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>34,15,68,30</rect>
-                <key>scale9Paddings</key>
-                <rect>34,15,68,30</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/89.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>42,17,84,33</rect>
-                <key>scale9Paddings</key>
-                <rect>42,17,84,33</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">res/打击文字/9.png</key>
+            <key type="filename">res/打击文字_程序/12.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1209,7 +358,1038 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/90.png</key>
+            <key type="filename">res/打击文字_程序/13.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>39,14,78,27</rect>
+                <key>scale9Paddings</key>
+                <rect>39,14,78,27</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/15.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>50,15,99,31</rect>
+                <key>scale9Paddings</key>
+                <rect>50,15,99,31</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/16.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>53,21,105,43</rect>
+                <key>scale9Paddings</key>
+                <rect>53,21,105,43</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/17.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,12,85,25</rect>
+                <key>scale9Paddings</key>
+                <rect>43,12,85,25</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/18.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>63,13,127,25</rect>
+                <key>scale9Paddings</key>
+                <rect>63,13,127,25</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/19.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>49,17,98,33</rect>
+                <key>scale9Paddings</key>
+                <rect>49,17,98,33</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,20,86,39</rect>
+                <key>scale9Paddings</key>
+                <rect>43,20,86,39</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/20.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>36,12,72,25</rect>
+                <key>scale9Paddings</key>
+                <rect>36,12,72,25</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/21.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>28,13,55,26</rect>
+                <key>scale9Paddings</key>
+                <rect>28,13,55,26</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/22.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>28,13,55,27</rect>
+                <key>scale9Paddings</key>
+                <rect>28,13,55,27</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/23.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>42,13,83,27</rect>
+                <key>scale9Paddings</key>
+                <rect>42,13,83,27</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/24.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>24,14,47,27</rect>
+                <key>scale9Paddings</key>
+                <rect>24,14,47,27</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/25.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>32,18,63,36</rect>
+                <key>scale9Paddings</key>
+                <rect>32,18,63,36</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/26.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>31,15,61,29</rect>
+                <key>scale9Paddings</key>
+                <rect>31,15,61,29</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/27.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,12,85,24</rect>
+                <key>scale9Paddings</key>
+                <rect>43,12,85,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/28.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>50,17,99,35</rect>
+                <key>scale9Paddings</key>
+                <rect>50,17,99,35</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/29.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>52,17,104,34</rect>
+                <key>scale9Paddings</key>
+                <rect>52,17,104,34</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/3.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>58,31,116,61</rect>
+                <key>scale9Paddings</key>
+                <rect>58,31,116,61</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/30.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>51,13,103,27</rect>
+                <key>scale9Paddings</key>
+                <rect>51,13,103,27</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/31.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>55,27,111,54</rect>
+                <key>scale9Paddings</key>
+                <rect>55,27,111,54</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/32.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>48,15,97,30</rect>
+                <key>scale9Paddings</key>
+                <rect>48,15,97,30</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/33.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>48,16,97,32</rect>
+                <key>scale9Paddings</key>
+                <rect>48,16,97,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/34.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>45,20,90,40</rect>
+                <key>scale9Paddings</key>
+                <rect>45,20,90,40</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/35.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>36,18,73,35</rect>
+                <key>scale9Paddings</key>
+                <rect>36,18,73,35</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/36.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>42,17,85,34</rect>
+                <key>scale9Paddings</key>
+                <rect>42,17,85,34</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/37.png</key>
+            <key type="filename">res/打击文字_程序/38.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>54,20,108,39</rect>
+                <key>scale9Paddings</key>
+                <rect>54,20,108,39</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/39.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>20,8,39,15</rect>
+                <key>scale9Paddings</key>
+                <rect>20,8,39,15</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>48,20,96,41</rect>
+                <key>scale9Paddings</key>
+                <rect>48,20,96,41</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/40.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>69,19,138,39</rect>
+                <key>scale9Paddings</key>
+                <rect>69,19,138,39</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/41.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>74,19,149,37</rect>
+                <key>scale9Paddings</key>
+                <rect>74,19,149,37</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/42.png</key>
+            <key type="filename">res/打击文字_程序/84.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,16,85,33</rect>
+                <key>scale9Paddings</key>
+                <rect>43,16,85,33</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/43.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>74,24,147,48</rect>
+                <key>scale9Paddings</key>
+                <rect>74,24,147,48</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/44.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>31,17,63,33</rect>
+                <key>scale9Paddings</key>
+                <rect>31,17,63,33</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/45.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>42,16,85,31</rect>
+                <key>scale9Paddings</key>
+                <rect>42,16,85,31</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/46.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>35,12,69,23</rect>
+                <key>scale9Paddings</key>
+                <rect>35,12,69,23</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/47.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>47,23,93,45</rect>
+                <key>scale9Paddings</key>
+                <rect>47,23,93,45</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/48.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>47,19,94,39</rect>
+                <key>scale9Paddings</key>
+                <rect>47,19,94,39</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/49.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>52,12,105,24</rect>
+                <key>scale9Paddings</key>
+                <rect>52,12,105,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/5.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>27,12,53,23</rect>
+                <key>scale9Paddings</key>
+                <rect>27,12,53,23</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/50.png</key>
+            <key type="filename">res/打击文字_程序/51.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>35,12,69,24</rect>
+                <key>scale9Paddings</key>
+                <rect>35,12,69,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/52.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>54,16,108,31</rect>
+                <key>scale9Paddings</key>
+                <rect>54,16,108,31</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/53.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>76,15,151,29</rect>
+                <key>scale9Paddings</key>
+                <rect>76,15,151,29</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/54.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>55,30,109,59</rect>
+                <key>scale9Paddings</key>
+                <rect>55,30,109,59</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/55.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>55,18,110,35</rect>
+                <key>scale9Paddings</key>
+                <rect>55,18,110,35</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/56.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>54,23,107,45</rect>
+                <key>scale9Paddings</key>
+                <rect>54,23,107,45</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/57.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>56,20,112,39</rect>
+                <key>scale9Paddings</key>
+                <rect>56,20,112,39</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/58.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>34,13,67,25</rect>
+                <key>scale9Paddings</key>
+                <rect>34,13,67,25</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/6.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>23,12,46,23</rect>
+                <key>scale9Paddings</key>
+                <rect>23,12,46,23</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/60.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,23,85,45</rect>
+                <key>scale9Paddings</key>
+                <rect>43,23,85,45</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/61.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>64,18,129,36</rect>
+                <key>scale9Paddings</key>
+                <rect>64,18,129,36</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/62.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>63,19,127,39</rect>
+                <key>scale9Paddings</key>
+                <rect>63,19,127,39</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/63.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>45,17,91,33</rect>
+                <key>scale9Paddings</key>
+                <rect>45,17,91,33</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/64.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>45,21,91,41</rect>
+                <key>scale9Paddings</key>
+                <rect>45,21,91,41</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/65.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>35,14,70,28</rect>
+                <key>scale9Paddings</key>
+                <rect>35,14,70,28</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/66.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>36,14,71,27</rect>
+                <key>scale9Paddings</key>
+                <rect>36,14,71,27</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/67.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>22,12,44,24</rect>
+                <key>scale9Paddings</key>
+                <rect>22,12,44,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/68.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>37,18,73,35</rect>
+                <key>scale9Paddings</key>
+                <rect>37,18,73,35</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/69.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,16,85,32</rect>
+                <key>scale9Paddings</key>
+                <rect>43,16,85,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/7.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>64,12,127,24</rect>
+                <key>scale9Paddings</key>
+                <rect>64,12,127,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/70.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,15,85,31</rect>
+                <key>scale9Paddings</key>
+                <rect>43,15,85,31</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/71.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>40,11,80,21</rect>
+                <key>scale9Paddings</key>
+                <rect>40,11,80,21</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/72.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>40,12,80,23</rect>
+                <key>scale9Paddings</key>
+                <rect>40,12,80,23</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/73.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>21,12,43,23</rect>
+                <key>scale9Paddings</key>
+                <rect>21,12,43,23</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/74.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>36,16,71,31</rect>
+                <key>scale9Paddings</key>
+                <rect>36,16,71,31</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/75.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>32,16,65,31</rect>
+                <key>scale9Paddings</key>
+                <rect>32,16,65,31</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/76.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>39,11,79,21</rect>
+                <key>scale9Paddings</key>
+                <rect>39,11,79,21</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/77.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>30,12,59,24</rect>
+                <key>scale9Paddings</key>
+                <rect>30,12,59,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/78.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>30,12,61,23</rect>
+                <key>scale9Paddings</key>
+                <rect>30,12,61,23</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/79.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>27,29,53,58</rect>
+                <key>scale9Paddings</key>
+                <rect>27,29,53,58</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/8.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>34,20,67,39</rect>
+                <key>scale9Paddings</key>
+                <rect>34,20,67,39</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/80.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>34,17,68,33</rect>
+                <key>scale9Paddings</key>
+                <rect>34,17,68,33</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/81.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>44,14,88,27</rect>
+                <key>scale9Paddings</key>
+                <rect>44,14,88,27</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/82.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>51,16,101,32</rect>
+                <key>scale9Paddings</key>
+                <rect>51,16,101,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/83.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,13,85,26</rect>
+                <key>scale9Paddings</key>
+                <rect>43,13,85,26</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/85.png</key>
+            <key type="filename">res/打击文字_程序/86.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>51,16,101,33</rect>
+                <key>scale9Paddings</key>
+                <rect>51,16,101,33</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/87.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>29,14,58,27</rect>
+                <key>scale9Paddings</key>
+                <rect>29,14,58,27</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/88.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>34,15,68,30</rect>
+                <key>scale9Paddings</key>
+                <rect>34,15,68,30</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/89.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>42,17,84,33</rect>
+                <key>scale9Paddings</key>
+                <rect>42,17,84,33</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>63,13,125,27</rect>
+                <key>scale9Paddings</key>
+                <rect>63,13,125,27</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">res/打击文字_程序/90.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1222,7 +1402,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/91.png</key>
+            <key type="filename">res/打击文字_程序/91.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1235,7 +1415,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/92.png</key>
+            <key type="filename">res/打击文字_程序/92.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1248,7 +1428,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/93.png</key>
+            <key type="filename">res/打击文字_程序/93.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1261,7 +1441,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/94.png</key>
+            <key type="filename">res/打击文字_程序/94.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1274,7 +1454,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/95.png</key>
+            <key type="filename">res/打击文字_程序/95.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1287,7 +1467,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/96.png</key>
+            <key type="filename">res/打击文字_程序/96.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1300,7 +1480,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/97.png</key>
+            <key type="filename">res/打击文字_程序/97.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1313,7 +1493,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/98.png</key>
+            <key type="filename">res/打击文字_程序/98.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1326,7 +1506,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">res/打击文字/99.png</key>
+            <key type="filename">res/打击文字_程序/99.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1342,114 +1522,114 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>res/打击文字/9.png</filename>
-            <filename>res/打击文字/10.png</filename>
-            <filename>res/打击文字/11.png</filename>
-            <filename>res/打击文字/12.png</filename>
-            <filename>res/打击文字/13.png</filename>
-            <filename>res/打击文字/14.png</filename>
-            <filename>res/打击文字/15.png</filename>
-            <filename>res/打击文字/16.png</filename>
-            <filename>res/打击文字/17.png</filename>
-            <filename>res/打击文字/18.png</filename>
-            <filename>res/打击文字/19.png</filename>
-            <filename>res/打击文字/20.png</filename>
-            <filename>res/打击文字/21.png</filename>
-            <filename>res/打击文字/22.png</filename>
-            <filename>res/打击文字/23.png</filename>
-            <filename>res/打击文字/24.png</filename>
-            <filename>res/打击文字/25.png</filename>
-            <filename>res/打击文字/26.png</filename>
-            <filename>res/打击文字/27.png</filename>
-            <filename>res/打击文字/1.png</filename>
-            <filename>res/打击文字/2.png</filename>
-            <filename>res/打击文字/3.png</filename>
-            <filename>res/打击文字/4.png</filename>
-            <filename>res/打击文字/5.png</filename>
-            <filename>res/打击文字/6.png</filename>
-            <filename>res/打击文字/7.png</filename>
-            <filename>res/打击文字/8.png</filename>
-            <filename>res/打击文字/91.png</filename>
-            <filename>res/打击文字/92.png</filename>
-            <filename>res/打击文字/93.png</filename>
-            <filename>res/打击文字/94.png</filename>
-            <filename>res/打击文字/95.png</filename>
-            <filename>res/打击文字/96.png</filename>
-            <filename>res/打击文字/97.png</filename>
-            <filename>res/打击文字/98.png</filename>
-            <filename>res/打击文字/99.png</filename>
-            <filename>res/打击文字/100.png</filename>
-            <filename>res/打击文字/101.png</filename>
-            <filename>res/打击文字/102.png</filename>
-            <filename>res/打击文字/103.png</filename>
-            <filename>res/打击文字/104.png</filename>
-            <filename>res/打击文字/105.png</filename>
-            <filename>res/打击文字/106.png</filename>
-            <filename>res/打击文字/107.png</filename>
-            <filename>res/打击文字/108.png</filename>
-            <filename>res/打击文字/28.png</filename>
-            <filename>res/打击文字/29.png</filename>
-            <filename>res/打击文字/30.png</filename>
-            <filename>res/打击文字/31.png</filename>
-            <filename>res/打击文字/32.png</filename>
-            <filename>res/打击文字/33.png</filename>
-            <filename>res/打击文字/34.png</filename>
-            <filename>res/打击文字/35.png</filename>
-            <filename>res/打击文字/36.png</filename>
-            <filename>res/打击文字/37.png</filename>
-            <filename>res/打击文字/38.png</filename>
-            <filename>res/打击文字/39.png</filename>
-            <filename>res/打击文字/40.png</filename>
-            <filename>res/打击文字/41.png</filename>
-            <filename>res/打击文字/42.png</filename>
-            <filename>res/打击文字/43.png</filename>
-            <filename>res/打击文字/44.png</filename>
-            <filename>res/打击文字/45.png</filename>
-            <filename>res/打击文字/46.png</filename>
-            <filename>res/打击文字/47.png</filename>
-            <filename>res/打击文字/48.png</filename>
-            <filename>res/打击文字/49.png</filename>
-            <filename>res/打击文字/50.png</filename>
-            <filename>res/打击文字/51.png</filename>
-            <filename>res/打击文字/52.png</filename>
-            <filename>res/打击文字/53.png</filename>
-            <filename>res/打击文字/54.png</filename>
-            <filename>res/打击文字/55.png</filename>
-            <filename>res/打击文字/56.png</filename>
-            <filename>res/打击文字/57.png</filename>
-            <filename>res/打击文字/58.png</filename>
-            <filename>res/打击文字/59.png</filename>
-            <filename>res/打击文字/60.png</filename>
-            <filename>res/打击文字/61.png</filename>
-            <filename>res/打击文字/62.png</filename>
-            <filename>res/打击文字/63.png</filename>
-            <filename>res/打击文字/64.png</filename>
-            <filename>res/打击文字/65.png</filename>
-            <filename>res/打击文字/66.png</filename>
-            <filename>res/打击文字/67.png</filename>
-            <filename>res/打击文字/68.png</filename>
-            <filename>res/打击文字/69.png</filename>
-            <filename>res/打击文字/70.png</filename>
-            <filename>res/打击文字/71.png</filename>
-            <filename>res/打击文字/72.png</filename>
-            <filename>res/打击文字/73.png</filename>
-            <filename>res/打击文字/74.png</filename>
-            <filename>res/打击文字/75.png</filename>
-            <filename>res/打击文字/76.png</filename>
-            <filename>res/打击文字/77.png</filename>
-            <filename>res/打击文字/78.png</filename>
-            <filename>res/打击文字/79.png</filename>
-            <filename>res/打击文字/80.png</filename>
-            <filename>res/打击文字/81.png</filename>
-            <filename>res/打击文字/82.png</filename>
-            <filename>res/打击文字/83.png</filename>
-            <filename>res/打击文字/84.png</filename>
-            <filename>res/打击文字/85.png</filename>
-            <filename>res/打击文字/86.png</filename>
-            <filename>res/打击文字/87.png</filename>
-            <filename>res/打击文字/88.png</filename>
-            <filename>res/打击文字/89.png</filename>
-            <filename>res/打击文字/90.png</filename>
+            <filename>res/打击文字_程序/83.png</filename>
+            <filename>res/打击文字_程序/84.png</filename>
+            <filename>res/打击文字_程序/85.png</filename>
+            <filename>res/打击文字_程序/86.png</filename>
+            <filename>res/打击文字_程序/87.png</filename>
+            <filename>res/打击文字_程序/88.png</filename>
+            <filename>res/打击文字_程序/89.png</filename>
+            <filename>res/打击文字_程序/90.png</filename>
+            <filename>res/打击文字_程序/91.png</filename>
+            <filename>res/打击文字_程序/92.png</filename>
+            <filename>res/打击文字_程序/93.png</filename>
+            <filename>res/打击文字_程序/94.png</filename>
+            <filename>res/打击文字_程序/95.png</filename>
+            <filename>res/打击文字_程序/96.png</filename>
+            <filename>res/打击文字_程序/97.png</filename>
+            <filename>res/打击文字_程序/98.png</filename>
+            <filename>res/打击文字_程序/99.png</filename>
+            <filename>res/打击文字_程序/100.png</filename>
+            <filename>res/打击文字_程序/101.png</filename>
+            <filename>res/打击文字_程序/102.png</filename>
+            <filename>res/打击文字_程序/103.png</filename>
+            <filename>res/打击文字_程序/104.png</filename>
+            <filename>res/打击文字_程序/105.png</filename>
+            <filename>res/打击文字_程序/106.png</filename>
+            <filename>res/打击文字_程序/107.png</filename>
+            <filename>res/打击文字_程序/108.png</filename>
+            <filename>res/打击文字_程序/1.png</filename>
+            <filename>res/打击文字_程序/2.png</filename>
+            <filename>res/打击文字_程序/3.png</filename>
+            <filename>res/打击文字_程序/4.png</filename>
+            <filename>res/打击文字_程序/5.png</filename>
+            <filename>res/打击文字_程序/6.png</filename>
+            <filename>res/打击文字_程序/7.png</filename>
+            <filename>res/打击文字_程序/8.png</filename>
+            <filename>res/打击文字_程序/9.png</filename>
+            <filename>res/打击文字_程序/10.png</filename>
+            <filename>res/打击文字_程序/11.png</filename>
+            <filename>res/打击文字_程序/12.png</filename>
+            <filename>res/打击文字_程序/13.png</filename>
+            <filename>res/打击文字_程序/14.png</filename>
+            <filename>res/打击文字_程序/15.png</filename>
+            <filename>res/打击文字_程序/16.png</filename>
+            <filename>res/打击文字_程序/17.png</filename>
+            <filename>res/打击文字_程序/18.png</filename>
+            <filename>res/打击文字_程序/19.png</filename>
+            <filename>res/打击文字_程序/20.png</filename>
+            <filename>res/打击文字_程序/21.png</filename>
+            <filename>res/打击文字_程序/22.png</filename>
+            <filename>res/打击文字_程序/23.png</filename>
+            <filename>res/打击文字_程序/24.png</filename>
+            <filename>res/打击文字_程序/25.png</filename>
+            <filename>res/打击文字_程序/26.png</filename>
+            <filename>res/打击文字_程序/27.png</filename>
+            <filename>res/打击文字_程序/28.png</filename>
+            <filename>res/打击文字_程序/29.png</filename>
+            <filename>res/打击文字_程序/30.png</filename>
+            <filename>res/打击文字_程序/31.png</filename>
+            <filename>res/打击文字_程序/32.png</filename>
+            <filename>res/打击文字_程序/33.png</filename>
+            <filename>res/打击文字_程序/34.png</filename>
+            <filename>res/打击文字_程序/35.png</filename>
+            <filename>res/打击文字_程序/36.png</filename>
+            <filename>res/打击文字_程序/37.png</filename>
+            <filename>res/打击文字_程序/38.png</filename>
+            <filename>res/打击文字_程序/39.png</filename>
+            <filename>res/打击文字_程序/40.png</filename>
+            <filename>res/打击文字_程序/41.png</filename>
+            <filename>res/打击文字_程序/42.png</filename>
+            <filename>res/打击文字_程序/43.png</filename>
+            <filename>res/打击文字_程序/44.png</filename>
+            <filename>res/打击文字_程序/45.png</filename>
+            <filename>res/打击文字_程序/46.png</filename>
+            <filename>res/打击文字_程序/47.png</filename>
+            <filename>res/打击文字_程序/48.png</filename>
+            <filename>res/打击文字_程序/49.png</filename>
+            <filename>res/打击文字_程序/50.png</filename>
+            <filename>res/打击文字_程序/51.png</filename>
+            <filename>res/打击文字_程序/52.png</filename>
+            <filename>res/打击文字_程序/53.png</filename>
+            <filename>res/打击文字_程序/54.png</filename>
+            <filename>res/打击文字_程序/55.png</filename>
+            <filename>res/打击文字_程序/56.png</filename>
+            <filename>res/打击文字_程序/57.png</filename>
+            <filename>res/打击文字_程序/58.png</filename>
+            <filename>res/打击文字_程序/59.png</filename>
+            <filename>res/打击文字_程序/60.png</filename>
+            <filename>res/打击文字_程序/61.png</filename>
+            <filename>res/打击文字_程序/62.png</filename>
+            <filename>res/打击文字_程序/63.png</filename>
+            <filename>res/打击文字_程序/64.png</filename>
+            <filename>res/打击文字_程序/65.png</filename>
+            <filename>res/打击文字_程序/66.png</filename>
+            <filename>res/打击文字_程序/67.png</filename>
+            <filename>res/打击文字_程序/68.png</filename>
+            <filename>res/打击文字_程序/69.png</filename>
+            <filename>res/打击文字_程序/70.png</filename>
+            <filename>res/打击文字_程序/71.png</filename>
+            <filename>res/打击文字_程序/72.png</filename>
+            <filename>res/打击文字_程序/73.png</filename>
+            <filename>res/打击文字_程序/74.png</filename>
+            <filename>res/打击文字_程序/75.png</filename>
+            <filename>res/打击文字_程序/76.png</filename>
+            <filename>res/打击文字_程序/77.png</filename>
+            <filename>res/打击文字_程序/78.png</filename>
+            <filename>res/打击文字_程序/79.png</filename>
+            <filename>res/打击文字_程序/80.png</filename>
+            <filename>res/打击文字_程序/81.png</filename>
+            <filename>res/打击文字_程序/82.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

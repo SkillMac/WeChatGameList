@@ -1,4 +1,6 @@
 
+let GameTools = require('GameTools');
+
 cc.Class({
     extends: cc.Component,
 
@@ -14,14 +16,14 @@ cc.Class({
             this.node.runAction(cc.spawn(cc.moveBy(this.moveTime,this.endPos),cc.fadeOut(this.fadeTime)));
         }, this.startDelayTime*1000);
         this.node.runAction(cc.sequence(cc.delayTime(this.startDelayTime+this.moveTime),cc.callFunc(()=>{
-            this.node.destroy();
+            GameTools.destroy(this.node);
         })));
     },
 
     show2() {
         this.node.opacity = 0
         this.node.runAction(cc.sequence(cc.fadeIn(0.3),cc.delayTime(1),cc.fadeOut(0.3),cc.callFunc(()=>{
-            this.node.destroy()
+            GameTools.destroy(this.node);
         })))
     }
 });

@@ -9,6 +9,10 @@ let shareParams = {
         gift: 4, //赠送
     }
 }
+
+let screenHeight = 0
+let screenWidth = 0
+
 let T = cc.Class({
 
     ctor() {
@@ -23,12 +27,15 @@ let T = cc.Class({
             wx.getSystemInfo({
                 success: res =>{
                     cc.TB.GAME.model = res.model
+                    screenWidth = res.screenWidth
+                    screenHeight = res.screenHeight
                 }
             })
         }
     },
 
     statics: {
+        isLogin: false,
         registerOnGroupShareFunc(func) {
             if(CC_WECHATGAME) {
                 T._onGroupShareFunc = func;
@@ -76,6 +83,15 @@ let T = cc.Class({
                 updateManager.onUpdateFailed(function () {})
               }
         },
+
+        showTips(content_,title_='友情提示') {
+            if(!CC_WECHATGAME) return
+            wx.showModal({
+                title: title_,
+                content: content_,
+                showCancel: false,
+            })
+        }
     },
 
     checkIsLogin(func) {
@@ -99,28 +115,6 @@ let T = cc.Class({
         let self = this;
         wx.login({
             success: function(res) {
-                // weChatData.code = res.code;
-                // let curUrl = "https://api.weixin.qq.com/sns/jscode2session";
-                // wx.request({
-                //     url: curUrl,
-                //     data: {
-                //         appid: weChatData.appId,
-                //         secret: weChatData.appSecret,
-                //         grant_type: 'authorization_code',
-                //         js_code: res.code,
-                //     },
-                //     header: {
-                //         'content-type': 'application/json' 
-                //     },
-                //     success: function(res) {
-                //         console.log(res.data)
-                //         if (res.data.openid != null & res.data.openid != undefined) {
-                //             weChatData.openid = res.data.openid;
-                //             weChatData.session_key = res.data.session_key;
-                //         }
-                //         self.getUserInfo();
-                //     }
-                // });
                 self.getUserInfo();
             }
         });
@@ -132,6 +126,7 @@ let T = cc.Class({
         let self = this;
         wx.getUserInfo({
             success: function(res) {
+                T.isLogin = true
                 let userInfo = res.userInfo;
                 weChatData.userInfo = userInfo;
                 // avatarUrl
@@ -143,6 +138,54 @@ let T = cc.Class({
                 if (self.callfunc) {
                     self.callfunc();
                 }
+            },
+            fail: res=>{
+                wx.showModal({
+                    title: '温馨提示',
+                    content: '为了良好的体验,请开启用户信息授权',
+                    success: res =>{
+                        if(res.confirm || res.cancel) {
+                            let btnPos = cc.p(screenWidth > 0 ? screenWidth/2-50 : 0, screenHeight > 0 ? screenHeight/2-20 : 0)
+                            let button = wx.createOpenSettingButton({
+                                type: 'text',
+                                text: '打开设置页面',
+                                style: {
+                                    left: btnPos.x,
+                                    top: btnPos.y,
+                                    width: 100,
+                                    height: 40,
+                                    lineHeight: 40,
+                                    backgroundColor: '#4b6881',
+                                    color: '#ffffff',
+                                    textAlign: 'center',
+                                    fontSize: 16,
+                                    borderRadius: 4
+                                }
+                            })
+                            button.show()
+                            button.onTap(() => {
+                                wx.getSetting({
+                                    success: res => {
+                                        button.destroy()
+                                        if(res.authSetting['scope.userInfo']) {
+                                            wx.getUserInfo({
+                                                withCredentials : false,
+                                                success: res => {
+                                                    T.isLogin = true
+                                                    let userInfo = res.userInfo;
+                                                    weChatData.userInfo = userInfo;
+                                                    if (self.callfunc) {
+                                                        self.callfunc();
+                                                    }
+                                                }
+                                            })
+                                        }
+                                    }
+                                })
+                            })
+                        }
+                    }
+                })
             }
         });
     },
@@ -155,6 +198,7 @@ let T = cc.Class({
     loadImagByUrl(imageUrl, node) {
         if(!this.checkIsWeChat()) {return;}
         cc.loader.load({url: imageUrl, type: 'jpg'}, function(err, texture){
+            if(err) return
             node.spriteFrame = new cc.SpriteFrame(texture);
         });
     },
@@ -230,6 +274,7 @@ let T = cc.Class({
     bandingOnShowFunc() {
         // 启动
         let option = wx.getLaunchOptionsSync();
+
         if(option.query.type == shareParams.type.groupShare && option.shareTicket != undefined) {
             // 群排行
             cc.TB.GAME.weChatData.shareTicket = option.shareTicket;
@@ -316,5 +361,25 @@ let T = cc.Class({
             node.getChildByName('tips').getComponent(cc.Label).string = str_
             cc.director.getScene().getChildByName('Canvas').addChild(node)
         })
+    },
+
+    moreGame() {
+        if(CC_WECHATGAME) {
+            if(typeof(wx.navigateToMiniProgram) != undefined) {
+                wx.navigateToMiniProgram({
+                    appId:'wx7a0bffe7a36fab99',
+                    path:'',
+                    envVersion:'release',
+                    success: ()=>{
+                        
+                    },
+                    fail: ()=>{
+                        T.showTips('微信版本过低,请升级使用')
+                    }
+                })
+            } else {
+                T.showTips('微信版本过低,请升级使用')
+            }
+        }
     },
 });

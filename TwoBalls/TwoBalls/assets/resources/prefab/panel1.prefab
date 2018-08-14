@@ -567,13 +567,13 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
-      "height": 30
+      "width": 59,
+      "height": 60
     },
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": 1.58,
-    "_scaleY": 1.58,
+    "_scaleX": 1,
+    "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
       "x": 313,

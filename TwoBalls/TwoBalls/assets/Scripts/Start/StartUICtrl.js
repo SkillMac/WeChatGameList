@@ -11,6 +11,9 @@ cc.Class({
     properties: {
         tipsLable: cc.Label,
         panelBg: cc.Sprite,
+        loading: cc.Node,
+        loadingSp: cc.SpriteFrame,
+        urgeNode: cc.Node,
     },
 
     onLoad () {
@@ -28,10 +31,21 @@ cc.Class({
             type:1,
             version : cc.TB.GAME.version,
         },res=>{
+            if(res == '-1') {
+                // 请检查检查网络
+                WCO.showTips('请检查网络')
+                return
+            }
+            else if(res == '-2') {
+                // 网络连接超时
+                WCO.showTips('网络连接超时')
+                return
+            }
             let cfg = JSON.parse(res)
             cc.TB.GAME.panelCfg = cfg
             if(GameTools.isShowPanelByServer('urge_money')) {
                 cc.loader.loadRes('prefab/urgeBtn', cc.Prefab, (err, prefab)=>{
+                    if(err) return
                     let node = cc.instantiate(prefab)
                     node.getComponent('urgeEffect').show1()
                     node.on('click', this.urgeBtnEvent, this)
@@ -52,7 +66,32 @@ cc.Class({
         }
     },
 
+    getLoadingNode() {
+        let node = new cc.Node()
+        let widget = node.addComponent(cc.Widget)
+        widget.isAlignTop = true
+        widget.top = 0
+        widget.isAlignBottom = true
+        widget.bottom = 0
+        widget.isAlignLeft = true
+        widget.left = 0
+        widget.isAlignRight = true
+        widget.right = 0
+        widget.isAlignOnce = true
+        let sprite = node.addComponent(cc.Sprite)
+        sprite.spriteFrame = this.loadingSp
+        // widget.updateAlignment()
+        return node
+    },
+
     preload () {
+        // console.log
+        this.loading.addChild(this.getLoadingNode())
+        this.loading.runAction(cc.sequence(cc.delayTime(2),cc.callFunc(()=>{
+            if(this.loading) {
+                this.loading.destroy()
+            }
+        })))
         //this.showProgress()
         // 预加载字段 赋值为false
         this._preLoadResFlag = false;
@@ -65,6 +104,7 @@ cc.Class({
         this.preLoadGameScene(()=>{
             gameSceneFlag = true
         });
+        gameSceneFlag = true
         // 敌人资源加载
         _res_cache.preload(()=>{
             cc.resCache = _res_cache
@@ -151,8 +191,15 @@ cc.Class({
 
     rankBtnEvent(event) {
         let self = this
+        let offPanel = false
         this.panelShow()
+        cc.TB.GAME.panelBgDestroyFunc = ()=> {
+            offPanel = true
+            this.hideTipsMsg()
+            this.onOffPanelEvet()
+        }
         cc.loader.loadRes("prefab/rank", cc.Prefab, function(err, prefab){
+            if(err || offPanel) return
             self.hideTipsMsg()
             let node = cc.instantiate(prefab)
             node.getComponent('rankCtrl').init(()=>{
@@ -168,8 +215,15 @@ cc.Class({
 
     taskBtnEvent(event) {
         if(!(GameTools.isShowPanelByServer('taskPanel'))) return
+        let offPanel = false
         this.panelShow()
+        cc.TB.GAME.panelBgDestroyFunc = ()=> {
+            offPanel = true
+            this.hideTipsMsg()
+            this.onOffPanelEvet()
+        }
         cc.loader.loadRes("prefab/panel1", cc.Prefab, (err, prefab)=>{
+            if(err || offPanel) return
             this.hideTipsMsg()
             let node = cc.instantiate(prefab)
             node.getComponent('PanelCtrl').init({
@@ -182,8 +236,15 @@ cc.Class({
     },
 
     urgeBtnEvent(event) {
+        let offPanel = false
         this.panelShow()
+        cc.TB.GAME.panelBgDestroyFunc = ()=> {
+            offPanel = true
+            this.hideTipsMsg()
+            this.onOffPanelEvet()
+        }
         cc.loader.loadRes("prefab/panel2", cc.Prefab, (err, prefab)=>{
+            if(err || offPanel) return
             this.hideTipsMsg()
             let node = cc.instantiate(prefab)
             node.getComponent('PanelCtrl').init({
@@ -194,7 +255,7 @@ cc.Class({
                     this.startBtnVent()
                 }
             })
-            this.node.parent.addChild(node)
+            this.urgeNode.addChild(node)
         });
     },
 
@@ -224,8 +285,15 @@ cc.Class({
     onGroupShare(shareTicket) {
         // 群排行榜
         let self = this;
+        let offPanel = false
         this.panelShow()
+        cc.TB.GAME.panelBgDestroyFunc = ()=> {
+            offPanel = true
+            this.hideTipsMsg()
+            this.onOffPanelEvet()
+        }
         cc.loader.loadRes("prefab/rank", cc.Prefab, function(err, prefab){
+            if(err || offPanel) return
             self.hideTipsMsg()
             let prefabNode = cc.instantiate(prefab);
             prefabNode.getComponent('rankCtrl').init(()=>{
@@ -263,4 +331,8 @@ cc.Class({
         cc.TB.GAME.completeResFlag = true
         this.showAllBtn()
     },
+
+    pubMoreGame(e,p) {
+        cc.TB.wco.moreGame()
+    }
 });

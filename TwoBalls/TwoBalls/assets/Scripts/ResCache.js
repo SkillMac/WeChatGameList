@@ -1,6 +1,7 @@
 let _res_cache = {
     _enemy_cache : null,
     _urge_cahe: null,
+    _urge_cahe2: [],
 
     preload : function(callfunc) {
         cc.loader.loadResDir('plist', cc.SpriteAtlas, (err, assets)=>{
@@ -30,6 +31,16 @@ let _res_cache = {
 
     getBombEffectCache() {
         return _res_cache._bomb_effect_cache
+    },
+
+    pushUrge(key,sp){
+        _res_cache._urge_cahe2[key] = sp
+    },
+
+    getUrge(key) {
+        if(key) {
+            return _res_cache._urge_cahe2[key]
+        }
     },
 
     /// sprite cache ///
@@ -62,7 +73,8 @@ let _res_cache = {
 
     setSpriteFrame: function(node, spritePath) {
         let callfunc = function(sf){
-            node.spriteFrame = sf;
+            if(node.spriteFrame && node.spriteFrame.isValid)
+                node.spriteFrame = sf;
         }
         this._spriteCache.getSprite(spritePath,callfunc);
     },

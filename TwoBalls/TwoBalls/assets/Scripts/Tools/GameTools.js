@@ -12,9 +12,12 @@ let GameTools = {
     
     sendMessage(data) {
         if(CC_WECHATGAME) {
-            // console.log('send sub content data');
-            let content = window.wx.getOpenDataContext();
-            content.postMessage(data);
+            if(typeof(wx.getOpenDataContext)!=undefined) {
+                let content = wx.getOpenDataContext();
+                content.postMessage(data);
+            } else {
+                cc.TB.wco.showTips();
+            }
         }
     },
 
@@ -44,6 +47,7 @@ let GameTools = {
     },
 
     httpGet(url, reqData, callback) {
+        let timeOutFlag = false
         url += '?';
         for (let item in reqData) {
             url += item + '=' + reqData[item] + "&"
@@ -53,6 +57,7 @@ let GameTools = {
         const xhr = cc.loader.getXMLHttpRequest()
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status < 400)) {
+                if(timeOutFlag) return
                 var response = xhr.responseText;
                 if(response) {
                     if(callback) {
@@ -61,12 +66,19 @@ let GameTools = {
                 } else {
                     // todo    
                 }
-                //console.log('响应结果',response);
-            } else {
-                //console.log('请求失败')
             }
         };
-        // console.log(xhr)
+        xhr.timeout = 5000
+
+        xhr.onerror = p =>{
+            timeOutFlag = true
+            if(callback) callback('-1')
+        }
+
+        xhr.ontimeout = p =>{
+            timeOutFlag = true
+            if(callback) callback('-2')
+        }
         xhr.withCredentials = true;
         xhr.open("GET", GameTools.address + url, true);
         xhr.send();
@@ -83,6 +95,10 @@ let GameTools = {
         else {
             return true
         }
+    },
+
+    destroy(node_) {
+        if(node_) node_.destroy()
     }
 };
 

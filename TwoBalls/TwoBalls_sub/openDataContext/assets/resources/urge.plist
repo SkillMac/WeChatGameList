@@ -161,13 +161,13 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{146,71}</string>
+                <string>{170,55}</string>
                 <key>spriteSourceSize</key>
-                <string>{146,71}</string>
+                <string>{170,55}</string>
                 <key>textureRect</key>
-                <string>{{219,538},{146,71}}</string>
+                <string>{{1,878},{170,55}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>11.png</key>
             <dict>
@@ -1106,13 +1106,13 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{170,55}</string>
+                <string>{146,71}</string>
                 <key>spriteSourceSize</key>
-                <string>{170,55}</string>
+                <string>{146,71}</string>
                 <key>textureRect</key>
-                <string>{{1,878},{170,55}}</string>
+                <string>{{219,538},{146,71}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>69.png</key>
             <dict>
@@ -1638,7 +1638,7 @@
             <key>size</key>
             <string>{979,1327}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e88b0edd103382eb6a46023ae178f042:d7db1cf461b8dee9770b023b69f2a2d0:31fb09982d0aed0e4bce878b14dcd8da$</string>
+            <string>$TexturePacker:SmartUpdate:c80fa9367b6254e7e51a517be912a4cb:6b7960180e8d97746d7e6cc9900075b2:31fb09982d0aed0e4bce878b14dcd8da$</string>
             <key>textureFileName</key>
             <string>urge.png</string>
         </dict>

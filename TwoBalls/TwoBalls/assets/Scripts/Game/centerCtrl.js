@@ -316,8 +316,12 @@ cc.Class({
         bgNext.node.active = false;
         
         let callfunc = function() {
+            if(!(self.globalGame.bgCfgData)) {
+                self.globalGame = cc.TB.GAME
+            }
             let filePath = cc.js.formatStr('bg/BG%d',index);
             cc.loader.loadRes(filePath, cc.SpriteFrame, function(err, spriteFrame){
+                if(err) return
                 let fadeTime = self.globalGame.bgCfgData.bgFadeTime;
                 self.bgNext.spriteFrame = spriteFrame;
                 self.bgNext.getComponent(cc.Widget).updateAlignment()

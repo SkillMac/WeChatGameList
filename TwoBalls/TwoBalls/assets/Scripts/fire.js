@@ -1,3 +1,4 @@
+let GameTools = require('GameTools');
 
 cc.Class({
     extends: cc.Component,
@@ -22,12 +23,13 @@ cc.Class({
         this.node.setScale(scaleVal)
         cc.audioEngine.play(cc.url.raw('resources/audio/broke1.mp3'))
         this.node.runAction(cc.sequence(cc.fadeIn(this.fadeTime),cc.delayTime(2),cc.fadeOut(0.7),cc.callFunc(()=>{
-            this.node.destroy()
+            GameTools.destroy(this.node);
         })))
         return this.fadeTime + 0.35
     },
 
     changeSkin(skinIndex) {
-        this.sprite.spriteFrame = cc.resCache.getBombEffectCache().getSpriteFrame(''+skinIndex)
+        if(this.sprite.spriteFrame && this.sprite.spriteFrame.isValid)
+            this.sprite.spriteFrame = cc.resCache.getBombEffectCache().getSpriteFrame(''+skinIndex)
     },
 });
