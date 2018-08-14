@@ -9,7 +9,7 @@ class Logic extends Model
 
 	private $userDataM = null;
 	private $level = 1;
-	private $addEnergy = 6;
+	private $addEnergy = 10;
 	private $tmp_head_counts = 500;
 	private $max_level = 20;
 
@@ -280,7 +280,7 @@ class Logic extends Model
 		
 		if($energy < $maxEnergy)
 		{
-			$intervalTime = 30;
+			$intervalTime = 3600;
 			$res = (int)$res;
 			$mul = (int)(($start_time - $res) / $intervalTime);
 
