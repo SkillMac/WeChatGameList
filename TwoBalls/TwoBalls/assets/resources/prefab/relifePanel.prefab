@@ -21,21 +21,24 @@
         "__id__": 5
       },
       {
-        "__id__": 13
+        "__id__": 10
       },
       {
-        "__id__": 21
+        "__id__": 18
+      },
+      {
+        "__id__": 26
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 24
+        "__id__": 29
       }
     ],
     "_prefab": {
-      "__id__": 25
+      "__id__": 30
     },
     "_id": "",
     "_opacity": 255,
@@ -166,6 +169,167 @@
   },
   {
     "__type__": "cc.Node",
+    "_name": "off_btn",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 6
+      },
+      {
+        "__id__": 7
+      }
+    ],
+    "_prefab": {
+      "__id__": 9
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 59,
+      "height": 60
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 299,
+      "y": 245
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 5
+    },
+    "_enabled": true,
+    "_spriteFrame": {
+      "__uuid__": "8f54283f-6812-4e0a-ae85-3cf27096f4b3"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": {
+      "__uuid__": "584d0f72-e752-476e-962d-aace5174675d"
+    }
+  },
+  {
+    "__type__": "cc.Button",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 5
+    },
+    "_enabled": true,
+    "transition": 3,
+    "pressedColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
+    },
+    "hoverColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "duration": 0.1,
+    "zoomScale": 1.2,
+    "clickEvents": [
+      {
+        "__id__": 8
+      }
+    ],
+    "_N$interactable": true,
+    "_N$enableAutoGrayEffect": false,
+    "_N$normalColor": {
+      "__type__": "cc.Color",
+      "r": 214,
+      "g": 214,
+      "b": 214,
+      "a": 255
+    },
+    "_N$disabledColor": {
+      "__type__": "cc.Color",
+      "r": 124,
+      "g": 124,
+      "b": 124,
+      "a": 255
+    },
+    "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
+    "_N$disabledSprite": null,
+    "_N$target": {
+      "__id__": 5
+    }
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "RelifePanelCtrl",
+    "handler": "offBtnEvent",
+    "customEventData": "1"
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "e3c25352-2fcf-423e-9d77-6832dac582bc"
+    },
+    "fileId": "ff+BGmGiVDh4rVqHNM2htz",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
     "_name": "relife_btn",
     "_objFlags": 0,
     "_parent": {
@@ -173,21 +337,21 @@
     },
     "_children": [
       {
-        "__id__": 6
+        "__id__": 11
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 9
+        "__id__": 14
       },
       {
-        "__id__": 10
+        "__id__": 15
       }
     ],
     "_prefab": {
-      "__id__": 12
+      "__id__": 17
     },
     "_id": "",
     "_opacity": 255,
@@ -230,18 +394,18 @@
     "_name": "New Sprite",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 5
+      "__id__": 10
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 7
+        "__id__": 12
       }
     ],
     "_prefab": {
-      "__id__": 8
+      "__id__": 13
     },
     "_id": "",
     "_opacity": 255,
@@ -284,7 +448,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 6
+      "__id__": 11
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -323,7 +487,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 5
+      "__id__": 10
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -351,7 +515,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 5
+      "__id__": 10
     },
     "_enabled": true,
     "transition": 3,
@@ -373,7 +537,7 @@
     "zoomScale": 1.1,
     "clickEvents": [
       {
-        "__id__": 11
+        "__id__": 16
       }
     ],
     "_N$interactable": true,
@@ -399,7 +563,7 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 5
+      "__id__": 10
     }
   },
   {
@@ -424,28 +588,28 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "off_btn",
+    "_name": "ad_btn",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
     },
     "_children": [
       {
-        "__id__": 14
+        "__id__": 19
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 17
+        "__id__": 22
       },
       {
-        "__id__": 18
+        "__id__": 23
       }
     ],
     "_prefab": {
-      "__id__": 20
+      "__id__": 25
     },
     "_id": "",
     "_opacity": 255,
@@ -488,18 +652,18 @@
     "_name": "New Sprite",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 13
+      "__id__": 18
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 15
+        "__id__": 20
       }
     ],
     "_prefab": {
-      "__id__": 16
+      "__id__": 21
     },
     "_id": "",
     "_opacity": 255,
@@ -518,8 +682,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 93,
-      "height": 49
+      "width": 192,
+      "height": 104
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -542,11 +706,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 14
+      "__id__": 19
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "9f2f59fc-8710-49c2-80b0-60a9c6f4a84d"
+      "__uuid__": "1e1c8c94-f5d1-4ee6-80f5-e27ae2d0e4ea"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -581,7 +745,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 13
+      "__id__": 18
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -609,7 +773,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 13
+      "__id__": 18
     },
     "_enabled": true,
     "transition": 3,
@@ -631,7 +795,7 @@
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 19
+        "__id__": 24
       }
     ],
     "_N$interactable": true,
@@ -657,7 +821,7 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 13
+      "__id__": 18
     }
   },
   {
@@ -666,7 +830,7 @@
       "__id__": 1
     },
     "component": "RelifePanelCtrl",
-    "handler": "offBtnEvent",
+    "handler": "adBtnEvent",
     "customEventData": "1"
   },
   {
@@ -692,11 +856,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 22
+        "__id__": 27
       }
     ],
     "_prefab": {
-      "__id__": 23
+      "__id__": 28
     },
     "_id": "",
     "_opacity": 255,
@@ -739,7 +903,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 21
+      "__id__": 26
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -778,7 +942,7 @@
     },
     "_enabled": true,
     "time": {
-      "__id__": 22
+      "__id__": 27
     }
   },
   {

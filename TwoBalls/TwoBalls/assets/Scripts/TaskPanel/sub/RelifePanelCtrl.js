@@ -19,6 +19,7 @@ cc.Class({
     },
 
     offBtnEvent(event, params) {
+        cc.TB.wco.destroyAd()
         this.time.node.stopAllActions()
         // 在外面面板也有调用
         this.node.runAction(cc.sequence(cc.scaleTo(0.2,0),cc.callFunc(()=>{
@@ -47,6 +48,29 @@ cc.Class({
         }, (res)=>{
             this.shareFail()
         })
+    },
+
+    adBtnEvent(event, params) {
+        this._super(event, params)
+        this.adRelife()
+    },
+
+    adRelife() {
+        cc.TB.wco.destroyAd()
+        this.time.node.stopAllActions()
+        if(cc.TB.wco.checkIsShowViewAd()) {
+            cc.TB.wco.showViewAd({
+                success:()=>{
+                    if(this.need_friend_relife_func) {
+                        this.need_friend_relife_func()
+                        this.offBtnEvent(null,'relife')
+                    }
+                },
+                fail:()=>{
+                    this.startUpTimer()
+                }
+            })
+        }
     },
 
     startUpTimer() {

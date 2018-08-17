@@ -3,7 +3,7 @@ let T = cc.Class({
     name: "gameStatus",
     statics: {
         // version
-        version:'1.05',
+        version:'1.07',
         // 加载资源的标签
         completeResFlag: false,
         // 手机型号

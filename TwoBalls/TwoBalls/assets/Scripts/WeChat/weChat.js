@@ -330,8 +330,78 @@ let T = cc.Class({
         );
     },
 
+    checkIsShowAd() {
+        return (CC_WECHATGAME && wx && typeof(wx.createBannerAd) != undefined)
+    },
+
     showAD() {
-        // 插屏广告接入
+        if(CC_WECHATGAME && wx && typeof(wx.createBannerAd) != undefined) {
+            this.destroyAd()
+            // 插屏广告接入
+            let bannerAd = wx.createBannerAd({
+                adUnitId: 'adunit-68c37174ce72ce6b',
+                style: {
+                    left: 0,
+                    top: 0,
+                    width: 350
+                }
+            })
+
+            bannerAd.onResize(function(){
+                bannerAd.style.left = screenWidth / 2 - bannerAd.style.realWidth / 2 + 0.1;
+                bannerAd.style.top = screenHeight - bannerAd.style.realHeight + 0.1;
+            })
+
+            bannerAd.show()
+            this._lastBannerAd = bannerAd
+        }  
+    },
+
+    destroyAd() {
+        if(this._lastBannerAd) {
+            this._lastBannerAd.destroy()
+            this._lastBannerAd = null
+        }
+    },
+
+    checkIsShowViewAd() {
+        return (CC_WECHATGAME && wx && typeof(wx.createRewardedVideoAd) != undefined)
+    },
+
+    showViewAd(obj){
+        if(CC_WECHATGAME && wx && typeof(wx.createRewardedVideoAd) != undefined) {
+            let videoAd = wx.createRewardedVideoAd({
+                adUnitId: 'adunit-4db163908fba72f2'
+            })
+            
+            videoAd.load()
+            .then(() => videoAd.show())
+            .catch(err => {
+                // console.log(err.errMsg)
+                videoAd.load.then(() => videoAd.show())
+            })
+
+            videoAd.onClose(res => {
+                if (res && res.isEnded || res === undefined) {
+                    // 正常播放结束，可以下发游戏奖励
+                    if(obj.success) {
+                        obj.success(res)
+                    }
+                  }
+                  else {
+                      // 播放中途退出，不下发游戏奖励
+                      if(obj.fail) {
+                          obj.fail()
+                      }
+                  }
+            })
+
+            videoAd.onError(res =>{
+                console.log('错误',res)
+            })
+        } else {
+            T.showTips('微信版本过低,请升级使用')
+        }
     },
 
     adjustBgScaleY(node) {
@@ -367,7 +437,7 @@ let T = cc.Class({
         if(CC_WECHATGAME) {
             if(typeof(wx.navigateToMiniProgram) != undefined) {
                 wx.navigateToMiniProgram({
-                    appId:'wx7a0bffe7a36fab99',
+                    appId:'wx60d48e7d3d00883a',
                     path:'',
                     envVersion:'release',
                     success: ()=>{

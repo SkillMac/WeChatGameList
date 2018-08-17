@@ -16,9 +16,16 @@ let T = cc.Class({
         cc.TB.GAME.panelBgDestroyFunc = ()=>{
             this.offBtnEvent()
         }
+        if(this.node.name != 'panel2') {
+            // display ad
+            if(cc.TB.wco.checkIsShowAd()) {
+                cc.TB.wco.showAD()
+            }
+        }
     },
 
     offBtnEvent(event, params, delayTime) {
+        cc.TB.wco.destroyAd()
         delayTime = delayTime ? delayTime : 0;
         this.node.runAction(cc.sequence(cc.delayTime(delayTime),cc.callFunc(()=>{
             if(this.call_back) {
